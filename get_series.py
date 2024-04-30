@@ -22,7 +22,7 @@ make_dir(save_dir)
 result1=fred_getter.getCategoryByCategoryId(category_id=category_id)
 category_name=result1['categories'][0]['name']
 result2=fred_getter.getSereisIds(category_id=category_id)
-pprint(result2)
+# pprint(result2)
 print('>>>> {} : Total {} series'.format(category_name, result2['count']))
 df=pd.DataFrame(result2['seriess'])
 del df['realtime_start'], df['realtime_end']
