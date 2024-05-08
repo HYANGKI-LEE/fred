@@ -25,6 +25,11 @@ ids_M = [
     'PAYEMS', # All Employees, Total Nonfarm
     'UNRATE', # Unemployment Rate
     'JTSJOL', # Job Openings: Total Nonfarm
+    'AWHAETP', # Average Weekly Hours of All Employees, Total Private
+    'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
+
+    # Consumption
+    'TOTALSA', # Total Vehicle Sales
 
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
