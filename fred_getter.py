@@ -60,4 +60,14 @@ def getCategoryByCategoryId(category_id):
         print(f"Error: {response.status_code}")
         return None
 
+def getRelatedCategoriesByCategoryId(category_id):
+    url=f'https://api.stlouisfed.org/fred/category/related?category_id={category_id}&api_key={myAPIkey}&file_type={response_method}'
+    headers = {'User-Agent': user_agent}
+    response = requests.get(url, headers=headers, verify=False)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error: {response.status_code}")
+        return None
+
 
