@@ -3,8 +3,8 @@ from argparse import Namespace, ArgumentParser
 from util import make_dir
 from runner import runner
 
-from mySeriesIds import us_macro_ids_D, us_macro_ids_W_wed, us_macro_ids_W_sat, us_macro_ids_M, us_macro_ids_Q
-from mySeriesIds import us_macro_dir_D, us_macro_dir_W_wed, us_macro_dir_W_sat, us_macro_dir_M, us_macro_dir_Q
+from mySeriesIds.us_macro import dir, ids_Q, ids_M, ids_W_wed, ids_W_sat, ids_D
+
 
 def setup_args() -> Namespace:
     parser = ArgumentParser(description='fred api')
@@ -15,25 +15,22 @@ if __name__ == '__main__':
     args = setup_args()
 
     if args.freq == 'D':
-        series_ids=us_macro_ids_D
-        dir_name=us_macro_dir_D
+        series_ids=ids_D
     elif args.freq == 'W_wed':
-        series_ids=us_macro_ids_W_wed
-        dir_name=us_macro_dir_W_wed
+        series_ids=ids_W_wed
     elif args.freq == 'W_sat':
-        series_ids = us_macro_ids_W_sat
-        dir_name = us_macro_dir_W_sat
+        series_ids=ids_W_sat
     elif args.freq == 'M':
-        series_ids=us_macro_ids_M
-        dir_name=us_macro_dir_M
+        series_ids=ids_M
     elif args.freq == 'Q':
-        series_ids=us_macro_ids_Q
-        dir_name=us_macro_dir_Q
+        series_ids=ids_Q
     else:
         print('')
         print('There is NO VALID term unit!')
         print('')
         exit()
+
+    dir_name = '{}({})'.format(dir, args.freq)
 
     output_dir = './output'
     make_dir(output_dir)

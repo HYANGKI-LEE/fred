@@ -3,8 +3,7 @@ from argparse import Namespace, ArgumentParser
 from util import make_dir
 from runner import runner
 
-from mySeriesIds import fed_bs_ids_D, fed_bs_ids_W_wed, fed_bs_ids_W_mon, fed_bs_ids_M, fed_bs_ids_Q
-from mySeriesIds import fed_bs_dir_D, fed_bs_dir_W_wed, fed_bs_dir_W_mon, fed_bs_dir_M, fed_bs_dir_Q
+from mySeriesIds.us_liquidity import dir, ids_D, ids_W_wed, ids_W_mon, ids_M, ids_Q
 
 def setup_args() -> Namespace:
     parser = ArgumentParser(description='fred api')
@@ -15,20 +14,20 @@ if __name__ == '__main__':
     args = setup_args()
 
     if args.freq == 'D':
-        series_ids=fed_bs_ids_D
-        dir_name=fed_bs_dir_D
+        series_ids=ids_D
     elif args.freq == 'W_w':
-        series_ids=fed_bs_ids_W_wed
-        dir_name=fed_bs_dir_W_wed
+        series_ids=ids_W_wed
     elif args.freq == 'W_m':
-        series_ids = fed_bs_ids_W_mon
-        dir_name = fed_bs_dir_W_mon
+        series_ids=ids_W_mon
     elif args.freq == 'M':
-        series_ids=fed_bs_ids_M
-        dir_name=fed_bs_dir_M
+        series_ids=ids_M
+    elif args.freq == 'Q':
+        series_ids=ids_Q
     else:
-        series_ids=fed_bs_ids_Q
-        dir_name=fed_bs_dir_Q
+        print('')
+        print('There is NO VALID term unit!')
+        print('')
+        exit()
 
     output_dir = './output'
     make_dir(output_dir)

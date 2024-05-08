@@ -3,8 +3,7 @@ from argparse import Namespace, ArgumentParser
 from util import make_dir
 from runner import runner
 
-from mySeriesIds import us_history_ids_Q, us_history_ids_M, us_history_ids_W,  us_history_ids_D
-from mySeriesIds import us_history_dir_Q, us_history_dir_M, us_history_dir_W,  us_history_dir_D
+from mySeriesIds.us_history import dir, ids_A , ids_Q, ids_M, ids_W, ids_D
 
 def setup_args() -> Namespace:
     parser = ArgumentParser(description='fred api')
@@ -14,21 +13,23 @@ def setup_args() -> Namespace:
 if __name__ == '__main__':
     args = setup_args()
 
-    if args.freq == 'D':
-        series_ids=us_history_ids_D
-        dir_name=us_history_dir_D
-    elif args.freq == 'W':
-        series_ids=us_history_ids_W
-        dir_name=us_history_dir_W
-    # elif args.freq == 'W_m':
-    #     series_ids = fed_bs_ids_W_mon
-    #     dir_name = fed_bs_dir_W_mon
+    if args.freq == 'A':
+        series_ids=ids_A
+    elif args.freq == 'Q':
+        series_ids=ids_Q
     elif args.freq == 'M':
-        series_ids=us_history_ids_M
-        dir_name=us_history_dir_M
+        series_ids=ids_M
+    elif args.freq == 'W':
+        series_ids=ids_W
+    elif args.freq == 'D':
+        series_ids=ids_D
     else:
-        series_ids=us_history_ids_Q
-        dir_name=us_history_dir_Q
+        print('')
+        print('There is NO VALID term unit!')
+        print('')
+        exit()
+
+    dir_name = '{}({})'.format(dir, args.freq)
 
     output_dir = './output'
     make_dir(output_dir)
