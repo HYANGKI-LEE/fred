@@ -1,5 +1,4 @@
 import fred_getter
-from mySeriesIds import us_macro_ids_Q, us_macro_ids_M, us_macro_ids_W, us_macro_ids_D
 
 ###################
 # INPUT VARIABLES #
@@ -8,7 +7,7 @@ from mySeriesIds import us_macro_ids_Q, us_macro_ids_M, us_macro_ids_W, us_macro
 # series_ids = ['M1SL', 'M2SL']
 # series_ids = ['CURRCIR']
 series_ids = [
-    'BAMLC0A0CM'
+    'PAYEMS'
     ]
 
 tickers = ['date']
