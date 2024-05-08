@@ -78,3 +78,38 @@ fed_bs_ids_D = ['RPONTSYD',
                 'DFEDTARU',
                 'DPCREDIT']
 fed_bs_dir_D = 'fed_bs(D)'
+
+########################
+###### US HISTORY ######
+########################
+
+# Annually
+us_history_ids_Q = ['GDPA', # Gross Domestic Product
+                    ]
+us_history_dir_Q = 'us_history(A)'
+
+# Quarterly
+us_history_ids_Q = ['GDP', # Gross Domestic Product
+                    ]
+us_history_dir_Q = 'us_history(Q)'
+
+# Monthly
+us_history_ids_M = ['CPIAUCSL', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
+                    'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy (YoY)
+                    'PCEPI', # Personal Consumption Expenditures: Chain-type Price Index
+                    'PCEPILFE', # Personal Consumption Expenditures Excluding Food and Energy (Chain-Type Price Index)
+                    'FEDFUNDS', # Federal Funds Effective Rate
+                    ]
+us_history_dir_M = 'us_history(M)'
+
+# Weekly
+us_history_ids_W = ['']
+us_history_dir_W = 'us_history(W)'
+
+# Daily
+us_history_ids_D = ['SP500', # S&P 500
+                    'DJIA', # Dow Jones Industrial Average
+                    'NASDAQCOM', # NASDAQ Composite Index
+                    ]
+us_history_dir_D = 'us_history(D)'
+
