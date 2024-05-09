@@ -1,3 +1,6 @@
+
+dir='us_liquidity'
+
 ids_Q = ['MMMFFAQ027S',
                 'M1V',
                 'M2V',

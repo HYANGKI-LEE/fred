@@ -15,9 +15,9 @@ if __name__ == '__main__':
 
     if args.freq == 'D':
         series_ids=ids_D
-    elif args.freq == 'W_w':
+    elif args.freq == 'W_wed':
         series_ids=ids_W_wed
-    elif args.freq == 'W_m':
+    elif args.freq == 'W_mon':
         series_ids=ids_W_mon
     elif args.freq == 'M':
         series_ids=ids_M
@@ -29,10 +29,15 @@ if __name__ == '__main__':
         print('')
         exit()
 
+    dir_name = '{}({})'.format(dir, args.freq)
+
     output_dir = './output'
     make_dir(output_dir)
 
-    save_dir = '{}/{}'.format(output_dir, dir_name)
+    type_dir = '{}/{}'.format(output_dir, dir)
+    make_dir(type_dir)
+
+    save_dir = '{}/{}'.format(type_dir, dir_name)
     make_dir(save_dir)
 
     runner(series_ids=series_ids, save_dir=save_dir, file_name=dir_name)

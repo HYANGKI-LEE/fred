@@ -34,7 +34,10 @@ if __name__ == '__main__':
     output_dir = './output'
     make_dir(output_dir)
 
-    save_dir = '{}/{}'.format(output_dir, dir_name)
+    type_dir = '{}/{}'.format(output_dir, dir)
+    make_dir(type_dir)
+
+    save_dir = '{}/{}'.format(type_dir, dir_name)
     make_dir(save_dir)
 
     runner(series_ids=series_ids, save_dir=save_dir, file_name=dir_name)
