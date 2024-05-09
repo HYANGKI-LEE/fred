@@ -66,5 +66,5 @@ ids_D = [
     'BAMLC0A4CBBB', # ICE BofA BBB US Corporate Index Option-Adjusted Spread
 
 
-    'USRECDP',
-                  ]
+    'USRECDP', # NBER based Recession Indicators for the United States from the Peak through the Period preceding the Trough
+]
