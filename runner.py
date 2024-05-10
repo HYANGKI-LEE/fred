@@ -22,6 +22,6 @@ def runner(series_ids, save_dir, file_name):
             df = pd.merge(df, df_tmp, left_on='date', right_on='date', how='outer')
         except:
             df = df_tmp
-
+    df = df.sort_values(by=['date'], ascending=True)
     df.columns = [tickers, names]
     df.to_csv('{}/{}_{}.csv'.format(save_dir, file_name, datetime.today().strftime('%Y%m%d')))
