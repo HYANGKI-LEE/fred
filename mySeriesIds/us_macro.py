@@ -43,15 +43,15 @@ ids_M = [
     'AWHAETP', # Average Weekly Hours of All Employees, Total Private
     'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
 
-    # Inflation
+    # Inflation & Consumption
+    'CPIAUCSL', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
     'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy
+    'PCE',  # Personal Consumption Expenditures
+    'PCEC96', # Real Personal Consumption Expenditures
 
-    # Consumption
     'DSPI', # Disposable Personal Income
     'DSPIC96', # Real Disposable Personal Income
     'TOTALSA', # Total Vehicle Sales
-    'PCE', # Personal Consumption Expenditures
-    'PCEC96', # Real Personal Consumption Expenditures
 
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
