@@ -3,6 +3,18 @@ dir='us_macro'
 
 # Quarterly
 ids_Q = [
+    # Monetary
+    'M2V', # Velocity of M2 Money Stock
+
+    # Inflation
+    'ECIWAG', # Employment Cost Index: Wages and Salaries: Private Industry Workers
+
+    # Business
+    'BOGZ1FA106030005Q', # Nonfinancial Corporate Business; Revenue from Sales of Goods and Services, Excluding Indirect Sales Taxes (FSIs), Transactions
+    'NFCPATAX', # Nonfinancial Corporate Business: Profits After Tax
+    'NCBCMDPMVCE', # Nonfinancial Corporate Business; Debt as a Percentage of the Market Value of Corporate Equities, Level
+
+
     # SLOOS
     'DRTSCILM', # Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms
     'DRTSCIS', # Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Small Firms
@@ -18,18 +30,28 @@ ids_Q = [
 
 # Monthly
 ids_M = [
-
+    # Liquidity
     'CURRCIR', # Currency in Circulation
 
     # Employment & Labor - U.S. Bureau of Labor Statistics
     'PAYEMS', # All Employees, Total Nonfarm
+    'CIVPART', # Labor Force Participation Rate
+    'UNEMPLOY', # Unemployment Level
     'UNRATE', # Unemployment Rate
-    'JTSJOL', # Job Openings: Total Nonfarm
+    'JTSJOL', # Job Openings: Total Nonfarm,
+
     'AWHAETP', # Average Weekly Hours of All Employees, Total Private
     'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
 
+    # Inflation
+    'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy
+
     # Consumption
+    'DSPI', # Disposable Personal Income
+    'DSPIC96', # Real Disposable Personal Income
     'TOTALSA', # Total Vehicle Sales
+    'PCE', # Personal Consumption Expenditures
+    'PCEC96', # Real Personal Consumption Expenditures
 
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
@@ -41,13 +63,27 @@ ids_M = [
     'AMTMVS', # Manufacturers' Value of Shipments: Total Manufacturing
     'AMTMIS', # Manufacturers' Inventories to Shipments Ratios: Total Manufacturing
 
+    # OECD
+    'OECDLOLITOAASTSAM', # Leading Indicators OECD: Leading indicators: CLI: Amplitude adjusted for OECD - Total
+
     # Yield - Moody's
     'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
 ]
 
 # Weekly
-ids_W_wed = ['TOTCI', # Commercial and Industrial Loans, All Commercial Banks
+ids_W_wed = [
+    'TOTCI', # Commercial and Industrial Loans, All Commercial Banks
+    'TOTLL', # Loans and Leases in Bank Credit, All Commercial Banks
+    'CREACBW027SBOG', # Real Estate Loans: Commercial Real Estate Loans, All Commercial Banks
+    'CCLACBW027SBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks
+
+    'DPSACBW027SBOG', # Deposits, All Commercial Banks
+    'TOTBKCR', # Bank Credit, All Commercial Banks
                   ]
+ids_W_thu = [
+    'MORTGAGE30US', # 30-Year Fixed Rate Mortgage Average in the United States
+
+]
 ids_W_sat = [
     # Employment
     'ICNSA', # Initial Claims
@@ -56,13 +92,19 @@ ids_W_sat = [
 
 # Daily
 ids_D = [
+    # Rate
+    'DFEDTAR', # Federal Funds Target Rate (DISCONTINUED)
+    'DFEDTARL', # Federal Funds Target Range - Lower Limit
+    'DFEDTARU', # Federal Funds Target Range - Upper Limit
+    'DFF', # Federal Funds Effective Rate
+    'T5YIE', # 5-Year Breakeven Inflation Rate
+
     # OAS
     'BAMLC0A0CM', # ICE BofA US Corporate Index Option-Adjusted Spread
     'BAMLH0A0HYM2', # ICE BofA US High Yield Index Option-Adjusted Spread
 
     # Yield
     'BAMLH0A0HYM2EY', # ICE BofA US High Yield Index Effective Yield
-
     'BAMLC0A4CBBB', # ICE BofA BBB US Corporate Index Option-Adjusted Spread
 
     # Recession
