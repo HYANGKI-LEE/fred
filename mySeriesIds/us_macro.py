@@ -29,6 +29,7 @@ ids_Q = [
                   ]
 
 # Monthly
+
 ids_M = [
     # Liquidity
     'CURRCIR', # Currency in Circulation
@@ -38,7 +39,37 @@ ids_M = [
     'CIVPART', # Labor Force Participation Rate
     'UNEMPLOY', # Unemployment Level
     'UNRATE', # Unemployment Rate
-    'JTSJOL', # Job Openings: Total Nonfarm,
+
+    # Employment - JOLTs
+    ## Job Openings - level
+    'JTSJOL', # Job Openings: Total Nonfarm (level)
+    'JTU110099JOL', # Job Openings: Mining and Logging
+    'JTS2300JOL', # Job Openings: Construction
+    'JTS3000JOL', # Job Openings: Manufacturing
+    'JTS4000JOL', # Job Openings: Trade, Transportation, and Utilities
+    'JTU5100JOL', # Job Openings: Information
+    'JTU510099JOL', # Job Openings: Financial Activities
+    'JTS540099JOL', # Job Openings: Professional and Business Services
+    'JTS6000JOL', # Job Openings: Private Education and Health Services
+    'JTS7000JOL', # Job Openings: Leisure and Hospitality
+    'JTU8100JOL', # Job Openings: Other Services
+    'JTU9100JOL', # Job Openings: Federal
+    'JTS9200JOL', # Job Openings: State and Local
+
+    ## Job Openings - rate
+    'JTS1000JOR', # Job Openings: Total Private (rate)
+    'JTU110099JOR', # Job Openings: Mining and Logging
+    'JTS2300JOR', # Job Openings: Construction
+    'JTS3000JOR', # Job Openings: Manufacturing
+    'JTU4000JOR', # Job Openings: Trade, Transportation, and Utilities
+    'JTU5100JOR', # Job Openings: Information
+    'JTU510099JOR', #  Job Openings: Financial Activities
+    'JTS540099JOR', # Job Openings: Professional and Business Services
+    'JTS6000JOR', # Job Openings: Private Education and Health Services
+    'JTS7000JOR', # Job Openings: Leisure and Hospitality
+    'JTU8100JOR', # Job Openings: Other Services
+    'JTU9100JOR', # Job Openings: Federal
+    'JTS9200JOR', # Job Openings: State and Local
 
     'AWHAETP', # Average Weekly Hours of All Employees, Total Private
     'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
@@ -69,7 +100,6 @@ ids_M = [
     # Yield - Moody's
     'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
 ]
-
 # Weekly
 ids_W_wed = [
     'TOTCI', # Commercial and Industrial Loans, All Commercial Banks
