@@ -173,7 +173,7 @@ ids_M = [
     'OECDLOLITOAASTSAM', # Leading Indicators OECD: Leading indicators: CLI: Amplitude adjusted for OECD - Total
 
     # Yield - Moody's
-    'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
+    # 'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
 ]
 # Weekly
 ids_W_wed = [
