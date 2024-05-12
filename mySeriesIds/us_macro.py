@@ -34,11 +34,16 @@ ids_M = [
     # Liquidity
     'CURRCIR', # Currency in Circulation
 
-    # Employment & Labor - U.S. Bureau of Labor Statistics
-    'PAYEMS', # All Employees, Total Nonfarm
-    'CIVPART', # Labor Force Participation Rate
-    'UNEMPLOY', # Unemployment Level
+    # Employment & Labor - U.S. Bureau of Labor Statistics(BLS)
+    ## Current Population Survey (Household Survey)
+    'CE16OV', # Employment Level
     'UNRATE', # Unemployment Rate
+    'UNEMPLOY', # Unemployment Level
+    'CIVPART', # Labor Force Participation Rate
+
+    ## Current Employment Statistics (Establishment Survey)
+    'PAYEMS',  # All Employees, Total Nonfarm
+    # 'USPRIV',  # All Employees, Total Private
 
     # Employment - JOLTs
     ## Job Openings - level
@@ -71,8 +76,72 @@ ids_M = [
     'JTU9100JOR', # Job Openings: Federal
     'JTS9200JOR', # Job Openings: State and Local
 
+    ## Hires - level
+    'JTSHIL', # Hires: Total Nonfarm
+    'JTS1000HIL', # Hires: Total Private
+    'JTS2300HIL', # Hires: Construction
+    'JTS3000HIL', # Hires: Manufacturing
+    'JTS4000HIL', # Hires: Trade, Transportation, and Utilities
+    'JTU5100HIL', # Hires: Information
+    'JTU510099HIL', # Hires: Financial Activities
+    'JTS540099HIL', # Hires: Professional and Business Services
+    'JTS6000HIL', # Hires: Private Education and Health Services
+    'JTS7000HIL', # Hires: Leisure and Hospitality
+    'JTU8100HIL', # Hires: Other Services
+    'JTU9100HIL', # Hires: Federal
+    'JTS9200HIL', # Hires: State and Local
+
+    ## Hires - rate
+    'JTSHIR', # Hires: Total Nonfarm
+    'JTS1000HIR', # Hires: Total Private
+    'JTS2300HIR', # Hires: Construction
+    'JTS3000HIR', # Hires: Manufacturing
+    'JTS4000HIR', # Hires: Trade, Transportation, and Utilities
+    'JTU5100HIR', # Hires: Information
+    'JTU510099HIR', # Hires: Financial Activities
+    'JTS540099HIR', # Hires: Professional and Business Services
+    'JTS6000HIR', # Hires: Private Education and Health Services
+    'JTS7000HIR', # Hires: Leisure and Hospitality
+    'JTU8100HIR', # Hires: Other Services
+    'JTU9100HIR', # Hires: Federal
+    'JTS9200HIR', # Hires: State and Local
+
+    ## Separations - level
+    'JTSTSL', # Total Separations: Total Nonfarm
+    'JTS1000TSL', # Total Separations: Total Private
+    'JTS2300TSL', # Total Separations: Construction
+    'JTS3000TSL', # Total Separations: Manufacturing
+    'JTS4000TSL', # Total Separations: Trade, Transportation, and Utilities
+    'JTU5100TSL', # Total Separations: Information
+    'JTU510099TSL', # Total Separations: Financial Activities
+    'JTS540099TSL', # Total Separations: Professional and Business Services
+    'JTS6000TSL', # Total Separations: Private Education and Health Services
+    'JTS7000TSL', # Total Separations: Leisure and Hospitality
+    'JTU8100TSL', # Total Separations: Other Services
+    'JTU9100TSL', # Total Separations: Federal
+    'JTS9200TSL', # Total Separations: State and Local
+
+    ## Separations - rate
+    'JTSTSR', # Total Separations: Total Nonfarm
+    'JTS1000TSR', # Total Separations: Total Private
+    'JTS2300TSR', # Total Separations: Construction
+    'JTS3000TSR', # Total Separations: Manufacturing
+    'JTS4000TSR', # Total Separations: Trade, Transportation, and Utilities
+    'JTU5100TSR', # Total Separations: Information
+    'JTU510099TSR', # Total Separations: Financial Activities
+    'JTS540099TSR', # Total Separations: Professional and Business Services
+    'JTS6000TSR', # Total Separations: Private Education and Health Services
+    'JTS7000TSR', # Total Separations: Leisure and Hospitality
+    'JTU8100TSR', # Total Separations: Other Services
+    'JTU9100TSR', # Total Separations: Federal
+    'JTS9200TSR', # Total Separations: State and Local
+
     'AWHAETP', # Average Weekly Hours of All Employees, Total Private
     'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
+
+    # Employemnt - ADP
+    'ADPMNUSNERSA', #  Total Nonfarm Private Payroll Employment
+
 
     # Inflation & Consumption
     'CPIAUCSL', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
@@ -83,6 +152,12 @@ ids_M = [
     'DSPI', # Disposable Personal Income
     'DSPIC96', # Real Disposable Personal Income
     'TOTALSA', # Total Vehicle Sales
+
+    # Inflation & Consumption - Housing price
+    'CSUSHPINSA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
+    'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
+    'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
+    'USSTHPI', # All-Transactions House Price Index for the United States
 
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
@@ -112,11 +187,12 @@ ids_W_wed = [
                   ]
 ids_W_thu = [
     'MORTGAGE30US', # 30-Year Fixed Rate Mortgage Average in the United States
-
 ]
 ids_W_sat = [
     # Employment
     'ICNSA', # Initial Claims
+
+    # Employment - ADP
     'ADPWNUSNERSA', # Total Nonfarm Private Payroll Employment
 ]
 
