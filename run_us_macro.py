@@ -29,7 +29,7 @@ if __name__ == '__main__':
         print('There is NO VALID term unit!')
         print('')
         exit()
-
+    # series_ids = ['JTSTSL']
     dir_name = '{}({})'.format(dir, args.freq)
 
     output_dir = './output'
