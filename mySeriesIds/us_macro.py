@@ -47,7 +47,8 @@ ids_M = [
 
     # Employment - JOLTs
     ## Job Openings - level
-    'JTSJOL', # Job Openings: Total Nonfarm (level)
+    'JTSJOL', # Job Openings: Total Nonfarm
+    'JTS1000JOL', # Job Openings: Total Private
     'JTU110099JOL', # Job Openings: Mining and Logging
     'JTS2300JOL', # Job Openings: Construction
     'JTS3000JOL', # Job Openings: Manufacturing
@@ -62,7 +63,8 @@ ids_M = [
     'JTS9200JOL', # Job Openings: State and Local
 
     ## Job Openings - rate
-    'JTS1000JOR', # Job Openings: Total Private (rate)
+    'JTSJOR', # Job Openings: Total Nonfarm
+    'JTS1000JOR', # Job Openings: Total Private
     'JTU110099JOR', # Job Openings: Mining and Logging
     'JTS2300JOR', # Job Openings: Construction
     'JTS3000JOR', # Job Openings: Manufacturing
