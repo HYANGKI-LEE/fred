@@ -144,22 +144,51 @@ ids_M = [
     # Employemnt - ADP
     'ADPMNUSNERSA', #  Total Nonfarm Private Payroll Employment
 
-
     # Inflation & Consumption
-    'CPIAUCSL', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
-    'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy
-    'PCE',  # Personal Consumption Expenditures
-    'PCEC96', # Real Personal Consumption Expenditures
-
-    'DSPI', # Disposable Personal Income
-    'DSPIC96', # Real Disposable Personal Income
+    ## Retail sales (Census Bureau)
+    'RSAFS',  # Advance Retail Sales: Retail Trade and Food Services
+    'RSXFS',  # Advance Retail Sales: Retail Trade
+    'RSFSXMV', # Advance Retail Sales: Retail Trade and Food Services, Excluding Motor Vehicle and Parts Dealers
+    'MARTSSM44W72USS', # Advance Retail Sales: Retail Trade and Food Services, Excluding Motor Vehicle and Parts Dealers and Gasoline Stations
+    'RSBMGESD', # Advance Retail Sales: Building Materials, Garden Equipment and Supplies Dealers
+    'RSFSDP', # Advance Retail Sales: Food Services and Drinking Places
+    'RRSFS',  # Advance Real Retail and Food Services Sales
+    # 'MRTSSM44X72USS',  # Retail Sales: Retail Trade and Food Services
+    # 'MRTSSM44000USS', # Retail Sales: Retail Trade
+    # 'MRTSSM44X72USS', # Retail Sales: Retail Trade and Food Services
+    # 'MRTSMPCSM44000USS', # Retail Sales: Retail Trade
     'TOTALSA', # Total Vehicle Sales
 
-    # Inflation & Consumption - Housing price
+
+    ## Consumer sentiment
+    'UMCSENT', # University of Michigan: Consumer Sentiment
+    'CSCICP03USM665S', # Composite Leading Indicators: Composite Consumer Confidence Amplitude Adjusted for United States
+
+    ## Inflation Expectation
+    'MICH', # University of Michigan: Inflation Expectation
+
+    ## Housing price
     'CSUSHPINSA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
     'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
     'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
     'USSTHPI', # All-Transactions House Price Index for the United States
+    'USAUCSFRCONDOSMSAMID', # Zillow Home Value Index (ZHVI) for All Homes Including Single-Family Residences, Condos, and CO-OPs in the United States of America
+
+    ## PCE & CPI
+    'PCEPI', # Personal Consumption Expenditures: Chain-type Price Index
+    'PCEPILFE', # Personal Consumption Expenditures Excluding Food and Energy
+    'DPCCRC1M027SBEA',  # Personal consumption expenditures excluding food and energy
+    'IA001176M', # Personal Consumption Expenditures Excluding Food, Energy, and Housing (Chain-Type Price Index)
+    'PCE',  # Personal Consumption Expenditures
+    'PCEC96', # Real Personal Consumption Expenditures
+
+    'CPIAUCSL', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
+    'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy
+    'STICKCPIXSHLTRM159SFRBATL', # Sticky Price Consumer Price Index less Shelter
+
+
+    'DSPI', # Disposable Personal Income
+    'DSPIC96', # Real Disposable Personal Income
 
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
