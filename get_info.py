@@ -6,9 +6,12 @@ import fred_getter
 
 # series_ids = ['M1SL', 'M2SL']
 # series_ids = ['CURRCIR']
-series_ids = [
-    'PAYEMS'
-    ]
+ids_D = [
+    'M08342USM163NNBR'
+]
+
+
+series_ids = ids_D
 
 tickers = ['date']
 names = ['date']

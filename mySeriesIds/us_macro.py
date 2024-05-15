@@ -6,8 +6,9 @@ ids_Q = [
     # Monetary
     'M2V', # Velocity of M2 Money Stock
 
-    # Inflation
+    # Inflation - ECI
     'ECIWAG', # Employment Cost Index: Wages and Salaries: Private Industry Workers
+    'ECIALLCIV', # Employment Cost Index: Total compensation: All Civilian
 
     # Business
     'BOGZ1FA106030005Q', # Nonfinancial Corporate Business; Revenue from Sales of Goods and Services, Excluding Indirect Sales Taxes (FSIs), Transactions
@@ -186,9 +187,12 @@ ids_M = [
     'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy
     'STICKCPIXSHLTRM159SFRBATL', # Sticky Price Consumer Price Index less Shelter
 
-
     'DSPI', # Disposable Personal Income
     'DSPIC96', # Real Disposable Personal Income
+
+    ## Earnings
+    'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
+
 
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
