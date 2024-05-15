@@ -193,6 +193,12 @@ ids_M = [
     ## Earnings
     'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
 
+    ## PPI
+    'PPIACO', # Producer Price Index by Commodity: All Commodities
+    'PCUOMFGOMFG', # Producer Price Index by Industry: Total Manufacturing Industries
+
+
+
 
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
