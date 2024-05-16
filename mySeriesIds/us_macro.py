@@ -197,6 +197,7 @@ ids_M = [
     'CUUR0000SAM2', # Consumer Price Index for All Urban Consumers: Medical Care Services in U.S. City Average (NSA)
     'CUUR0000SAS4', # Consumer Price Index for All Urban Consumers: Transportation Services in U.S. City Average (NSA)
 
+    'CUUR0000SA0R', # Consumer Price Index for All Urban Consumers: Purchasing Power of the Consumer Dollar in U.S. City Average
 
     'DSPI', # Disposable Personal Income
     'DSPIC96', # Real Disposable Personal Income
@@ -225,8 +226,11 @@ ids_M = [
     # OECD
     'OECDLOLITOAASTSAM', # Leading Indicators OECD: Leading indicators: CLI: Amplitude adjusted for OECD - Total
 
-    # Yield - Moody's
-    # 'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
+
+    # Rates & Yields
+    'FEDFUNDS', # Federal Funds Effective Rate
+    'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
+    'BAA', # Moody's Seasoned Baa Corporate Bond Yield
 ]
 # Weekly
 ids_W_wed = [
@@ -262,9 +266,15 @@ ids_D = [
     'BAMLC0A0CM', # ICE BofA US Corporate Index Option-Adjusted Spread
     'BAMLH0A0HYM2', # ICE BofA US High Yield Index Option-Adjusted Spread
 
-    # Yield
-    'BAMLH0A0HYM2EY', # ICE BofA US High Yield Index Effective Yield
     'BAMLC0A4CBBB', # ICE BofA BBB US Corporate Index Option-Adjusted Spread
+    'BAMLH0A3HYC', # ICE BofA CCC & Lower US High Yield Index Option-Adjusted Spread
+
+    # Yield
+    'BAMLC0A0CMEY', # ICE BofA US Corporate Index Effective Yield
+    'BAMLH0A0HYM2EY', # ICE BofA US High Yield Index Effective Yield
+    'BAMLH0A3HYCEY', # ICE BofA CCC & Lower US High Yield Index Effective Yield
+    'DAAA', # Moody's Seasoned Aaa Corporate Bond Yield
+    'DBAA', # Moody's Seasoned Baa Corporate Bond Yield
 
     # Recession
     'USRECDP', # NBER based Recession Indicators for the United States from the Peak through the Period preceding the Trough
