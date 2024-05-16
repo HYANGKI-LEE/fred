@@ -184,7 +184,7 @@ ids_M = [
     'PCEC96', # Real Personal Consumption Expenditures
 
     'CPIAUCSL', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (SA)
-    'CUUS0000SA0', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (NSA)
+    'CPIAUCNS', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (NSA)
     'STICKCPIM157SFRBATL', # Sticky Price Consumer Price Index
     'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy
     'CRESTKCPIXSLTRM159SFRBATL', # Sticky Price Consumer Price Index less Food, Energy, and Shelter
@@ -192,6 +192,7 @@ ids_M = [
     'CPIUFDNS', # Consumer Price Index for All Urban Consumers: Food in U.S. City Average (NSA)
     'CPIENGSL', # Consumer Price Index for All Urban Consumers: Energy in U.S. City Average (NSA)
     'CUUR0000SACL1E', # Consumer Price Index for All Urban Consumers: Commodities Less Food and Energy Commodities in U.S. City Average (NSA)
+    'CUUR0000SAH1', # Consumer Price Index for All Urban Consumers: Shelter in U.S. City Average (NSA)
     'CUUR0000SAM2', # Consumer Price Index for All Urban Consumers: Medical Care Services in U.S. City Average (NSA)
     'CUUR0000SAS4', # Consumer Price Index for All Urban Consumers: Transportation Services in U.S. City Average (NSA)
 
