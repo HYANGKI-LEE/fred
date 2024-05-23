@@ -240,11 +240,23 @@ ids_W_wed = [
     'CCLACBW027SBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks
 
     'DPSACBW027SBOG', # Deposits, All Commercial Banks
+    'DPSSCBW027NBOG', # Deposits, Small Domestically Chartered Commercial Banks
+    'DPSLCBW027SBOG', # Deposits, Large Domestically Chartered Commercial Banks
     'TOTBKCR', # Bank Credit, All Commercial Banks
                   ]
 ids_W_thu = [
     'MORTGAGE30US', # 30-Year Fixed Rate Mortgage Average in the United States
 ]
+
+ids_W_fri = [
+    'NFCI', # Chicago Fed National Financial Conditions Index
+    'ANFCI', # Chicago Fed Adjusted National Financial Conditions Index
+    'NFCIRISK', # Chicago Fed National Financial Conditions Risk Subindex
+    'NFCICREDIT', # Chicago Fed National Financial Conditions Credit Subindex
+    'NFCILEVERAGE', # Chicago Fed National Financial Conditions Leverage Subindex
+    'NFCINONFINLEVERAGE', # Chicago Fed National Financial Conditions Index Nonfinancial Leveral Subindex
+]
+
 ids_W_sat = [
     # Employment
     'ICNSA', # Initial Claims
