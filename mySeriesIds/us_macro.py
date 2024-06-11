@@ -10,11 +10,35 @@ ids_Q = [
     'ECIWAG', # Employment Cost Index: Wages and Salaries: Private Industry Workers
     'ECIALLCIV', # Employment Cost Index: Total compensation: All Civilian
 
+    # Households - https://fred.stlouisfed.org/release/tables?rid=52&eid=810420#snid=810428
+    'BOGZ1FL192000005Q', # Households; Total Assets, Level  (NSA)
+    'BOGZ1LM192010005Q', # Households; Nonfinancial Assets, Market Value Levels (NSA)
+    'BOGZ1FL194090005Q', # Households; Total Financial Assets, Level (NSA)
+    'BOGZ1FL193020005Q', # Households; Checkable Deposits and Currency; Asset, Level (NSA)
+    'BOGZ1LM194022005Q', # Households; Debt Securities; Asset, Market Value Levels (NSA)
+    'BOGZ1LM193064005Q', # Households; Corporate Equities and Mutual Fund Shares; Asset, Market Value Levels (NSA)
+    'BOGZ1LM152090205Q', # Households and Nonprofit Organizations; Proprietors' Equity in Noncorporate Business, Market Value Levels (NSA)
+
+    # 'TNWBSHNO', # Households and Nonprofit Organizations; Net Worth, Level
+    'TFAABSHNO', # Households and Nonprofit Organizations; Total Financial Assets, Level
+    'CDCABSHNO', # Households and Nonprofit Organizations; Checkable Deposits and Currency; Asset, Level
+    'BOGZ1FL153064486Q', # Households and Nonprofit Organizations; Directly and Indirectly Held Corporate Equities as a Percentage of Financial Assets; Assets, Level
+
+    'BOGZ1FL192000005Q', # Households; Total Assets, Level
+    'BOGZ1FL194090005Q', # Households; Total Financial Assets, Level
+    'BOGZ1FL193020005Q', # Households; Checkable Deposits and Currency; Asset, Level
+    'BOGZ1FL193034005Q', # Households; Money Market Fund Shares; Asset, Level
+    'BOGZ1LM193064005Q', # Households; Corporate Equities and Mutual Fund Shares; Asset, Market Value Levels
+
     # Business
     'BOGZ1FA106030005Q', # Nonfinancial Corporate Business; Revenue from Sales of Goods and Services, Excluding Indirect Sales Taxes (FSIs), Transactions
     'NFCPATAX', # Nonfinancial Corporate Business: Profits After Tax
     'NCBCMDPMVCE', # Nonfinancial Corporate Business; Debt as a Percentage of the Market Value of Corporate Equities, Level
+    'BOGZ1FA105050005Q', # Nonfinancial Corporate Business; Total Capital Expenditures, Transactions (SA)
+    'BOGZ1FU105050005Q', # Nonfinancial Corporate Business; Total Capital Expenditures, Transactions (NSA)
 
+    'BOGZ1FA315050005Q', # Federal Government; Total Capital Expenditures, Transactions (SA)
+    'BOGZ1FU315050005Q', # Federal Government; Total Capital Expenditures, Transactions (NSA)
 
     # SLOOS
     'DRTSCILM', # Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms
@@ -27,6 +51,23 @@ ids_Q = [
     'DRCCLACBS', # Delinquency Rate on Credit Card Loans, All Commercial Banks
     'DRCLACBS', # Delinquency Rate on Consumer Loans, All Commercial Banks
     'DRALACBN', # Delinquency Rate on All Loans, All Commercial Banks
+
+    'QBPLNTLNNCUR', # Loan Performance: Total Loans and Leases: Noncurrent Rate
+    'BOGZ1FL072052006Q', # Interest Rates and Price Indexes; Effective Federal Funds Rate (Percent), Level
+
+    # CSBS
+    'CBSICO', # CSBS Community Bank Sentiment Index
+    'CBSIBC', # CSBS Community Bank Sentiment, Business Conditions Index
+
+    # Housing
+    'MSPUS', # Median Sales Price of Houses Sold for the United States
+    'ASPUS', # Average Sales Price of Houses Sold for the United States
+    'USSTHPI', # All-Transactions House Price Index for the United States
+
+
+    'MDSP', # Mortgage Debt Service Payments as a Percent of Disposable Personal Income
+    'USRECQM', # NBER based Recession Indicators for the United States from the Peak through the Trough
+
                   ]
 
 # Monthly
@@ -42,7 +83,7 @@ ids_M = [
     'UNEMPLOY', # Unemployment Level
     'CIVPART', # Labor Force Participation Rate
 
-    ## Current Employment Statistics (Establishment Survey)
+    ## Current Employment Statisticsq (Establishment Survey)
     'PAYEMS',  # All Employees, Total Nonfarm
     # 'USPRIV',  # All Employees, Total Private
 
@@ -151,18 +192,52 @@ ids_M = [
     'RSXFS',  # Advance Retail Sales: Retail Trade
     'RSFSXMV', # Advance Retail Sales: Retail Trade and Food Services, Excluding Motor Vehicle and Parts Dealers
     'MARTSSM44W72USS', # Advance Retail Sales: Retail Trade and Food Services, Excluding Motor Vehicle and Parts Dealers and Gasoline Stations
+
+    #--Dollar value (SA)
+    'RSMVPD',  # Advance Retail Sales: Motor Vehicle and Parts Dealers
+    'RSFHFS', # Advance Retail Sales: Furniture and Home Furnishings Stores
+    'RSEAS', # Advance Retail Sales: Electronics and Appliance Stores
     'RSBMGESD', # Advance Retail Sales: Building Materials, Garden Equipment and Supplies Dealers
+    'RSDBS', # Advance Retail Sales: Food and Beverage Stores
+    'RSHPCS', # Advance Retail Sales: Health and Personal Care Stores
+    'RSGASS', # Advance Retail Sales: Gasoline Stations
+    'RSCCAS', # Advance Retail Sales: Clothing and Clothing Accessory Stores
+    'RSSGHBMS', # Advance Retail Sales: Sporting Goods, Hobby, Musical Instrument, and Book Stores
+    'RSGMS', # Advance Retail Sales: General Merchandise Stores
+    'RSMSR', # Advance Retail Sales: Miscellaneous Store Retailers
+    'RSNSR', # Advance Retail Sales: Nonstore Retailers
     'RSFSDP', # Advance Retail Sales: Food Services and Drinking Places
-    'RRSFS',  # Advance Real Retail and Food Services Sales
+
+    #--MoM(SA)
+    'MARTSMPCSM441USS', # Advance Retail Sales: Motor Vehicle and Parts Dealers
+    'MARTSMPCSM442USS', # Advance Retail Sales: Furniture and Home Furnishings Stores
+    'MARTSMPCSM443USS', # Advance Retail Sales: Electronics and Appliance Stores
+    'MARTSMPCSM444USS', # Advance Retail Sales: Building Materials, Garden Equipment and Supplies Dealers
+    'MARTSMPCSM445USS', # Advance Retail Sales: Food and Beverage Stores
+    'MARTSMPCSM446USS', # Advance Retail Sales: Health and Personal Care Stores
+    'MARTSMPCSM447USS', # Advance Retail Sales: Gasoline Stations
+    'MARTSMPCSM448USS', # Advance Retail Sales: Clothing and Clothing Accessory Stores
+    'MARTSMPCSM451USS', # Advance Retail Sales: Sporting Goods, Hobby, Musical Instrument, and Book Stores
+    'MARTSMPCSM452USS', # Advance Retail Sales: General Merchandise Stores
+    'MARTSMPCSM453USS', # Advance Retail Sales: Miscellaneous Store Retailers
+    'MARTSMPCSM454USS', # Advance Retail Sales: Nonstore Retailers
+    'MARTSMPCSM722USS', # Advance Retail Sales: Food Services and Drinking Places
+
     # 'MRTSSM44X72USS',  # Retail Sales: Retail Trade and Food Services
     # 'MRTSSM44000USS', # Retail Sales: Retail Trade
     # 'MRTSSM44X72USS', # Retail Sales: Retail Trade and Food Services
     # 'MRTSMPCSM44000USS', # Retail Sales: Retail Trade
     'TOTALSA', # Total Vehicle Sales
 
+    ## Consumer loans
+    'CCLACBM027NBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks (NSA)
+    'CCLACBM027SBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks (SA)
+
+
 
     ## Consumer sentiment
     'UMCSENT', # University of Michigan: Consumer Sentiment
+    'MICH', # University of Michigan: Inflation Expectation
     'CSCICP03USM665S', # Composite Leading Indicators: Composite Consumer Confidence Amplitude Adjusted for United States
 
     ## Inflation Expectation
@@ -172,8 +247,10 @@ ids_M = [
     'CSUSHPINSA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
     'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
     'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
-    'USSTHPI', # All-Transactions House Price Index for the United States
     'USAUCSFRCONDOSMSAMID', # Zillow Home Value Index (ZHVI) for All Homes Including Single-Family Residences, Condos, and CO-OPs in the United States of America
+
+    'MSPNHSUS', # Median Sales Price for New Houses Sold in the United States
+    'ASPNHSUS', # Average Sales Price for New Houses Sold in the United States
 
     ## PCE & CPI
     'PCEPI', # Personal Consumption Expenditures: Chain-type Price Index
@@ -202,8 +279,24 @@ ids_M = [
     'DSPI', # Disposable Personal Income
     'DSPIC96', # Real Disposable Personal Income
 
-    ## Earnings
+    ## Wage & Earnings
     'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
+    'DSPIC96', # Real Disposable Personal Income
+    'FRBATLWGT3MMAUMHWGWD51WP', # 3-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 51st to 100th Wage Percentile
+    'FRBATLWGT3MMAUMHGWD1WP', # 3-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 1st to 50th Wage Percentile
+
+    'FRBATLWGT12MMUMHWGWDLHWP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 1st to 50th Wage Percentile
+    'FRBATLWGT12MMUMHWGWDUPWP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 51st to 100th Wage Percentile
+
+    'FRBATLWGT3MMAWMHWGO', # 3-Month Moving Average of Weighted Median Hourly Wage Growth: Overall
+    'FRBATLWGT3MMAUMHWGO', # 3-Month Moving Average of Unweighted Median Hourly Wage Growth: Overall
+    'FRBATLWGT3MMAU75PHWGO', # 3-Month Moving Average of Unweighted 75th Percentile Hourly Wage Growth: Overall
+    'FRBATLWGT3MMAU25PHWGO', # 3-Month Moving Average of Unweighted 25th Percentile Hourly Wage Growth: Overall
+
+    'FRBATLWGT12MMUMHWGWD1WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 1st to 25th Wage Percentile
+    'FRBATLWGT12MMUMHWGWD26WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 26th to 50th Wage Percentile
+    'FRBATLWGT12MMUMHWGWD51WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 51st to 75th Wage Percentile
+    'FRBATLWGT12MMUMHWGWD76WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 76th to 100th Wage Percentile
 
     ## PPI
     'PPIACO', # Producer Price Index by Commodity: All Commodities (NSA)
@@ -219,20 +312,38 @@ ids_M = [
     'MNFCTRIRSA',  # Manufacturers: Inventories to Sales Ratio
 
     'AMTMNO', # Manufacturers' New Orders: Total Manufacturing
+    'DGORDER', # Manufacturers' New Orders: Durable Goods
     'AMTMTI', # Manufacturers' Total Inventories: Total Manufacturing
     'AMTMVS', # Manufacturers' Value of Shipments: Total Manufacturing
     'AMTMIS', # Manufacturers' Inventories to Shipments Ratios: Total Manufacturing
 
+
+
+    # Business Sentiment
+    'BSCICP02USM460S', # Business Tendency Surveys (Manufacturing): Confidence Indicators: Composite Indicators: National Indicator for United States
+
+    # Leading Index
+    'BSCICP03USM665S', # Composite Leading Indicators: Composite Business Confidence Amplitude Adjusted for United States
+
     # OECD
     'OECDLOLITOAASTSAM', # Leading Indicators OECD: Leading indicators: CLI: Amplitude adjusted for OECD - Total
 
+    # Recession
+    'USRECM', # NBER based Recession Indicators for the United States from the Peak through the Trough
+    'RECPROUSM156N', # Smoothed U.S. Recession Probabilities
 
     # Rates & Yields
     'FEDFUNDS', # Federal Funds Effective Rate
     'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
     'BAA', # Moody's Seasoned Baa Corporate Bond Yield
+    'SNDR', # National Deposit Rates: Savings
 ]
 # Weekly
+ids_W_mon = [
+    'CD12NRNJ', # National Rate on Non-Jumbo Deposits (less than $100,000): 12 Month CD
+    'MMNRJD', # National Rate on Jumbo Deposits (greater or equal to $100,000): Money Market (DISCONTINUED)
+]
+
 ids_W_wed = [
     'TOTCI', # Commercial and Industrial Loans, All Commercial Banks
     'TOTLL', # Loans and Leases in Bank Credit, All Commercial Banks
@@ -243,6 +354,8 @@ ids_W_wed = [
     'DPSSCBW027NBOG', # Deposits, Small Domestically Chartered Commercial Banks
     'DPSLCBW027SBOG', # Deposits, Large Domestically Chartered Commercial Banks
     'TOTBKCR', # Bank Credit, All Commercial Banks
+
+    'FF', # Federal Funds Effective Rate
                   ]
 ids_W_thu = [
     'MORTGAGE30US', # 30-Year Fixed Rate Mortgage Average in the United States
@@ -265,14 +378,19 @@ ids_W_sat = [
     'ADPWNUSNERSA', # Total Nonfarm Private Payroll Employment
 ]
 
+
 # Daily
-ids_D = [
+
+ids_D_every = [
     # Rate
     'DFEDTAR', # Federal Funds Target Rate (DISCONTINUED)
     'DFEDTARL', # Federal Funds Target Range - Lower Limit
     'DFEDTARU', # Federal Funds Target Range - Upper Limit
     'DFF', # Federal Funds Effective Rate
+
     'T5YIE', # 5-Year Breakeven Inflation Rate
+    'DGS1MO', # Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity, Quoted on an Investment Basis
+    'RRPONTSYAWARD', # Overnight Reverse Repurchase Agreements Award Rate: Treasury Securities Sold by the Federal Reserve in the Temporary Open Market Operations
 
     # OAS
     'BAMLC0A0CM', # ICE BofA US Corporate Index Option-Adjusted Spread
@@ -293,4 +411,32 @@ ids_D = [
 
     #
     'USEPUINDXD', # Economic Policy Uncertainty Index for United States
+]
+
+ids_D = [
+    # Rate
+    'T5YIE',  # 5-Year Breakeven Inflation Rate
+    'DGS1MO',  # Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity, Quoted on an Investment Basis
+    'RRPONTSYAWARD', # Overnight Reverse Repurchase Agreements Award Rate: Treasury Securities Sold by the Federal Reserve in the Temporary Open Market Operations
+    'DTWEXBGS', # Nominal Broad U.S. Dollar Index
+    'DTWEXAFEGS', # Nominal Advanced Foreign Economies U.S. Dollar Index
+    'DTWEXEMEGS', # Nominal Emerging Market Economies U.S. Dollar Index
+
+    # OAS
+    'BAMLC0A0CM',  # ICE BofA US Corporate Index Option-Adjusted Spread
+    'BAMLH0A0HYM2',  # ICE BofA US High Yield Index Option-Adjusted Spread
+
+    'BAMLC0A4CBBB',  # ICE BofA BBB US Corporate Index Option-Adjusted Spread
+    'BAMLH0A3HYC',  # ICE BofA CCC & Lower US High Yield Index Option-Adjusted Spread
+
+    # Yield
+    'BAMLC0A0CMEY',  # ICE BofA US Corporate Index Effective Yield
+    'BAMLH0A0HYM2EY',  # ICE BofA US High Yield Index Effective Yield
+    'BAMLH0A3HYCEY',  # ICE BofA CCC & Lower US High Yield Index Effective Yield
+    'DAAA',  # Moody's Seasoned Aaa Corporate Bond Yield
+    'DBAA',  # Moody's Seasoned Baa Corporate Bond Yield
+
+    # Recession
+    # 'USRECDP', # NBER based Recession Indicators for the United States from the Peak through the Period preceding the Trough
+
 ]
