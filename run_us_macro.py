@@ -3,7 +3,7 @@ from argparse import Namespace, ArgumentParser
 from util import make_dir
 from runner import runner
 
-from mySeriesIds.us_macro import dir, ids_Q, ids_M, ids_W_wed, ids_W_sat, ids_D
+from mySeriesIds.us_macro import dir, ids_Q, ids_M, ids_W_wed, ids_W_thu, ids_W_fri,  ids_W_sat, ids_D
 
 
 def setup_args() -> Namespace:
@@ -18,6 +18,10 @@ if __name__ == '__main__':
         series_ids=ids_D
     elif args.freq == 'W_wed':
         series_ids=ids_W_wed
+    elif args.freq == 'W_thu':
+        series_ids = ids_W_thu
+    elif args.freq == 'W_fri':
+        series_ids = ids_W_fri
     elif args.freq == 'W_sat':
         series_ids=ids_W_sat
     elif args.freq == 'M':
