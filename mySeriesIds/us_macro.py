@@ -6,6 +6,11 @@ ids_Q = [
     # Monetary
     'M2V', # Velocity of M2 Money Stock
 
+    # GDP
+    'GDP', # Gross Domestic Product
+    'A191RL1Q225SBEA', # Real Gross Domestic Product
+    'DPCERL1Q225SBEA', # Real Personal Consumption Expenditures
+
     # Inflation - ECI
     'ECIWAG', # Employment Cost Index: Wages and Salaries: Private Industry Workers
     'ECIALLCIV', # Employment Cost Index: Total compensation: All Civilian
@@ -46,14 +51,56 @@ ids_Q = [
     'DRTSCLCC', # Net Percentage of Domestic Banks Tightening Standards for Credit Card Loans
     'STDSAUTO', # Net Percentage of Domestic Banks Tightening Standards for Auto Loans
 
-    # Delinquency Rate
-    'DRBLACBS', # Delinquency Rate on Business Loans, All Commercial Banks
-    'DRCCLACBS', # Delinquency Rate on Credit Card Loans, All Commercial Banks
+    # Delinquency Rate - All banks
+    'DRSREACBS', # Delinquency Rate on Loans Secured by Real Estate, All Commercial Banks
+    'DRSFRMACBS', # Delinquency Rate on Single-Family Residential Mortgages, Booked in Domestic Offices, All Commercial Banks
+    'DRCRELEXFACBS', # Delinquency Rate on Commercial Real Estate Loans (Excluding Farmland), Booked in Domestic Offices, All Commercial Banks
+    'DRFLACBS', # Delinquency Rate on Farmland Loans, Booked in Domestic Offices, All Commercial Banks
+
     'DRCLACBS', # Delinquency Rate on Consumer Loans, All Commercial Banks
-    'DRALACBN', # Delinquency Rate on All Loans, All Commercial Banks
+    'DRCCLACBS', # Delinquency Rate on Credit Card Loans, All Commercial Banks
+    'DROCLACBS', # Delinquency Rate on Other Consumer Loans, All Commercial Banks
+
+    'DRLFRACBS', # Delinquency Rate on Lease Financing Receivables, All Commercial Banks
+    'DRBLACBS', # Delinquency Rate on Business Loans, All Commercial Banks
+    'DRFAPGACBS', # Delinquency Rate on Loans to Finance Agricultural Production, All Commercial Banks
+    'DRALACBS', # Delinquency Rate on All Loans, All Commercial Banks
+
+    # Delinquency Rate - Large banks
+    'DRSRET100S', # Delinquency Rate on Loans Secured by Real Estate, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DRSFRMT100S', # Delinquency Rate on Single-Family Residential Mortgages, Booked in Domestic Offices, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DRCRELEXFT100S', # Delinquency Rate on Commercial Real Estate Loans (Excluding Farmland), Booked in Domestic Offices, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DRFLT100S', # Delinquency Rate on Farmland Loans, Booked in Domestic Offices, Banks Ranked 1st to 100th Largest in Size by Assets
+
+    'DRCLT100S', # Delinquency Rate on Consumer Loans, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DRCCLT100S', # Delinquency Rate on Credit Card Loans, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DROCLT100S', # Delinquency Rate on Other Consumer Loans, Banks Ranked 1st to 100th Largest in Size by Assets
+
+    'DRLFRT100S', # Delinquency Rate on Lease Financing Receivables, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DRBLT100S', # Delinquency Rate on Business Loans, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DRFAPGT100S', # Delinquency Rate on Loans to Finance Agricultural Production, Banks Ranked 1st to 100th Largest in Size by Assets
+    'DRALT100S', # Delinquency Rate on All Loans, Banks Ranked 1st to 100th Largest in Size by Assets
+
+    # Delinquency Rate - Small banks
+    'DRSREOBS', # Delinquency Rate on Loans Secured by Real Estate, Banks Not Among the 100 Largest in Size by Assets
+    'DRSFRMOBS', # Delinquency Rate on Single-Family Residential Mortgages, Booked in Domestic Offices, Banks Not Among the 100 Largest in Size by Assets
+    'DRCRELEXFOBS', # Delinquency Rate on Commercial Real Estate Loans (Excluding Farmland), Booked in Domestic Offices, Banks Not Among the 100 Largest in Size by Assets
+    'DRFLOBS', # Delinquency Rate on Farmland Loans, Booked in Domestic Offices, Banks Not Among the 100 Largest in Size by Assets
+
+    'DRCLOBS', # Delinquency Rate on Consumer Loans, Banks Not Among the 100 Largest in Size by Assets
+    'DRCCLOBS', # Delinquency Rate on Credit Card Loans, Banks Not Among the 100 Largest in Size by Assets
+    'DROCLOBS', # Delinquency Rate on Other Consumer Loans, Banks Not Among the 100 Largest in Size by Assets
+
+    'DRLFROBS', # Delinquency Rate on Lease Financing Receivables, Banks Not Among the 100 Largest in Size by Assets
+    'DRBLOBS', # Delinquency Rate on Business Loans, Banks Not Among the 100 Largest in Size by Assets
+    'DRFAPGOBS', # Delinquency Rate on Loans to Finance Agricultural Production, Banks Not Among the 100 Largest in Size by Assets
+    'DRALOBS', # Delinquency Rate on All Loans, Banks Not Among the 100 Largest in Size by Assets
+
+
 
     'QBPLNTLNNCUR', # Loan Performance: Total Loans and Leases: Noncurrent Rate
     'BOGZ1FL072052006Q', # Interest Rates and Price Indexes; Effective Federal Funds Rate (Percent), Level
+
 
     # CSBS
     'CBSICO', # CSBS Community Bank Sentiment Index
@@ -63,10 +110,12 @@ ids_Q = [
     'MSPUS', # Median Sales Price of Houses Sold for the United States
     'ASPUS', # Average Sales Price of Houses Sold for the United States
     'USSTHPI', # All-Transactions House Price Index for the United States
+    'RRVRUSQ156N', # Rental Vacancy Rate in the United States
+    'MDSP', # Mortgage Debt Service Payments as a Percent of Disposable Personal Income
 
 
     'MDSP', # Mortgage Debt Service Payments as a Percent of Disposable Personal Income
-    'USRECQM', # NBER based Recession Indicators for the United States from the Peak through the Trough
+    'USRECQ', # NBER based Recession Indicators for the United States from the Peak through the Trough
 
                   ]
 
@@ -243,7 +292,7 @@ ids_M = [
     ## Inflation Expectation
     'MICH', # University of Michigan: Inflation Expectation
 
-    ## Housing price
+    ## Housing
     'CSUSHPINSA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
     'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
     'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
@@ -251,6 +300,13 @@ ids_M = [
 
     'MSPNHSUS', # Median Sales Price for New Houses Sold in the United States
     'ASPNHSUS', # Average Sales Price for New Houses Sold in the United States
+
+    'MSACSR', # Monthly Supply of New Houses in the United States
+    'HSN1F', # New One Family Houses Sold: United States
+
+    'EXHOSLUSM495S', # Existing Home Sales
+    'HOUST', # New Privately-Owned Housing Units Started: Total Units
+
 
     ## PCE & CPI
     'PCEPI', # Personal Consumption Expenditures: Chain-type Price Index
@@ -313,14 +369,81 @@ ids_M = [
 
     'AMTMNO', # Manufacturers' New Orders: Total Manufacturing
     'DGORDER', # Manufacturers' New Orders: Durable Goods
+    'NEWORDER', # Manufacturers' New Orders: Nondefense Capital Goods Excluding Aircraft
     'AMTMTI', # Manufacturers' Total Inventories: Total Manufacturing
     'AMTMVS', # Manufacturers' Value of Shipments: Total Manufacturing
     'AMTMIS', # Manufacturers' Inventories to Shipments Ratios: Total Manufacturing
 
 
+    # Empire State Manufacturing Survey
+    'GACDISA066MSFRBNY', # Current General Business Conditions; Diffusion Index for New York
+    'CEFDISA066MSFRBNY', # Future Capital Expenditures; Diffusion Index for New York
+    'TSFDISA066MSFRBNY', # Future Technology Spending; Diffusion Index for New York
+    'NOCDISA066MSFRBNY', # Current New Orders; Diffusion Index for New York
+    'PPCDISA066MSFRBNY', # Current Prices Paid; Diffusion Index for New York
+    'GAFDISA066MSFRBNY', # Future General Business Conditions; Diffusion Index for New York
 
     # Business Sentiment
     'BSCICP02USM460S', # Business Tendency Surveys (Manufacturing): Confidence Indicators: Composite Indicators: National Indicator for United States
+
+    # Housing price
+    'CSUSHPISA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
+    'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
+    'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
+    'ATXRSA', #  S&P CoreLogic Case-Shiller GA-Atlanta Home Price Index
+    'BOXRSA', # S&P CoreLogic Case-Shiller MA-Boston Home Price Index
+    'CRXRSA', # S&P CoreLogic Case-Shiller NC-Charlotte Home Price Index
+    'CHXRSA', # S&P CoreLogic Case-Shiller IL-Chicago Home Price Index
+    'CEXRSA', # S&P CoreLogic Case-Shiller OH-Cleveland Home Price Index
+    'DAXRSA', # S&P CoreLogic Case-Shiller TX-Dallas Home Price Index
+    'DNXRSA', # S&P CoreLogic Case-Shiller CO-Denver Home Price Index
+    'DEXRSA', # S&P CoreLogic Case-Shiller MI-Detroit Home Price Index
+    'LVXRSA', # S&P CoreLogic Case-Shiller NV-Las Vegas Home Price Index
+    'LXXRSA', # S&P CoreLogic Case-Shiller CA-Los Angeles Home Price Index
+    'MIXRSA', # S&P CoreLogic Case-Shiller FL-Miami Home Price Index
+    'MNXRSA', # S&P CoreLogic Case-Shiller MN-Minneapolis Home Price Index
+    'NYXRSA', # S&P CoreLogic Case-Shiller NY-New York Home Price Index
+    'PHXRSA', # S&P CoreLogic Case-Shiller AZ-Phoenix Home Price Index
+    'POXRSA', # S&P CoreLogic Case-Shiller OR-Portland Home Price Index
+    'SDXRSA', # S&P CoreLogic Case-Shiller CA-San Diego Home Price Index
+    'SFXRSA', # S&P CoreLogic Case-Shiller CA-San Francisco Home Price Index
+    'SEXRSA', # S&P CoreLogic Case-Shiller WA-Seattle Home Price Index
+    'TPXRSA', # S&P CoreLogic Case-Shiller FL-Tampa Home Price Index
+    'WDXRSA', # S&P CoreLogic Case-Shiller DC-Washington Home Price Index
+
+
+    'MSPNHSUS', # Median Sales Price for New Houses Sold in the United States
+    'ASPNHSUS', # Average Sales Price for New Houses Sold in the United States
+
+    'USSTHPI', # All-Transactions House Price Index for the United States
+    'EXHOSLUSM495S', # Existing Home Sales
+    'EXSFHSUSM495S', # Existing Single-Family Home Sales
+    'ACTLISCOUUS', # Housing Inventory: Active Listing Count in the United States
+    'HOSINVUSM495N', # Existing Home Sales: Housing Inventory
+    'HOSSUPUSM673N', # Existing Home Sales: Months Supply
+
+    'HOUST', # New Privately-Owned Housing Units Started: Total Units
+    'HOUST1F', # New Privately-Owned Housing Units Started: Single-Family Units
+
+    'RSAHORUSQ156S', # Homeownership Rate in the United States
+
+    # Banking
+    #-- large banks : https://fred.stlouisfed.org/release/tables?rid=22&eid=823378
+    'TLALCBM027SBOG', # Total Assets, Large Domestically Chartered Commercial Banks
+    'BC0LCBM027SBOG', # Bank Credit, Large Domestically Chartered Commercial Banks
+    'LLBLCBM027SBOG', # Loans and Leases in Bank Credit, Large Domestically Chartered Commercial Banks
+    'RELLCBM027SBOG', # Real Estate Loans, Large Domestically Chartered Commercial Banks
+    'RRELCBM027SBOG', # Real Estate Loans: Residential Real Estate Loans, Large Domestically Chartered Commercial Banks
+    'CRELCBM027SBOG', # Real Estate Loans: Commercial Real Estate Loans, Large Domestically Chartered Commercial Banks
+
+    #-- small banks : https://fred.stlouisfed.org/release/tables?rid=22&eid=823674
+    'TLASCBM027SBOG', # Total Assets, Small Domestically Chartered Commercial Banks
+    'BC0SCBM027SBOG', # Bank Credit, Small Domestically Chartered Commercial Banks
+    'LLBSCBM027SBOG', # Loans and Leases in Bank Credit, Small Domestically Chartered Commercial Banks
+    'RELSCBM027SBOG', # Real Estate Loans, Small Domestically Chartered Commercial Banks
+    'RRESCBM027SBOG', # Real Estate Loans: Residential Real Estate Loans, Small Domestically Chartered Commercial Banks
+    'CRESCBM027SBOG', # Real Estate Loans: Commercial Real Estate Loans, Small Domestically Chartered Commercial Banks
+
 
     # Leading Index
     'BSCICP03USM665S', # Composite Leading Indicators: Composite Business Confidence Amplitude Adjusted for United States
