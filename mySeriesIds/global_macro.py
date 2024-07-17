@@ -12,7 +12,7 @@ ids_Q = [
 
     #
     'USRECQ', # NBER based Recession Indicators for the United States from the Peak through the Trough
-    'MSCRECDM', # OECD based Recession Indicators for Major Seven Countries from the Peak through the Trough
+    # 'MSCRECDM', # OECD based Recession Indicators for Major Seven Countries from the Peak through the Trough
 
     # GDP
     'NYGDPPCAPKDWLD', # Constant GDP per capita for the World
