@@ -11,6 +11,7 @@ ids_Q = [
     'WUIGLOBALWEIGHTAVG', # World Uncertainty Index: Global: GDP Weighted Average
 
     #
+    'USRECQ', # NBER based Recession Indicators for the United States from the Peak through the Trough
     'MSCRECDM', # OECD based Recession Indicators for Major Seven Countries from the Peak through the Trough
 
     # GDP
