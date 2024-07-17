@@ -3,7 +3,7 @@ from argparse import Namespace, ArgumentParser
 from util import make_dir
 from runner import runner
 
-from mySeriesIds.global_macro import dir, ids_M
+from mySeriesIds.global_macro import dir, ids_M, ids_A, ids_Q
 
 
 def setup_args() -> Namespace:
@@ -28,6 +28,8 @@ if __name__ == '__main__':
         series_ids=ids_M
     elif args.freq == 'Q':
         series_ids=ids_Q
+    elif args.freq == 'A':
+        series_ids = ids_A
     else:
         print('')
         print('There is NO VALID term unit!')
