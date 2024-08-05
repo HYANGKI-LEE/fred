@@ -63,6 +63,9 @@ ids_Q = [
     'STDSAUTO', # Net Percentage of Domestic Banks Tightening Standards for Auto Loans
     'STDSOTHCONS', # Net Percentage of Domestic Banks Tightening Standards for Consumer Loans Excluding Credit Card and Auto Loans
     'DRIWCIL', # Net Percentage of Domestic Banks Reporting Increased Willingness to Make Consumer Installment Loans
+    'DEMCC', # Net Percentage of Domestic Banks Reporting Stronger Demand for Credit Card Loans
+    'DEMAUTO', # Net Percentage of Domestic Banks Reporting Stronger Demand for Auto Loans
+    'DEMOTHCONS', # Net Percentage of Domestic Banks Reporting Stronger Demand for Consumer Loans Excluding Credit Card and Auto Loans
 
 
     # Delinquency Rate - All banks
