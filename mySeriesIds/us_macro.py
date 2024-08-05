@@ -48,8 +48,22 @@ ids_Q = [
     # SLOOS
     'DRTSCILM', # Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms
     'DRTSCIS', # Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Small Firms
+    'DRISCFLM', # Net Percentage of Domestic Banks Increasing Spreads of Loan Rates over Banks' Cost of Funds to Large and Middle-Market Firms
+    'DRISCFS', # Net Percentage of Domestic Banks Increasing Spreads of Loan Rates over Banks' Cost of Funds to Small Firms
+    'DRSDCILM', # Net Percentage of Domestic Banks Reporting Stronger Demand for Commercial and Industrial Loans from Large and Middle-Market Firms
+    'DRSDCIS', # Net Percentage of Domestic Banks Reporting Stronger Demand for Commercial and Industrial Loans from Small Firms
+    'SUBLPDRCSC', # Net Percentage of Domestic Banks Tightening Standards for Commercial Real Estate Loans with Construction and Land Development Purposes
+    'SUBLPDRCSM', # Net Percentage of Domestic Banks Tightening Standards for Commercial Real Estate Loans Secured by Multifamily Residential Structures
+    'SUBLPDRCSN', # Net Percentage of Domestic Banks Tightening Standards for Commercial Real Estate Loans Secured by Nonfarm Nonresidential Structures
+    'SUBLPDRCDC', # Net Percentage of Domestic Banks Reporting Stronger Demand for Commercial Real Estate Loans with Construction and Land Development Purposes
+    'SUBLPDRCDM', # Net Percentage of Domestic Banks Reporting Stronger Demand for Commercial Real Estate Loans Secured by Multifamily Residential Structures
+    'SUBLPDRCDN', # Net Percentage of Domestic Banks Reporting Stronger Demand for Commercial Real Estate Loans Secured by Nonfarm Nonresidential Structures
+
     'DRTSCLCC', # Net Percentage of Domestic Banks Tightening Standards for Credit Card Loans
     'STDSAUTO', # Net Percentage of Domestic Banks Tightening Standards for Auto Loans
+    'STDSOTHCONS', # Net Percentage of Domestic Banks Tightening Standards for Consumer Loans Excluding Credit Card and Auto Loans
+    'DRIWCIL', # Net Percentage of Domestic Banks Reporting Increased Willingness to Make Consumer Installment Loans
+
 
     # Delinquency Rate - All banks
     'DRSREACBS', # Delinquency Rate on Loans Secured by Real Estate, All Commercial Banks
