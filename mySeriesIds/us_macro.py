@@ -9,6 +9,7 @@ ids_Q = [
     # GDP
     'GDP', # Gross Domestic Product
     'A191RL1Q225SBEA', # Real Gross Domestic Product
+    'GDPDEF', # Gross Domestic Product: Implicit Price Deflator
     'DPCERL1Q225SBEA', # Real Personal Consumption Expenditures
 
     # GDP - Detailed (https://fred.stlouisfed.org/release/tables?rid=53&eid=14897#snid=14898)
