@@ -11,11 +11,77 @@ ids_Q = [
     'A191RL1Q225SBEA', # Real Gross Domestic Product
     'DPCERL1Q225SBEA', # Real Personal Consumption Expenditures
 
+    # GDP - Detailed (https://fred.stlouisfed.org/release/tables?rid=53&eid=14897#snid=14898)
+    'GDP', # Gross Domestic Product
+    'PCEC', # Personal Consumption Expenditures
+    'DGDSRC1Q027SBEA', # Personal consumption expenditures: Goods
+    'PCDG', # Personal Consumption Expenditures: Durable Goods
+    'DMOTRC1Q027SBEA', # Personal consumption expenditures: Durable goods: Motor vehicles and parts
+    'DFDHRC1Q027SBEA', # Personal consumption expenditures: Durable goods: Furnishings and durable household equipment
+    'DREQRC1Q027SBEA', # Personal consumption expenditures: Durable goods: Recreational goods and vehicles
+    'DODGRC1Q027SBEA', # Personal consumption expenditures: Durable goods: Other durable goods
+    'PCND', # Personal Consumption Expenditures: Nondurable Goods
+    'DFXARC1Q027SBEA', # Personal consumption expenditures: Nondurable goods: Food and beverages purchased for off-premises consumption
+    'DCLORC1Q027SBEA', # Personal consumption expenditures: Nondurable goods: Clothing and footwear
+    'DGOERC1Q027SBEA', # Personal consumption expenditures: Nondurable goods: Gasoline and other energy goods
+    'DONGRC1Q027SBEA', # Personal consumption expenditures: Nondurable goods: Other nondurable goods
+    'PCESV', # Personal Consumption Expenditures: Services
+    'DHCERC1Q027SBEA', # Personal consumption expenditures: Services: Household consumption expenditures
+    'DHUTRC1Q027SBEA', # Personal consumption expenditures: Services: Housing and utilities
+    'DHLCRC1Q027SBEA', # Personal consumption expenditures: Services: Health care
+    'DTRSRC1Q027SBEA', # Personal consumption expenditures: Transportation services
+    'DRCARC1Q027SBEA', # Personal consumption expenditures: Recreation services
+    'DFSARC1Q027SBEA', # Personal consumption expenditures: Services: Food services and accommodations
+    'DIFSRC1Q027SBEA', # Personal consumption expenditures: Financial services and insurance
+    'DOTSRC1Q027SBEA', # Personal consumption expenditures: Other services
+    'DNPIRC1Q027SBEA', # Personal consumption expenditures: Services: Final consumption expenditures of nonprofit institutions serving households (NPISHs)
+    'DNPERC1Q027SBEA', # Personal consumption expenditures: Services: Gross output of nonprofit institutions
+    'DNPSRC1Q027SBEA', # Personal consumption expenditures: Services: Receipts from sales of goods and services by nonprofit institutions
+    'GPDI', # Gross Private Domestic Investment
+    'FPI', # Fixed Private Investment
+    'PNFI', # Private Nonresidential Fixed Investment
+    'B009RC1Q027SBEA', # Private fixed investment: Nonresidential: Structures
+    'Y033RC1Q027SBEA', # Gross Private Domestic Investment: Fixed Investment: Nonresidential: Equipment
+    'Y034RC1Q027SBEA', # Gross Private Domestic Investment: Fixed Investment: Nonresidential: Equipment: Information Processing Equipment
+    'B935RC1Q027SBEA', # Private fixed investment: Nonresidential: Information processing equipment and software: Computers and peripheral equipment
+    'A937RC1Q027SBEA', # Private fixed investment: Nonresidential: Equipment: Information processing equipment: Other
+    'A680RC1Q027SBEA', # Private fixed investment: Nonresidential: Equipment: Industrial equipment
+    'A681RC1Q027SBEA', # Private fixed investment: Nonresidential: Equipment: Transportation equipment
+    'A862RC1Q027SBEA', # Private fixed investment: Nonresidential: Equipment: Other equipment
+    'Y001RC1Q027SBEA', # Gross Private Domestic Investment: Fixed Investment: Nonresidential: Intellectual Property Products
+    'B985RC1Q027SBEA', # Private fixed investment: Nonresidential: Intellectual property products: Software
+    'Y006RC1Q027SBEA', # Gross Private Domestic Investment: Fixed Investment: Nonresidential: Intellectual Property Products: Research and Development
+    'Y020RC1Q027SBEA', # Gross Private Domestic Investment: Fixed Investment: Nonresidential: Intellectual Property Products: Entertainment, Literary, and Artistic Originals
+    'PRFI', # Private Residential Fixed Investment
+    'CBI', # Change in Private Inventories
+    'B018RC1Q027SBEA', # Change in private inventories: Farm
+    'A015RC1Q027SBEA',  # Change in private inventories: Nonfarm
+    'NETEXP', # Net Exports of Goods and Services
+    'EXPGS', # Exports of Goods and Services
+    'A253RC1Q027SBEA', # Current receipts from the rest of the world: Exports of goods
+    'A646RC1Q027SBEA', # Current receipts from the rest of the world: Exports of services
+    'IMPGS', # Imports of Goods and Services
+    'A255RC1Q027SBEA', # Current payments to the rest of the world: Imports of goods
+    'B656RC1Q027SBEA', # Current payments to the rest of the world: Imports of services
+
+    'GCE', # Government Consumption Expenditures and Gross Investment
+    'FGCE', # Federal Consumption Expenditures and Gross Investment
+    'FDEFX', # Federal Government: National Defense Consumption Expenditures and Gross Investment
+    'A997RC1Q027SBEA', # Government consumption expenditures: Federal: National defense
+    'DGI', # Federal Government: National Defense Gross Investment
+    'FNDEFX', # Federal Government: Nondefense Consumption Expenditures and Gross Investment
+    'A542RC1Q027SBEA', # Government consumption expenditures: Federal: Nondefense
+    'NDGI', # Federal Nondefense Gross Investment
+    'SLCE', # State and Local Consumption Expenditures & Gross Investment
+    'A991RC1Q027SBEA', # Government consumption expenditures: State and local
+    'SLINV', # State and Local Government Gross Investment
+
+
     # Inflation - ECI
     'ECIWAG', # Employment Cost Index: Wages and Salaries: Private Industry Workers
     'ECIALLCIV', # Employment Cost Index: Total compensation: All Civilian
 
-    # Households - https://fred.stlouisfed.org/release/tables?rid=52&eid=810420#snid=810428
+    # Balnace Sheet of Households - https://fred.stlouisfed.org/release/tables?rid=52&eid=810420#snid=810428
     'BOGZ1FL192000005Q', # Households; Total Assets, Level  (NSA)
     'BOGZ1LM192010005Q', # Households; Nonfinancial Assets, Market Value Levels (NSA)
     'BOGZ1FL194090005Q', # Households; Total Financial Assets, Level (NSA)
@@ -113,8 +179,6 @@ ids_Q = [
     'DRFAPGOBS', # Delinquency Rate on Loans to Finance Agricultural Production, Banks Not Among the 100 Largest in Size by Assets
     'DRALOBS', # Delinquency Rate on All Loans, Banks Not Among the 100 Largest in Size by Assets
 
-
-
     'QBPLNTLNNCUR', # Loan Performance: Total Loans and Leases: Noncurrent Rate
     'BOGZ1FL072052006Q', # Interest Rates and Price Indexes; Effective Federal Funds Rate (Percent), Level
 
@@ -130,8 +194,10 @@ ids_Q = [
     'RRVRUSQ156N', # Rental Vacancy Rate in the United States
     'MDSP', # Mortgage Debt Service Payments as a Percent of Disposable Personal Income
 
+    # Debt
+    'TDSP', # Household Debt Service Payments as a Percent of Disposable Personal Income
+    'HDTGPDUSQ163N', # Household Debt to GDP for United States
 
-    'MDSP', # Mortgage Debt Service Payments as a Percent of Disposable Personal Income
     'USRECQ', # NBER based Recession Indicators for the United States from the Peak through the Trough
 
                   ]
@@ -320,10 +386,8 @@ ids_M = [
 
     'MSACSR', # Monthly Supply of New Houses in the United States
     'HSN1F', # New One Family Houses Sold: United States
-
     'EXHOSLUSM495S', # Existing Home Sales
     'HOUST', # New Privately-Owned Housing Units Started: Total Units
-
 
     ## PCE & CPI
     'PCEPI', # Personal Consumption Expenditures: Chain-type Price Index
