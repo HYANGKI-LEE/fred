@@ -320,7 +320,7 @@ ids_M = [
     'ADPMNUSNERSA', #  Total Nonfarm Private Payroll Employment
 
     # Inflation & Consumption
-    ## Retail sales (Census Bureau)
+    ## Retail sales (Census Bureau) - https://www.census.gov/retail/sales.html
     'RSAFS',  # Advance Retail Sales: Retail Trade and Food Services
     'RSXFS',  # Advance Retail Sales: Retail Trade
     'RSFSXMV', # Advance Retail Sales: Retail Trade and Food Services, Excluding Motor Vehicle and Parts Dealers
@@ -366,8 +366,6 @@ ids_M = [
     'CCLACBM027NBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks (NSA)
     'CCLACBM027SBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks (SA)
 
-
-
     ## Consumer sentiment
     'UMCSENT', # University of Michigan: Consumer Sentiment
     'MICH', # University of Michigan: Inflation Expectation
@@ -376,19 +374,7 @@ ids_M = [
     ## Inflation Expectation
     'MICH', # University of Michigan: Inflation Expectation
 
-    ## Housing
-    'CSUSHPINSA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
-    'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
-    'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
-    'USAUCSFRCONDOSMSAMID', # Zillow Home Value Index (ZHVI) for All Homes Including Single-Family Residences, Condos, and CO-OPs in the United States of America
 
-    'MSPNHSUS', # Median Sales Price for New Houses Sold in the United States
-    'ASPNHSUS', # Average Sales Price for New Houses Sold in the United States
-
-    'MSACSR', # Monthly Supply of New Houses in the United States
-    'HSN1F', # New One Family Houses Sold: United States
-    'EXHOSLUSM495S', # Existing Home Sales
-    'HOUST', # New Privately-Owned Housing Units Started: Total Units
 
     ## PCE & CPI
     'PCEPI', # Personal Consumption Expenditures: Chain-type Price Index
@@ -444,6 +430,25 @@ ids_M = [
 
     'PCUOMFGOMFG',  # Producer Price Index by Industry: Total Manufacturing Industries
 
+    # Industrial production - https://www.federalreserve.gov/releases/g17/
+    'INDPRO', # Industrial Production: Total Index
+    'IPFINAL', # Industrial Production: Final Products
+    'IPCONGD', # Industrial Production: Consumer Goods
+    'IPBUSEQ', # Industrial Production: Equipment: Business Equipment
+    'IPB54000S', # Industrial Production: Nonindustrial Supplies
+    'IPB54100S', # Industrial Production: Construction Supplies
+    'IPMAT', # Industrial Production: Materials
+    'IPMANSICS', # Industrial Production: Manufacturing (SIC)
+    'IPMINE', # Industrial Production: Mining: Mining (NAICS = 21)
+    'IPUTIL', # Industrial Production: Utilities: Electric and Gas Utilities (NAICS = 2211,2)
+    'TCU', # Capacity Utilization: Total Index
+    'CUMFNS', # Capacity Utilization: Manufacturing (SIC)
+    'CAPUTLG21S', # Capacity Utilization: Mining: Mining (NAICS = 21)
+    'CAPUTLG2211A2S', # Capacity Utilization: Utilities: Electric and Gas Utilities (NAICS = 2211,2)
+    'CAPUTLB5610CS', # Capacity Utilization: Stage-of-Process: Crude Processing
+    'CAPUTLB562A3CS', # Capacity Utilization: Stage-of-Process: Primary & Semifinished Processing
+    'CAPUTLB5640CS', # Capacity Utilization: Stage-of-Process: Finished Processing
+
     # Manufacturing - Census Bureau
     'MNFCTRIMSA', # Manufacturers Inventories
     'MNFCTRSMSA', # Manufacturers Sales
@@ -456,7 +461,6 @@ ids_M = [
     'AMTMVS', # Manufacturers' Value of Shipments: Total Manufacturing
     'AMTMIS', # Manufacturers' Inventories to Shipments Ratios: Total Manufacturing
 
-
     # Empire State Manufacturing Survey
     'GACDISA066MSFRBNY', # Current General Business Conditions; Diffusion Index for New York
     'CEFDISA066MSFRBNY', # Future Capital Expenditures; Diffusion Index for New York
@@ -468,8 +472,10 @@ ids_M = [
     # Business Sentiment
     'BSCICP02USM460S', # Business Tendency Surveys (Manufacturing): Confidence Indicators: Composite Indicators: National Indicator for United States
 
+
     # Housing price
     'CSUSHPISA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
+    'CSUSHPINSA',  # S&P CoreLogic Case-Shiller U.S. National Home Price Index
     'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
     'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
     'ATXRSA', #  S&P CoreLogic Case-Shiller GA-Atlanta Home Price Index
@@ -493,6 +499,7 @@ ids_M = [
     'TPXRSA', # S&P CoreLogic Case-Shiller FL-Tampa Home Price Index
     'WDXRSA', # S&P CoreLogic Case-Shiller DC-Washington Home Price Index
 
+    'USAUCSFRCONDOSMSAMID', # Zillow Home Value Index (ZHVI) for All Homes Including Single-Family Residences, Condos, and CO-OPs in the United States of America
 
     'MSPNHSUS', # Median Sales Price for New Houses Sold in the United States
     'ASPNHSUS', # Average Sales Price for New Houses Sold in the United States
@@ -508,6 +515,14 @@ ids_M = [
     'HOUST1F', # New Privately-Owned Housing Units Started: Single-Family Units
 
     'RSAHORUSQ156S', # Homeownership Rate in the United States
+
+    'MSACSR',  # Monthly Supply of New Houses in the United States
+    'HSN1F',  # New One Family Houses Sold: United States
+
+    # MONTHLY NEW RESIDENTIAL CONSTRUCTION - https://www.census.gov/construction/nrc/current/index.html
+    'PERMIT', # New Privately-Owned Housing Units Authorized in Permit-Issuing Places: Total Units
+    'HOUST',  # New Privately-Owned Housing Units Started: Total Units
+    'COMPUTSA', # New Privately-Owned Housing Units Completed: Total Units
 
     # Banking
     #-- large banks : https://fred.stlouisfed.org/release/tables?rid=22&eid=823378
