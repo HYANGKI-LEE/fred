@@ -23,12 +23,19 @@ def getSeriesInfo(series_id):
 def getObservations(series_id):
     url = f'https://api.stlouisfed.org/fred/series/observations?series_id={series_id}&api_key={myAPIkey}&file_type={response_method}'
     headers = {'User-Agent': user_agent}
-    response = requests.get(url, headers=headers, verify=False)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"Error: {response.status_code}")
-        return None
+    retry_delay = 20
+
+    while True:
+        response = requests.get(url, headers=headers, verify=False)
+        if response.status_code == 200:
+            data = response.json()
+            if data and 'observations' in data and data['observations']:
+                return data  # 정상 데이터면 반환
+        # 실패했으면 잠깐 기다리고 재시도
+        print(f"Retrying {series_id}...")
+        time.sleep(retry_delay)
+
+
 
 def getCategoryBySeriesId(series_id):
     url = f'https://api.stlouisfed.org/fred/series/categories?series_id={series_id}&api_key={myAPIkey}&file_type={response_method}'
