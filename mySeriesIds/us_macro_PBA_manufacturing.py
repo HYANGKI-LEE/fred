@@ -1,275 +1,12 @@
 
-dir='us_macro_M_total'
+# FRED > Production & Business Activity > Manufacturing (category_id 32429)
+# 하위 카테고리 6개 + 카테고리 직속 시리즈 전체. 주기는 FRED 메타데이터 기준
+dir='us_macro_PBA_manufacturing'
 
-# Quarterly
-ids_Q = [
-    # Manufacturing - Census Bureau
-    ## Inventories
-    ### Real Manufacturing and Trade Inventories
-    'INVCQRMT', # Real Manufacturing and Trade Inventories
-    'INVCQRMTSPL', # Real Manufacturing and Trade Inventories
-    'INVHQRMT', # Real Manufacturing and Trade Inventories
-]
-
-# Monthly
+# Monthly (1412)
 ids_M = [
-    # Liquidity
-    'CURRCIR', # Currency in Circulation
-
-    # Employment & Labor - U.S. Bureau of Labor Statistics(BLS)
-    ## Current Population Survey (Household Survey)
-    'CE16OV', # Employment Level
-    'UNRATE', # Unemployment Rate
-    'UNEMPLOY', # Unemployment Level
-    'CIVPART', # Labor Force Participation Rate
-
-    ## Current Employment Statisticsq (Establishment Survey)
-    'PAYEMS',  # All Employees, Total Nonfarm
-    # 'USPRIV',  # All Employees, Total Private
-
-    # Employment - JOLTs
-    ## Job Openings - level
-    'JTSJOL', # Job Openings: Total Nonfarm
-    'JTS1000JOL', # Job Openings: Total Private
-    'JTU110099JOL', # Job Openings: Mining and Logging
-    'JTS2300JOL', # Job Openings: Construction
-    'JTS3000JOL', # Job Openings: Manufacturing
-    'JTS4000JOL', # Job Openings: Trade, Transportation, and Utilities
-    'JTU5100JOL', # Job Openings: Information
-    'JTU510099JOL', # Job Openings: Financial Activities
-    'JTS540099JOL', # Job Openings: Professional and Business Services
-    'JTS6000JOL', # Job Openings: Private Education and Health Services
-    'JTS7000JOL', # Job Openings: Leisure and Hospitality
-    'JTU8100JOL', # Job Openings: Other Services
-    'JTU9100JOL', # Job Openings: Federal
-    'JTS9200JOL', # Job Openings: State and Local
-
-    ## Job Openings - rate
-    'JTSJOR', # Job Openings: Total Nonfarm
-    'JTS1000JOR', # Job Openings: Total Private
-    'JTU110099JOR', # Job Openings: Mining and Logging
-    'JTS2300JOR', # Job Openings: Construction
-    'JTS3000JOR', # Job Openings: Manufacturing
-    'JTU4000JOR', # Job Openings: Trade, Transportation, and Utilities
-    'JTU5100JOR', # Job Openings: Information
-    'JTU510099JOR', #  Job Openings: Financial Activities
-    'JTS540099JOR', # Job Openings: Professional and Business Services
-    'JTS6000JOR', # Job Openings: Private Education and Health Services
-    'JTS7000JOR', # Job Openings: Leisure and Hospitality
-    'JTU8100JOR', # Job Openings: Other Services
-    'JTU9100JOR', # Job Openings: Federal
-    'JTS9200JOR', # Job Openings: State and Local
-
-    ## Hires - level
-    'JTSHIL', # Hires: Total Nonfarm
-    'JTS1000HIL', # Hires: Total Private
-    'JTS2300HIL', # Hires: Construction
-    'JTS3000HIL', # Hires: Manufacturing
-    'JTS4000HIL', # Hires: Trade, Transportation, and Utilities
-    'JTU5100HIL', # Hires: Information
-    'JTU510099HIL', # Hires: Financial Activities
-    'JTS540099HIL', # Hires: Professional and Business Services
-    'JTS6000HIL', # Hires: Private Education and Health Services
-    'JTS7000HIL', # Hires: Leisure and Hospitality
-    'JTU8100HIL', # Hires: Other Services
-    'JTU9100HIL', # Hires: Federal
-    'JTS9200HIL', # Hires: State and Local
-
-    ## Hires - rate
-    'JTSHIR', # Hires: Total Nonfarm
-    'JTS1000HIR', # Hires: Total Private
-    'JTS2300HIR', # Hires: Construction
-    'JTS3000HIR', # Hires: Manufacturing
-    'JTS4000HIR', # Hires: Trade, Transportation, and Utilities
-    'JTU5100HIR', # Hires: Information
-    'JTU510099HIR', # Hires: Financial Activities
-    'JTS540099HIR', # Hires: Professional and Business Services
-    'JTS6000HIR', # Hires: Private Education and Health Services
-    'JTS7000HIR', # Hires: Leisure and Hospitality
-    'JTU8100HIR', # Hires: Other Services
-    'JTU9100HIR', # Hires: Federal
-    'JTS9200HIR', # Hires: State and Local
-
-    ## Separations - level
-    'JTSTSL', # Total Separations: Total Nonfarm
-    'JTS1000TSL', # Total Separations: Total Private
-    'JTS2300TSL', # Total Separations: Construction
-    'JTS3000TSL', # Total Separations: Manufacturing
-    'JTS4000TSL', # Total Separations: Trade, Transportation, and Utilities
-    'JTU5100TSL', # Total Separations: Information
-    'JTU510099TSL', # Total Separations: Financial Activities
-    'JTS540099TSL', # Total Separations: Professional and Business Services
-    'JTS6000TSL', # Total Separations: Private Education and Health Services
-    'JTS7000TSL', # Total Separations: Leisure and Hospitality
-    'JTU8100TSL', # Total Separations: Other Services
-    'JTU9100TSL', # Total Separations: Federal
-    'JTS9200TSL', # Total Separations: State and Local
-
-    ## Separations - rate
-    'JTSTSR', # Total Separations: Total Nonfarm
-    'JTS1000TSR', # Total Separations: Total Private
-    'JTS2300TSR', # Total Separations: Construction
-    'JTS3000TSR', # Total Separations: Manufacturing
-    'JTS4000TSR', # Total Separations: Trade, Transportation, and Utilities
-    'JTU5100TSR', # Total Separations: Information
-    'JTU510099TSR', # Total Separations: Financial Activities
-    'JTS540099TSR', # Total Separations: Professional and Business Services
-    'JTS6000TSR', # Total Separations: Private Education and Health Services
-    'JTS7000TSR', # Total Separations: Leisure and Hospitality
-    'JTU8100TSR', # Total Separations: Other Services
-    'JTU9100TSR', # Total Separations: Federal
-    'JTS9200TSR', # Total Separations: State and Local
-
-    'AWHAETP', # Average Weekly Hours of All Employees, Total Private
-    'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
-
-    # Employemnt - ADP
-    'ADPMNUSNERSA', #  Total Nonfarm Private Payroll Employment
-
-    # Inflation & Consumption
-    ## Retail sales (Census Bureau) - https://www.census.gov/retail/sales.html
-    'RSAFS',  # Advance Retail Sales: Retail Trade and Food Services
-    'RSXFS',  # Advance Retail Sales: Retail Trade
-    'RSFSXMV', # Advance Retail Sales: Retail Trade and Food Services, Excluding Motor Vehicle and Parts Dealers
-    'MARTSSM44W72USS', # Advance Retail Sales: Retail Trade and Food Services, Excluding Motor Vehicle and Parts Dealers and Gasoline Stations
-
-    #--Dollar value (SA)
-    'RSMVPD',  # Advance Retail Sales: Motor Vehicle and Parts Dealers
-    'RSFHFS', # Advance Retail Sales: Furniture and Home Furnishings Stores
-    'RSEAS', # Advance Retail Sales: Electronics and Appliance Stores
-    'RSBMGESD', # Advance Retail Sales: Building Materials, Garden Equipment and Supplies Dealers
-    'RSDBS', # Advance Retail Sales: Food and Beverage Stores
-    'RSHPCS', # Advance Retail Sales: Health and Personal Care Stores
-    'RSGASS', # Advance Retail Sales: Gasoline Stations
-    'RSCCAS', # Advance Retail Sales: Clothing and Clothing Accessory Stores
-    'RSSGHBMS', # Advance Retail Sales: Sporting Goods, Hobby, Musical Instrument, and Book Stores
-    'RSGMS', # Advance Retail Sales: General Merchandise Stores
-    'RSMSR', # Advance Retail Sales: Miscellaneous Store Retailers
-    'RSNSR', # Advance Retail Sales: Nonstore Retailers
-    'RSFSDP', # Advance Retail Sales: Food Services and Drinking Places
-
-    #--MoM(SA)
-    'MARTSMPCSM441USS', # Advance Retail Sales: Motor Vehicle and Parts Dealers
-    'MARTSMPCSM442USS', # Advance Retail Sales: Furniture and Home Furnishings Stores
-    'MARTSMPCSM443USS', # Advance Retail Sales: Electronics and Appliance Stores
-    'MARTSMPCSM444USS', # Advance Retail Sales: Building Materials, Garden Equipment and Supplies Dealers
-    'MARTSMPCSM445USS', # Advance Retail Sales: Food and Beverage Stores
-    'MARTSMPCSM446USS', # Advance Retail Sales: Health and Personal Care Stores
-    'MARTSMPCSM447USS', # Advance Retail Sales: Gasoline Stations
-    'MARTSMPCSM448USS', # Advance Retail Sales: Clothing and Clothing Accessory Stores
-    'MARTSMPCSM451USS', # Advance Retail Sales: Sporting Goods, Hobby, Musical Instrument, and Book Stores
-    'MARTSMPCSM452USS', # Advance Retail Sales: General Merchandise Stores
-    'MARTSMPCSM453USS', # Advance Retail Sales: Miscellaneous Store Retailers
-    'MARTSMPCSM454USS', # Advance Retail Sales: Nonstore Retailers
-    'MARTSMPCSM722USS', # Advance Retail Sales: Food Services and Drinking Places
-
-    # 'MRTSSM44X72USS',  # Retail Sales: Retail Trade and Food Services
-    # 'MRTSSM44000USS', # Retail Sales: Retail Trade
-    # 'MRTSSM44X72USS', # Retail Sales: Retail Trade and Food Services
-    # 'MRTSMPCSM44000USS', # Retail Sales: Retail Trade
-    'TOTALSA', # Total Vehicle Sales
-
-    ## Consumer loans
-    'CCLACBM027NBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks (NSA)
-    'CCLACBM027SBOG', # Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks (SA)
-
-    ## Consumer sentiment
-    'UMCSENT', # University of Michigan: Consumer Sentiment
-    'MICH', # University of Michigan: Inflation Expectation
-    'CSCICP03USM665S', # Composite Leading Indicators: Composite Consumer Confidence Amplitude Adjusted for United States
-
-    ## Inflation Expectation
-    'MICH', # University of Michigan: Inflation Expectation
-
-
-
-    ## PCE & CPI
-    'PCEPI', # Personal Consumption Expenditures: Chain-type Price Index
-    'PCEPILFE', # Personal Consumption Expenditures Excluding Food and Energy
-    'DPCCRC1M027SBEA',  # Personal consumption expenditures excluding food and energy
-    'IA001176M', # Personal Consumption Expenditures Excluding Food, Energy, and Housing (Chain-Type Price Index)
-    'PCE',  # Personal Consumption Expenditures
-    'PCEC96', # Real Personal Consumption Expenditures
-
-    'CPIAUCSL', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (SA)
-    'CPIAUCNS', # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (NSA)
-    'CPILFENS', # Consumer Price Index for All Urban Consumers: All Items Less Food and Energy in U.S. City Average (NSA)
-    'STICKCPIM157SFRBATL', # Sticky Price Consumer Price Index
-    'CORESTICKM159SFRBATL', # Sticky Price Consumer Price Index less Food and Energy
-    'CRESTKCPIXSLTRM159SFRBATL', # Sticky Price Consumer Price Index less Food, Energy, and Shelter
-    'STICKCPIXSHLTRM159SFRBATL', # Sticky Price Consumer Price Index less Shelter
-    'CPIUFDNS', # Consumer Price Index for All Urban Consumers: Food in U.S. City Average (NSA)
-    'CPIENGNS', # Consumer Price Index for All Urban Consumers: Energy in U.S. City Average (NSA)
-    'CUUR0000SACL1E', # Consumer Price Index for All Urban Consumers: Commodities Less Food and Energy Commodities in U.S. City Average (NSA)
-    'CUUR0000SAH1', # Consumer Price Index for All Urban Consumers: Shelter in U.S. City Average (NSA)
-    'CUUR0000SAM2', # Consumer Price Index for All Urban Consumers: Medical Care Services in U.S. City Average (NSA)
-    'CUUR0000SAS4', # Consumer Price Index for All Urban Consumers: Transportation Services in U.S. City Average (NSA)
-
-    'CUUR0000SA0R', # Consumer Price Index for All Urban Consumers: Purchasing Power of the Consumer Dollar in U.S. City Average
-
-    'DSPI', # Disposable Personal Income
-    'DSPIC96', # Real Disposable Personal Income
-
-    ## Wage & Earnings
-    'CES0500000003', # Average Hourly Earnings of All Employees, Total Private
-    'DSPIC96', # Real Disposable Personal Income
-    'FRBATLWGT3MMAUMHWGWD51WP', # 3-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 51st to 100th Wage Percentile
-    'FRBATLWGT3MMAUMHGWD1WP', # 3-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 1st to 50th Wage Percentile
-
-    'FRBATLWGT12MMUMHWGWDLHWP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 1st to 50th Wage Percentile
-    'FRBATLWGT12MMUMHWGWDUPWP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 51st to 100th Wage Percentile
-
-    'FRBATLWGT3MMAWMHWGO', # 3-Month Moving Average of Weighted Median Hourly Wage Growth: Overall
-    'FRBATLWGT3MMAUMHWGO', # 3-Month Moving Average of Unweighted Median Hourly Wage Growth: Overall
-    'FRBATLWGT3MMAU75PHWGO', # 3-Month Moving Average of Unweighted 75th Percentile Hourly Wage Growth: Overall
-    'FRBATLWGT3MMAU25PHWGO', # 3-Month Moving Average of Unweighted 25th Percentile Hourly Wage Growth: Overall
-
-    'FRBATLWGT12MMUMHWGWD1WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 1st to 25th Wage Percentile
-    'FRBATLWGT12MMUMHWGWD26WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 26th to 50th Wage Percentile
-    'FRBATLWGT12MMUMHWGWD51WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 51st to 75th Wage Percentile
-    'FRBATLWGT12MMUMHWGWD76WP', # 12-Month Moving Average of Unweighted Median Hourly Wage Growth: Wage Distribution: 76th to 100th Wage Percentile
-
-    ## PPI
-    'PPIACO', # Producer Price Index by Commodity: All Commodities (NSA)
-    'PPIFID', # Producer Price Index by Commodity: Final Demand (NSA)
-    'PPIFDG', # Producer Price Index by Commodity: Final Demand: Final Demand Goods (NSA)
-    'PPIFDS', # Producer Price Index by Commodity: Final Demand: Final Demand Services (NSA)
-
-    'PCUOMFGOMFG',  # Producer Price Index by Industry: Total Manufacturing Industries
-
-    # Industrial production - https://www.federalreserve.gov/releases/g17/
-    'INDPRO', # Industrial Production: Total Index
-    'IPFINAL', # Industrial Production: Final Products
-    'IPCONGD', # Industrial Production: Consumer Goods
-    'IPBUSEQ', # Industrial Production: Equipment: Business Equipment
-    'IPB54000S', # Industrial Production: Nonindustrial Supplies
-    'IPB54100S', # Industrial Production: Construction Supplies
-    'IPMAT', # Industrial Production: Materials
-    'IPMANSICS', # Industrial Production: Manufacturing (SIC)
-    'IPMINE', # Industrial Production: Mining: Mining (NAICS = 21)
-    'IPUTIL', # Industrial Production: Utilities: Electric and Gas Utilities (NAICS = 2211,2)
-    'TCU', # Capacity Utilization: Total Index
-    'CUMFNS', # Capacity Utilization: Manufacturing (SIC)
-    'CAPUTLG21S', # Capacity Utilization: Mining: Mining (NAICS = 21)
-    'CAPUTLG2211A2S', # Capacity Utilization: Utilities: Electric and Gas Utilities (NAICS = 2211,2)
-    'CAPUTLB5610CS', # Capacity Utilization: Stage-of-Process: Crude Processing
-    'CAPUTLB562A3CS', # Capacity Utilization: Stage-of-Process: Primary & Semifinished Processing
-    'CAPUTLB5640CS', # Capacity Utilization: Stage-of-Process: Finished Processing
-
-    # Manufacturing - Census Bureau
-    'MNFCTRIMSA', # Manufacturers Inventories
-    'MNFCTRSMSA', # Manufacturers Sales
-    'MNFCTRIRSA',  # Manufacturers: Inventories to Sales Ratio
-
-    'AMTMNO', # Manufacturers' New Orders: Total Manufacturing
-    'DGORDER', # Manufacturers' New Orders: Durable Goods
-    'NEWORDER', # Manufacturers' New Orders: Nondefense Capital Goods Excluding Aircraft
-    'AMTMTI', # Manufacturers' Total Inventories: Total Manufacturing
-    'AMTMVS', # Manufacturers' Value of Shipments: Total Manufacturing
-    'AMTMIS', # Manufacturers' Inventories to Shipments Ratios: Total Manufacturing
-
-    ## Inventories (386)
-    ### Current Finished Goods Inventories - Texas
+    # Manufacturing > Inventories (386)
+    ## Current Finished Goods Inventories - Texas
     'FGIDSAMFRBDAL', # Current Finished Goods Inventories; Percentage Reporting Decreases for Texas
     'FGIDUAMFRBDAL', # Current Finished Goods Inventories; Percentage Reporting Decreases for Texas (NSA)
     'FGIISAMFRBDAL', # Current Finished Goods Inventories; Percentage Reporting Increases for Texas
@@ -278,7 +15,7 @@ ids_M = [
     'FGINUAMFRBDAL', # Current Finished Goods Inventories; Percentage Reporting No Change for Texas (NSA)
     'FGISAMFRBDAL', # Current Finished Goods Inventories; Diffusion Index for Texas
     'FGIUAMFRBDAL', # Current Finished Goods Inventories; Diffusion Index for Texas (NSA)
-    ### Current Inventories - Federal Reserve District 3: Philadelphia
+    ## Current Inventories - Federal Reserve District 3: Philadelphia
     'IVCDFNA066MNFRBPHI', # Current Inventories; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'IVCDFSA066MSFRBPHI', # Current Inventories; Diffusion Index for Federal Reserve District 3: Philadelphia
     'IVCDNA156MNFRBPHI', # Current Inventories; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -287,7 +24,7 @@ ids_M = [
     'IVCISA156MSFRBPHI', # Current Inventories; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'IVCNNA156MNFRBPHI', # Current Inventories; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'IVCNSA156MSFRBPHI', # Current Inventories; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Current Inventories - New York
+    ## Current Inventories - New York
     'IVCDINA066MNFRBNY', # Current Inventories; Diffusion Index for New York (NSA)
     'IVCDISA066MSFRBNY', # Current Inventories; Diffusion Index for New York
     'IVCDNA156MNFRBNY', # Current Inventories; Percent Reporting Decreases for New York (NSA)
@@ -296,7 +33,7 @@ ids_M = [
     'IVCISA156MSFRBNY', # Current Inventories; Percent Reporting Increases for New York
     'IVCNNA156MNFRBNY', # Current Inventories; Percent Reporting No Change for New York (NSA)
     'IVCNSA156MSFRBNY', # Current Inventories; Percent Reporting No Change for New York
-    ### Current Materials Inventories - Texas
+    ## Current Materials Inventories - Texas
     'MATIDSAMFRBDAL', # Current Materials Inventories; Percentage Reporting Decreases for Texas (DISCONTINUED)
     'MATIDUAMFRBDAL', # Current Materials Inventories; Percentage Reporting Decreases for Texas (DISCONTINUED) (NSA)
     'MATIISAMFRBDAL', # Current Materials Inventories; Percentage Reporting Increases for Texas (DISCONTINUED)
@@ -305,7 +42,7 @@ ids_M = [
     'MATINUAMFRBDAL', # Current Materials Inventories; Percentage Reporting No Change for Texas (DISCONTINUED) (NSA)
     'MATISAMFRBDAL', # Current Materials Inventories; Diffusion Index for Texas (DISCONTINUED)
     'MATIUAMFRBDAL', # Current Materials Inventories; Diffusion Index for Texas (DISCONTINUED) (NSA)
-    ### Future Finished Goods Inventories - Texas
+    ## Future Finished Goods Inventories - Texas
     'FFGIDSAMFRBDAL', # Future Finished Goods Inventories; Percentage Reporting Decreases for Texas
     'FFGIDUAMFRBDAL', # Future Finished Goods Inventories; Percentage Reporting Decreases for Texas (NSA)
     'FFGIISAMFRBDAL', # Future Finished Goods Inventories; Percentage Reporting Increases for Texas
@@ -314,7 +51,7 @@ ids_M = [
     'FFGINUAMFRBDAL', # Future Finished Goods Inventories; Percentage Reporting No Change for Texas (NSA)
     'FFGISAMFRBDAL', # Future Finished Goods Inventories; Diffusion Index for Texas
     'FFGIUAMFRBDAL', # Future Finished Goods Inventories; Diffusion Index for Texas (NSA)
-    ### Future Inventories - Federal Reserve District 3: Philadelphia
+    ## Future Inventories - Federal Reserve District 3: Philadelphia
     'IVFDFNA066MNFRBPHI', # Future Inventories; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'IVFDFSA066MSFRBPHI', # Future Inventories; Diffusion Index for Federal Reserve District 3: Philadelphia
     'IVFDNA156MNFRBPHI', # Future Inventories; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -323,7 +60,7 @@ ids_M = [
     'IVFISA156MSFRBPHI', # Future Inventories; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'IVFNNA156MNFRBPHI', # Future Inventories; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'IVFNSA156MSFRBPHI', # Future Inventories; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Future Inventories - New York
+    ## Future Inventories - New York
     'IVFDINA066MNFRBNY', # Future Inventories; Diffusion Index for New York (NSA)
     'IVFDISA066MSFRBNY', # Future Inventories; Diffusion Index for New York
     'IVFDNA156MNFRBNY', # Future Inventories; Percent Expecting Decreases for New York (NSA)
@@ -332,7 +69,7 @@ ids_M = [
     'IVFISA156MSFRBNY', # Future Inventories; Percent Expecting Increases for New York
     'IVFNNA156MNFRBNY', # Future Inventories; Percent Expecting No Change for New York (NSA)
     'IVFNSA156MSFRBNY', # Future Inventories; Percent Expecting No Change for New York
-    ### Future Materials Inventories - Texas
+    ## Future Materials Inventories - Texas
     'FMATIDSAMFRBDAL', # Future Materials Inventories; Percentage Reporting Decreases for Texas (DISCONTINUED)
     'FMATIDUAMFRBDAL', # Future Materials Inventories; Percentage Reporting Decreases for Texas (DISCONTINUED) (NSA)
     'FMATIISAMFRBDAL', # Future Materials Inventories; Percentage Reporting Increases for Texas (DISCONTINUED)
@@ -341,7 +78,7 @@ ids_M = [
     'FMATINUAMFRBDAL', # Future Materials Inventories; Percentage Reporting No Change for Texas (DISCONTINUED) (NSA)
     'FMATISAMFRBDAL', # Future Materials Inventories; Diffusion Index for Texas (DISCONTINUED)
     'FMATIUAMFRBDAL', # Future Materials Inventories; Diffusion Index for Texas (DISCONTINUED) (NSA)
-    ### Manufacturers' Finished Goods Inventories
+    ## Manufacturers' Finished Goods Inventories
     'A11SFI', # Manufacturers' Finished Goods Inventories: Food Products
     'A12SFI', # Manufacturers' Finished Goods Inventories: Beverage and Tobacco Products
     'A13SFI', # Manufacturers' Finished Goods Inventories: Textile Mills
@@ -390,7 +127,7 @@ ids_M = [
     'UMDMFI', # Manufacturers' Finished Goods Inventories: Durable Goods (NSA)
     'UMNMFI', # Manufacturers' Finished Goods Inventories: Nondurable Goods (NSA)
     'UMTMFI', # Manufacturers' Finished Goods Inventories: Total Manufacturing (NSA)
-    ### Manufacturers' Materials and Supplies Inventories
+    ## Manufacturers' Materials and Supplies Inventories
     'A11SMI', # Manufacturers' Materials and Supplies Inventories: Food Products
     'A12SMI', # Manufacturers' Materials and Supplies Inventories: Beverage and Tobacco Products
     'A13SMI', # Manufacturers' Materials and Supplies Inventories: Textile Mills
@@ -439,7 +176,7 @@ ids_M = [
     'UMDMMI', # Manufacturers' Materials and Supplies Inventories: Durable Goods (NSA)
     'UMNMMI', # Manufacturers' Materials and Supplies Inventories: Nondurable Goods (NSA)
     'UMTMMI', # Manufacturers' Materials and Supplies Inventories: Total Manufacturing (NSA)
-    ### Manufacturers' Total Inventories
+    ## Manufacturers' Total Inventories
     'A11ATI', # Manufacturers' Total Inventories: Grain and Oilseed Milling
     'A11BTI', # Manufacturers' Total Inventories: Dairy Product Manufacturing
     'A11CTI', # Manufacturers' Total Inventories: Meat, Poultry, and Seafood Product Processing
@@ -515,6 +252,7 @@ ids_M = [
     'AITITI', # Manufacturers' Total Inventories: Information Technology Industries
     'AMDMTI', # Manufacturers' Total Inventories: Durable Goods
     'AMNMTI', # Manufacturers' Total Inventories: Nondurable Goods
+    'AMTMTI', # Manufacturers' Total Inventories: Total Manufacturing
     'AMTUTI', # Manufacturers' Total Inventories: Manufacturing with Unfilled Orders
     'AMVPTI', # Manufacturers' Total Inventories: Motor Vehicles and Parts
     'AMXDTI', # Manufacturers' Total Inventories: Manufacturing Excluding Defense
@@ -611,7 +349,7 @@ ids_M = [
     'UODGTI', # Manufacturers' Total Inventories: All Other Durable Goods (NSA)
     'UTCGTI', # Manufacturers' Total Inventories: Capital Goods (NSA)
     'UTGPTI', # Manufacturers' Total Inventories: Turbines, Generators, and Other Power Transmission Equipment (NSA)
-    ### Manufacturers' Work in Process Inventories
+    ## Manufacturers' Work in Process Inventories
     'A11SWI', # Manufacturers' Work in Process Inventories: Food Products
     'A12SWI', # Manufacturers' Work in Process Inventories: Beverage and Tobacco Products
     'A13SWI', # Manufacturers' Work in Process Inventories: Textile Mills
@@ -660,13 +398,13 @@ ids_M = [
     'UMDMWI', # Manufacturers' Work in Process Inventories: Durable Goods (NSA)
     'UMNMWI', # Manufacturers' Work in Process Inventories: Nondurable Goods (NSA)
     'UMTMWI', # Manufacturers' Work in Process Inventories: Total Manufacturing (NSA)
-    ### Real Manufacturing and Trade Inventories
+    ## Real Manufacturing and Trade Inventories
     'INVCMRMT', # Real Manufacturing and Trade Inventories
     'INVCMRMTSPL', # Real Manufacturing and Trade Inventories
     'INVHMRMT', # Real Manufacturing and Trade Inventories
 
-    ## New Orders (170)
-    ### Current Growth Rate of Orders - Texas
+    # Manufacturing > New Orders (170)
+    ## Current Growth Rate of Orders - Texas
     'GRODSAMFRBDAL', # Current Growth Rate of Orders; Percentage Reporting Decreases for Texas
     'GRODUAMFRBDAL', # Current Growth Rate of Orders; Percentage Reporting Decreases for Texas (NSA)
     'GROISAMFRBDAL', # Current Growth Rate of Orders; Percentage Reporting Increases for Texas
@@ -675,7 +413,7 @@ ids_M = [
     'GRONUAMFRBDAL', # Current Growth Rate of Orders; Percentage Reporting No Change for Texas (NSA)
     'GROSAMFRBDAL', # Current Growth Rate of Orders; Diffusion Index for Texas
     'GROUAMFRBDAL', # Current Growth Rate of Orders; Diffusion Index for Texas (NSA)
-    ### Current New Orders - Federal Reserve District 3: Philadelphia
+    ## Current New Orders - Federal Reserve District 3: Philadelphia
     'NOCDFNA066MNFRBPHI', # Current New Orders; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'NOCDFSA066MSFRBPHI', # Current New Orders; Diffusion Index for Federal Reserve District 3: Philadelphia
     'NOCDNA156MNFRBPHI', # Current New Orders; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -684,15 +422,16 @@ ids_M = [
     'NOCISA156MSFRBPHI', # Current New Orders; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'NOCNNA156MNFRBPHI', # Current New Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'NOCNSA156MSFRBPHI', # Current New Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Current New Orders - New York
+    ## Current New Orders - New York
     'NOCDINA066MNFRBNY', # Current New Orders; Diffusion Index for New York (NSA)
+    'NOCDISA066MSFRBNY', # Current New Orders; Diffusion Index for New York
     'NOCDNA156MNFRBNY', # Current New Orders; Percent Reporting Decreases for New York (NSA)
     'NOCDSA156MSFRBNY', # Current New Orders; Percent Reporting Decreases for New York
     'NOCINA156MNFRBNY', # Current New Orders; Percent Reporting Increases for New York (NSA)
     'NOCISA156MSFRBNY', # Current New Orders; Percent Reporting Increases for New York
     'NOCNNA156MNFRBNY', # Current New Orders; Percent Reporting No Change for New York (NSA)
     'NOCNSA156MSFRBNY', # Current New Orders; Percent Reporting No Change for New York
-    ### Current New Orders - Texas
+    ## Current New Orders - Texas
     'VNWODSAMFRBDAL', # Current New Orders; Percentage Reporting Decreases for Texas
     'VNWODUAMFRBDAL', # Current New Orders; Percentage Reporting Decreases for Texas (NSA)
     'VNWOISAMFRBDAL', # Current New Orders; Percentage Reporting Increases for Texas
@@ -701,7 +440,7 @@ ids_M = [
     'VNWONUAMFRBDAL', # Current New Orders; Percentage Reporting No Change for Texas (NSA)
     'VNWOSAMFRBDAL', # Current New Orders; Diffusion Index for Texas
     'VNWOUAMFRBDAL', # Current New Orders; Diffusion Index for Texas (NSA)
-    ### Future Growth Rate of Orders - Texas
+    ## Future Growth Rate of Orders - Texas
     'FGRODSAMFRBDAL', # Future Growth Rate of Orders; Percentage Reporting Decreases for Texas
     'FGRODUAMFRBDAL', # Future Growth Rate of Orders; Percentage Reporting Decreases for Texas (NSA)
     'FGROISAMFRBDAL', # Future Growth Rate of Orders; Percentage Reporting Increases for Texas
@@ -710,7 +449,7 @@ ids_M = [
     'FGRONUAMFRBDAL', # Future Growth Rate of Orders; Percentage Reporting No Change for Texas (NSA)
     'FGROSAMFRBDAL', # Future Growth Rate of Orders; Diffusion Index for Texas
     'FGROUAMFRBDAL', # Future Growth Rate of Orders; Diffusion Index for Texas (NSA)
-    ### Future New Orders - Federal Reserve District 3: Philadelphia
+    ## Future New Orders - Federal Reserve District 3: Philadelphia
     'NOFDFNA066MNFRBPHI', # Future New Orders; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'NOFDFSA066MSFRBPHI', # Future New Orders; Diffusion Index for Federal Reserve District 3: Philadelphia
     'NOFDNA156MNFRBPHI', # Future New Orders; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -719,7 +458,7 @@ ids_M = [
     'NOFISA156MSFRBPHI', # Future New Orders; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'NOFNNA156MNFRBPHI', # Future New Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'NOFNSA156MSFRBPHI', # Future New Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Future New Orders - New York
+    ## Future New Orders - New York
     'NOFDINA066MNFRBNY', # Future New Orders; Diffusion Index for New York (NSA)
     'NOFDISA066MSFRBNY', # Future New Orders; Diffusion Index for New York
     'NOFDNA156MNFRBNY', # Future New Orders; Percent Expecting Decreases for New York (NSA)
@@ -728,7 +467,7 @@ ids_M = [
     'NOFISA156MSFRBNY', # Future New Orders; Percent Expecting Increases for New York
     'NOFNNA156MNFRBNY', # Future New Orders; Percent Expecting No Change for New York (NSA)
     'NOFNSA156MSFRBNY', # Future New Orders; Percent Expecting No Change for New York
-    ### Future New Orders - Texas
+    ## Future New Orders - Texas
     'FVNWODSAMFRBDAL', # Future New Orders; Percentage Reporting Decreases for Texas
     'FVNWODUAMFRBDAL', # Future New Orders; Percentage Reporting Decreases for Texas (NSA)
     'FVNWOISAMFRBDAL', # Future New Orders; Percentage Reporting Increases for Texas
@@ -737,7 +476,7 @@ ids_M = [
     'FVNWONUAMFRBDAL', # Future New Orders; Percentage Reporting No Change for Texas (NSA)
     'FVNWOSAMFRBDAL', # Future New Orders; Diffusion Index for Texas
     'FVNWOUAMFRBDAL', # Future New Orders; Diffusion Index for Texas (NSA)
-    ### Manufacturers' New Orders
+    ## Manufacturers' New Orders
     'A31ANO', # Manufacturers' New Orders: Iron and Steel Mills and Ferroalloy and Steel Product Manufacturing
     'A31CNO', # Manufacturers' New Orders: Ferrous Metal Foundries
     'A31SNO', # Manufacturers' New Orders: Primary Metals
@@ -778,6 +517,7 @@ ids_M = [
     'ADXTNO', # Manufacturers' New Orders: Durable Goods Excluding Transportation
     'AITINO', # Manufacturers' New Orders: Information Technology Industries
     'AMNMNO', # Manufacturers' New Orders: Nondurable Goods
+    'AMTMNO', # Manufacturers' New Orders: Total Manufacturing
     'AMTUNO', # Manufacturers' New Orders: Manufacturing with Unfilled Orders
     'AMVPNO', # Manufacturers' New Orders: Motor Vehicles and Parts
     'AMXDNO', # Manufacturers' New Orders: Manufacturing Excluding Defense
@@ -787,6 +527,8 @@ ids_M = [
     'AODGNO', # Manufacturers' New Orders: All Other Durable Goods
     'ATCGNO', # Manufacturers' New Orders: Capital Goods
     'ATGPNO', # Manufacturers' New Orders: Turbines, Generators, and Other Power Transmission Equipment
+    'DGORDER', # Manufacturers' New Orders: Durable Goods
+    'NEWORDER', # Manufacturers' New Orders: Nondefense Capital Goods Excluding Aircraft
     'U31ANO', # Manufacturers' New Orders: Iron and Steel Mills and Ferroalloy and Steel Product Manufacturing (NSA)
     'U31CNO', # Manufacturers' New Orders: Ferrous Metal Foundries (NSA)
     'U31SNO', # Manufacturers' New Orders: Primary Metals (NSA)
@@ -839,12 +581,12 @@ ids_M = [
     'UODGNO', # Manufacturers' New Orders: All Other Durable Goods (NSA)
     'UTCGNO', # Manufacturers' New Orders: Capital Goods (NSA)
     'UTGPNO', # Manufacturers' New Orders: Turbines, Generators, and Other Power Transmission Equipment (NSA)
-    ### Value of Manufacturers' New Orders for Consumer Goods
+    ## Value of Manufacturers' New Orders for Consumer Goods
     'ACNGNO', # Value of Manufacturers' New Orders for Consumer Goods: Consumer Nondurable Goods Industries (DISCONTINUED)
     'UCNGNO', # Value of Manufacturers' New Orders for Consumer Goods: Consumer Nondurable Goods Industries (DISCONTINUED) (NSA)
 
-    ## Inventory to Shipments (48)
-    ### Manufacturers' Inventories to Shipments Ratios
+    # Manufacturing > Inventory to Shipments (48)
+    ## Manufacturers' Inventories to Shipments Ratios
     'A11SIS', # Manufacturers' Inventories to Shipments Ratios: Food Products
     'A12SIS', # Manufacturers' Inventories to Shipments Ratios: Beverage and Tobacco Products
     'A13SIS', # Manufacturers' Inventories to Shipments Ratios: Textile Mills
@@ -868,6 +610,7 @@ ids_M = [
     'A39SIS', # Manufacturers' Inventories to Shipments Ratios: Miscellaneous Products
     'AMDMIS', # Manufacturers' Inventories to Shipments Ratios: Durable Goods
     'AMNMIS', # Manufacturers' Inventories to Shipments Ratios: Nondurable Goods
+    'AMTMIS', # Manufacturers' Inventories to Shipments Ratios: Total Manufacturing
     'U11SIS', # Manufacturers' Inventories to Shipments Ratios: Food Products (NSA)
     'U12SIS', # Manufacturers' Inventories to Shipments Ratios: Beverage and Tobacco Products (NSA)
     'U13SIS', # Manufacturers' Inventories to Shipments Ratios: Textile Mills (NSA)
@@ -893,8 +636,8 @@ ids_M = [
     'UMNMIS', # Manufacturers' Inventories to Shipments Ratios: Nondurable Goods (NSA)
     'UMTMIS', # Manufacturers' Inventories to Shipments Ratios: Total Manufacturing (NSA)
 
-    ## Unfilled Orders (148)
-    ### Current Unfilled Orders - Federal Reserve District 3: Philadelphia
+    # Manufacturing > Unfilled Orders (148)
+    ## Current Unfilled Orders - Federal Reserve District 3: Philadelphia
     'UOCDFNA066MNFRBPHI', # Current Unfilled Orders; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'UOCDFSA066MSFRBPHI', # Current Unfilled Orders; Diffusion Index for Federal Reserve District 3: Philadelphia
     'UOCDNA156MNFRBPHI', # Current Unfilled Orders; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -903,7 +646,7 @@ ids_M = [
     'UOCISA156MSFRBPHI', # Current Unfilled Orders; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'UOCNNA156MNFRBPHI', # Current Unfilled Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'UOCNSA156MSFRBPHI', # Current Unfilled Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Current Unfilled Orders - New York
+    ## Current Unfilled Orders - New York
     'UOCDINA066MNFRBNY', # Current Unfilled Orders; Diffusion Index for New York (NSA)
     'UOCDISA066MSFRBNY', # Current Unfilled Orders; Diffusion Index for New York
     'UOCDNA156MNFRBNY', # Current Unfilled Orders; Percent Reporting Decreases for New York (NSA)
@@ -912,7 +655,7 @@ ids_M = [
     'UOCISA156MSFRBNY', # Current Unfilled Orders; Percent Reporting Increases for New York
     'UOCNNA156MNFRBNY', # Current Unfilled Orders; Percent Reporting No Change for New York (NSA)
     'UOCNSA156MSFRBNY', # Current Unfilled Orders; Percent Reporting No Change for New York
-    ### Current Unfilled Orders - Texas
+    ## Current Unfilled Orders - Texas
     'UFILDSAMFRBDAL', # Current Unfilled Orders; Percentage Reporting Decreases for Texas
     'UFILDUAMFRBDAL', # Current Unfilled Orders; Percentage Reporting Decreases for Texas (NSA)
     'UFILISAMFRBDAL', # Current Unfilled Orders; Percentage Reporting Increases for Texas
@@ -921,7 +664,7 @@ ids_M = [
     'UFILNUAMFRBDAL', # Current Unfilled Orders; Percentage Reporting No Change for Texas (NSA)
     'UFILSAMFRBDAL', # Current Unfilled Orders; Diffusion Index for Texas
     'UFILUAMFRBDAL', # Current Unfilled Orders; Diffusion Index for Texas (NSA)
-    ### Future Unfilled Orders - Federal Reserve District 3: Philadelphia
+    ## Future Unfilled Orders - Federal Reserve District 3: Philadelphia
     'UOFDFNA066MNFRBPHI', # Future Unfilled Orders; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'UOFDFSA066MSFRBPHI', # Future Unfilled Orders; Diffusion Index for Federal Reserve District 3: Philadelphia
     'UOFDNA156MNFRBPHI', # Future Unfilled Orders; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -930,7 +673,7 @@ ids_M = [
     'UOFISA156MSFRBPHI', # Future Unfilled Orders; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'UOFNNA156MNFRBPHI', # Future Unfilled Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'UOFNSA156MSFRBPHI', # Future Unfilled Orders; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Future Unfilled Orders - New York
+    ## Future Unfilled Orders - New York
     'UOFDINA066MNFRBNY', # Future Unfilled Orders; Diffusion Index for New York (NSA)
     'UOFDISA066MSFRBNY', # Future Unfilled Orders; Diffusion Index for New York
     'UOFDNA156MNFRBNY', # Future Unfilled Orders; Percent Expecting Decreases for New York (NSA)
@@ -939,7 +682,7 @@ ids_M = [
     'UOFISA156MSFRBNY', # Future Unfilled Orders; Percent Expecting Increases for New York
     'UOFNNA156MNFRBNY', # Future Unfilled Orders; Percent Expecting No Change for New York (NSA)
     'UOFNSA156MSFRBNY', # Future Unfilled Orders; Percent Expecting No Change for New York
-    ### Future Unfilled Orders - Texas
+    ## Future Unfilled Orders - Texas
     'FUFILDSAMFRBDAL', # Future Unfilled Orders; Percentage Reporting Decreases for Texas
     'FUFILDUAMFRBDAL', # Future Unfilled Orders; Percentage Reporting Decreases for Texas (NSA)
     'FUFILISAMFRBDAL', # Future Unfilled Orders; Percentage Reporting Increases for Texas
@@ -948,7 +691,7 @@ ids_M = [
     'FUFILNUAMFRBDAL', # Future Unfilled Orders; Percentage Reporting No Change for Texas (NSA)
     'FUFILSAMFRBDAL', # Future Unfilled Orders; Diffusion Index for Texas
     'FUFILUAMFRBDAL', # Future Unfilled Orders; Diffusion Index for Texas (NSA)
-    ### Manufacturers' Unfilled Orders
+    ## Manufacturers' Unfilled Orders
     'A31AUO', # Manufacturers' Unfilled Orders: Iron and Steel Mills and Ferroalloy and Steel Product Manufacturing
     'A31CUO', # Manufacturers' Unfilled Orders: Ferrous Metal Foundries
     'A31SUO', # Manufacturers' Unfilled Orders: Primary Metals
@@ -1050,8 +793,8 @@ ids_M = [
     'UTCGUO', # Manufacturers' Unfilled Orders: Capital Goods (NSA)
     'UTGPUO', # Manufacturers' Unfilled Orders: Turbines, Generators, and Other Power Transmission Equipment (NSA)
 
-    ## Unfilled Orders to Shipments (18)
-    ### Manufacturers' Unfilled Orders to Shipments Ratios
+    # Manufacturing > Unfilled Orders to Shipments (18)
+    ## Manufacturers' Unfilled Orders to Shipments Ratios
     'A31SUS', # Manufacturers' Unfilled Orders to Shipments Ratios: Primary Metals
     'A32SUS', # Manufacturers' Unfilled Orders to Shipments Ratios: Fabricated Metal Products
     'A33SUS', # Manufacturers' Unfilled Orders to Shipments Ratios: Machinery
@@ -1071,8 +814,8 @@ ids_M = [
     'UMDMUS', # Manufacturers' Unfilled Orders to Shipments Ratios: Durable Goods (NSA)
     'UMTMUS', # Manufacturers' Unfilled Orders to Shipments Ratios: Total Manufacturing (NSA)
 
-    ## Shipments (254)
-    ### Current Delivery Time - Federal Reserve District 3: Philadelphia
+    # Manufacturing > Shipments (254)
+    ## Current Delivery Time - Federal Reserve District 3: Philadelphia
     'DTCDFNA066MNFRBPHI', # Current Delivery Time; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'DTCDFSA066MSFRBPHI', # Current Delivery Time; Diffusion Index for Federal Reserve District 3: Philadelphia
     'DTCDNA156MNFRBPHI', # Current Delivery Time; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -1081,7 +824,7 @@ ids_M = [
     'DTCISA156MSFRBPHI', # Current Delivery Time; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'DTCNNA156MNFRBPHI', # Current Delivery Time; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'DTCNSA156MSFRBPHI', # Current Delivery Time; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Current Delivery Time - Texas
+    ## Current Delivery Time - Texas
     'DTMDSAMFRBDAL', # Current Delivery Time; Percentage Reporting Decreases for Texas
     'DTMDUAMFRBDAL', # Current Delivery Time; Percentage Reporting Decreases for Texas (NSA)
     'DTMISAMFRBDAL', # Current Delivery Time; Percentage Reporting Increases for Texas
@@ -1090,7 +833,7 @@ ids_M = [
     'DTMNUAMFRBDAL', # Current Delivery Time; Percentage Reporting No Change for Texas (NSA)
     'DTMSAMFRBDAL', # Current Delivery Time; Diffusion Index for Texas
     'DTMUAMFRBDAL', # Current Delivery Time; Diffusion Index for Texas (NSA)
-    ### Current Shipments - Federal Reserve District 3: Philadelphia
+    ## Current Shipments - Federal Reserve District 3: Philadelphia
     'SHCDFNA066MNFRBPHI', # Current Shipments; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'SHCDFSA066MSFRBPHI', # Current Shipments; Diffusion Index for Federal Reserve District 3: Philadelphia
     'SHCDNA156MNFRBPHI', # Current Shipments; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -1099,7 +842,7 @@ ids_M = [
     'SHCISA156MSFRBPHI', # Current Shipments; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'SHCNNA156MNFRBPHI', # Current Shipments; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'SHCNSA156MSFRBPHI', # Current Shipments; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Current Shipments - New York
+    ## Current Shipments - New York
     'SHCDINA066MNFRBNY', # Current Shipments; Diffusion Index for New York (NSA)
     'SHCDISA066MSFRBNY', # Current Shipments; Diffusion Index for New York
     'SHCDNA156MNFRBNY', # Current Shipments; Percent Reporting Decreases for New York (NSA)
@@ -1108,7 +851,7 @@ ids_M = [
     'SHCISA156MSFRBNY', # Current Shipments; Percent Reporting Increases for New York
     'SHCNNA156MNFRBNY', # Current Shipments; Percent Reporting No Change for New York (NSA)
     'SHCNSA156MSFRBNY', # Current Shipments; Percent Reporting No Change for New York
-    ### Current Shipments - Texas
+    ## Current Shipments - Texas
     'VSHPDSAMFRBDAL', # Current Shipments; Percentage Reporting Decreases for Texas
     'VSHPDUAMFRBDAL', # Current Shipments; Percentage Reporting Decreases for Texas (NSA)
     'VSHPISAMFRBDAL', # Current Shipments; Percentage Reporting Increases for Texas
@@ -1117,7 +860,7 @@ ids_M = [
     'VSHPNUAMFRBDAL', # Current Shipments; Percentage Reporting No Change for Texas (NSA)
     'VSHPSAMFRBDAL', # Current Shipments; Diffusion Index for Texas
     'VSHPUAMFRBDAL', # Current Shipments; Diffusion Index for Texas (NSA)
-    ### Future Delivery Time - Federal Reserve District 3: Philadelphia
+    ## Future Delivery Time - Federal Reserve District 3: Philadelphia
     'DTFDFNA066MNFRBPHI', # Future Delivery Time; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'DTFDFSA066MSFRBPHI', # Future Delivery Time; Diffusion Index for Federal Reserve District 3: Philadelphia
     'DTFDNA156MNFRBPHI', # Future Delivery Time; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -1126,7 +869,7 @@ ids_M = [
     'DTFISA156MSFRBPHI', # Future Delivery Time; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'DTFNNA156MNFRBPHI', # Future Delivery Time; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'DTFNSA156MSFRBPHI', # Future Delivery Time; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Future Delivery Time - Texas
+    ## Future Delivery Time - Texas
     'FDTMDSAMFRBDAL', # Future Delivery Time; Percentage Reporting Decreases for Texas
     'FDTMDUAMFRBDAL', # Future Delivery Time; Percentage Reporting Decreases for Texas (NSA)
     'FDTMISAMFRBDAL', # Future Delivery Time; Percentage Reporting Increases for Texas
@@ -1135,7 +878,7 @@ ids_M = [
     'FDTMNUAMFRBDAL', # Future Delivery Time; Percentage Reporting No Change for Texas (NSA)
     'FDTMSAMFRBDAL', # Future Delivery Time; Diffusion Index for Texas
     'FDTMUAMFRBDAL', # Future Delivery Time; Diffusion Index for Texas (NSA)
-    ### Future Shipments - Federal Reserve District 3: Philadelphia
+    ## Future Shipments - Federal Reserve District 3: Philadelphia
     'SHFDFNA066MNFRBPHI', # Future Shipments; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
     'SHFDFSA066MSFRBPHI', # Future Shipments; Diffusion Index for Federal Reserve District 3: Philadelphia
     'SHFDNA156MNFRBPHI', # Future Shipments; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
@@ -1144,7 +887,7 @@ ids_M = [
     'SHFISA156MSFRBPHI', # Future Shipments; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
     'SHFNNA156MNFRBPHI', # Future Shipments; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
     'SHFNSA156MSFRBPHI', # Future Shipments; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
-    ### Future Shipments - New York
+    ## Future Shipments - New York
     'SHFDINA066MNFRBNY', # Future Shipments; Diffusion Index for New York (NSA)
     'SHFDISA066MSFRBNY', # Future Shipments; Diffusion Index for New York
     'SHFDNA156MNFRBNY', # Future Shipments; Percent Expecting Decreases for New York (NSA)
@@ -1153,7 +896,7 @@ ids_M = [
     'SHFISA156MSFRBNY', # Future Shipments; Percent Expecting Increases for New York
     'SHFNNA156MNFRBNY', # Future Shipments; Percent Expecting No Change for New York (NSA)
     'SHFNSA156MSFRBNY', # Future Shipments; Percent Expecting No Change for New York
-    ### Future Shipments - Texas
+    ## Future Shipments - Texas
     'FVSHPDSAMFRBDAL', # Future Shipments; Percentage Reporting Decreases for Texas
     'FVSHPDUAMFRBDAL', # Future Shipments; Percentage Reporting Decreases for Texas (NSA)
     'FVSHPISAMFRBDAL', # Future Shipments; Percentage Reporting Increases for Texas
@@ -1162,7 +905,7 @@ ids_M = [
     'FVSHPNUAMFRBDAL', # Future Shipments; Percentage Reporting No Change for Texas (NSA)
     'FVSHPSAMFRBDAL', # Future Shipments; Diffusion Index for Texas
     'FVSHPUAMFRBDAL', # Future Shipments; Diffusion Index for Texas (NSA)
-    ### Manufacturers' Value of Shipments
+    ## Manufacturers' Value of Shipments
     'A11AVS', # Manufacturers' Value of Shipments: Grain and Oilseed Milling
     'A11BVS', # Manufacturers' Value of Shipments: Dairy Product Manufacturing
     'A11CVS', # Manufacturers' Value of Shipments: Meat, Poultry, and Seafood Product Processing
@@ -1238,6 +981,7 @@ ids_M = [
     'AITIVS', # Manufacturers' Value of Shipments: Information Technology Industries
     'AMDMVS', # Manufacturers' Value of Shipments: Durable Goods
     'AMNMVS', # Manufacturers' Value of Shipments: Nondurable Goods
+    'AMTMVS', # Manufacturers' Value of Shipments: Total Manufacturing
     'AMTUVS', # Manufacturers' Value of Shipments: Manufacturing with Unfilled Orders
     'AMVPVS', # Manufacturers' Value of Shipments: Motor Vehicles and Parts
     'AMXDVS', # Manufacturers' Value of Shipments: Manufacturing Excluding Defense
@@ -1334,11 +1078,133 @@ ids_M = [
     'UODGVS', # Manufacturers' Value of Shipments: All Other Durable Goods (NSA)
     'UTCGVS', # Manufacturers' Value of Shipments: Capital Goods (NSA)
     'UTGPVS', # Manufacturers' Value of Shipments: Turbines, Generators, and Other Power Transmission Equipment (NSA)
-    ### Value of Manufacturers' Shipments for Durable Goods Industries
+    ## Value of Manufacturers' Shipments for Durable Goods Industries
     'A34GVS', # Value of Manufacturers' Shipments for Durable Goods Industries: Computers and Electronic Products: Semiconductors and Related Devices (DISCONTINUED)
     'U34GVS', # Value of Manufacturers' Shipments for Durable Goods Industries: Computers and Electronic Products: Semiconductors and Related Devices (DISCONTINUED) (NSA)
 
-    ## Manufacturing 직속 - Empire State Manufacturing Survey (NY Fed)
+    # Manufacturing > 직속 - 지역 연준 제조업 설문
+    ## FRB - New York District
+    ### Current Prices Paid
+    'PPCDINA066MNFRBNY', # Current Prices Paid; Diffusion Index for FRB - New York District (NSA)
+    'PPCDNA156MNFRBNY', # Current Prices Paid; Percent Reporting Decreases for FRB - New York District (NSA)
+    'PPCINA156MNFRBNY', # Current Prices Paid; Percent Reporting Increases for FRB - New York District (NSA)
+    'PPCNNA156MNFRBNY', # Current Prices Paid; Percent Reporting No Change for FRB - New York District (NSA)
+    ### Current Prices Received
+    'PRCDINA066MNFRBNY', # Current Prices Received; Diffusion Index for FRB - New York District (NSA)
+    'PRCDNA156MNFRBNY', # Current Prices Received; Percent Reporting Decreases for FRB - New York District (NSA)
+    'PRCINA156MNFRBNY', # Current Prices Received; Percent Reporting Increases for FRB - New York District (NSA)
+    'PRCNNA156MNFRBNY', # Current Prices Received; Percent Reporting No Change for FRB - New York District (NSA)
+    ### Future Prices Paid
+    'PPFDINA066MNFRBNY', # Future Prices Paid; Diffusion Index for FRB - New York District (NSA)
+    'PPFDNA156MNFRBNY', # Future Prices Paid; Percent Expecting Decreases for FRB - New York District (NSA)
+    'PPFINA156MNFRBNY', # Future Prices Paid; Percent Expecting Increases for FRB - New York District (NSA)
+    'PPFNNA156MNFRBNY', # Future Prices Paid; Percent Expecting No Change for FRB - New York District (NSA)
+    ### Future Prices Received
+    'PRFDINA066MNFRBNY', # Future Prices Received; Diffusion Index for FRB - New York District (NSA)
+    'PRFDNA156MNFRBNY', # Future Prices Received; Percent Expecting Decreases for FRB - New York District (NSA)
+    'PRFINA156MNFRBNY', # Future Prices Received; Percent Expecting Increases for FRB - New York District (NSA)
+    'PRFNNA156MNFRBNY', # Future Prices Received; Percent Expecting No Change for FRB - New York District (NSA)
+    ## Federal Reserve District 3: Philadelphia
+    ### Current Employment
+    'NECDFNA066MNFRBPHI', # Current Employment; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'NECDFSA066MSFRBPHI', # Current Employment; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'NECDNA156MNFRBPHI', # Current Employment; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'NECDSA156MSFRBPHI', # Current Employment; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'NECINA156MNFRBPHI', # Current Employment; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'NECISA156MSFRBPHI', # Current Employment; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'NECNNA156MNFRBPHI', # Current Employment; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'NECNSA156MSFRBPHI', # Current Employment; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Current General Activity
+    'GACDFNA066MNFRBPHI', # Current General Activity; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'GACDFSA066MSFRBPHI', # Current General Activity; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'GACDNA156MNFRBPHI', # Current General Activity; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'GACDSA156MSFRBPHI', # Current General Activity; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'GACINA156MNFRBPHI', # Current General Activity; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'GACISA156MSFRBPHI', # Current General Activity; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'GACNNA156MNFRBPHI', # Current General Activity; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'GACNSA156MSFRBPHI', # Current General Activity; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Current Prices Paid
+    'PPCDFNA066MNFRBPHI', # Current Prices Paid; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'PPCDFSA066MSFRBPHI', # Current Prices Paid; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'PPCDNA156MNFRBPHI', # Current Prices Paid; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'PPCDSA156MSFRBPHI', # Current Prices Paid; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'PPCINA156MNFRBPHI', # Current Prices Paid; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'PPCISA156MSFRBPHI', # Current Prices Paid; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'PPCNNA156MNFRBPHI', # Current Prices Paid; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'PPCNSA156MSFRBPHI', # Current Prices Paid; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Current Prices Received
+    'PRCDFNA066MNFRBPHI', # Current Prices Received; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'PRCDFSA066MSFRBPHI', # Current Prices Received; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'PRCDNA156MNFRBPHI', # Current Prices Received; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'PRCDSA156MSFRBPHI', # Current Prices Received; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'PRCINA156MNFRBPHI', # Current Prices Received; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'PRCISA156MSFRBPHI', # Current Prices Received; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'PRCNNA156MNFRBPHI', # Current Prices Received; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'PRCNSA156MSFRBPHI', # Current Prices Received; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Current Work Hours
+    'AWCDFNA066MNFRBPHI', # Current Work Hours; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'AWCDFSA066MSFRBPHI', # Current Work Hours; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'AWCDNA156MNFRBPHI', # Current Work Hours; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'AWCDSA156MSFRBPHI', # Current Work Hours; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'AWCINA156MNFRBPHI', # Current Work Hours; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'AWCISA156MSFRBPHI', # Current Work Hours; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'AWCNNA156MNFRBPHI', # Current Work Hours; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'AWCNSA156MSFRBPHI', # Current Work Hours; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Future Capital Expenditures
+    'CEFDFNA066MNFRBPHI', # Future Capital Expenditures; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'CEFDFSA066MSFRBPHI', # Future Capital Expenditures; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'CEFDNA156MNFRBPHI', # Future Capital Expenditures; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'CEFDSA156MSFRBPHI', # Future Capital Expenditures; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'CEFINA156MNFRBPHI', # Future Capital Expenditures; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'CEFISA156MSFRBPHI', # Future Capital Expenditures; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'CEFNNA156MNFRBPHI', # Future Capital Expenditures; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'CEFNSA156MSFRBPHI', # Future Capital Expenditures; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Future Employment
+    'NEFDFNA066MNFRBPHI', # Future Employment; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'NEFDFSA066MSFRBPHI', # Future Employment; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'NEFDNA156MNFRBPHI', # Future Employment; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'NEFDSA156MSFRBPHI', # Future Employment; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'NEFINA156MNFRBPHI', # Future Employment; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'NEFISA156MSFRBPHI', # Future Employment; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'NEFNNA156MNFRBPHI', # Future Employment; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'NEFNSA156MSFRBPHI', # Future Employment; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Future General Activity
+    'GAFDFNA066MNFRBPHI', # Future General Activity; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'GAFDFSA066MSFRBPHI', # Future General Activity; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'GAFDNA156MNFRBPHI', # Future General Activity; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'GAFDSA156MSFRBPHI', # Future General Activity; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'GAFINA156MNFRBPHI', # Future General Activity; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'GAFISA156MSFRBPHI', # Future General Activity; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'GAFNNA156MNFRBPHI', # Future General Activity; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'GAFNSA156MSFRBPHI', # Future General Activity; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Future Prices Paid
+    'PPFDFNA066MNFRBPHI', # Future Prices Paid; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'PPFDFSA066MSFRBPHI', # Future Prices Paid; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'PPFDNA156MNFRBPHI', # Future Prices Paid; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'PPFDSA156MSFRBPHI', # Future Prices Paid; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'PPFINA156MNFRBPHI', # Future Prices Paid; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'PPFISA156MSFRBPHI', # Future Prices Paid; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'PPFNNA156MNFRBPHI', # Future Prices Paid; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'PPFNSA156MSFRBPHI', # Future Prices Paid; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Future Prices Received
+    'PRFDFNA066MNFRBPHI', # Future Prices Received; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'PRFDFSA066MSFRBPHI', # Future Prices Received; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'PRFDNA156MNFRBPHI', # Future Prices Received; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'PRFDSA156MSFRBPHI', # Future Prices Received; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'PRFINA156MNFRBPHI', # Future Prices Received; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'PRFISA156MSFRBPHI', # Future Prices Received; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'PRFNNA156MNFRBPHI', # Future Prices Received; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'PRFNSA156MSFRBPHI', # Future Prices Received; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ### Future Work Hours
+    'AWFDFNA066MNFRBPHI', # Future Work Hours; Diffusion Index for Federal Reserve District 3: Philadelphia (NSA)
+    'AWFDFSA066MSFRBPHI', # Future Work Hours; Diffusion Index for Federal Reserve District 3: Philadelphia
+    'AWFDNA156MNFRBPHI', # Future Work Hours; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia (NSA)
+    'AWFDSA156MSFRBPHI', # Future Work Hours; Percent Reporting Decreases for Federal Reserve District 3: Philadelphia
+    'AWFINA156MNFRBPHI', # Future Work Hours; Percent Reporting Increases for Federal Reserve District 3: Philadelphia (NSA)
+    'AWFISA156MSFRBPHI', # Future Work Hours; Percent Reporting Increases for Federal Reserve District 3: Philadelphia
+    'AWFNNA156MNFRBPHI', # Future Work Hours; Percent Reporting No Change for Federal Reserve District 3: Philadelphia (NSA)
+    'AWFNSA156MSFRBPHI', # Future Work Hours; Percent Reporting No Change for Federal Reserve District 3: Philadelphia
+    ## New York
     ### Current Average Employee Workweek
     'AWCDINA066MNFRBNY', # Current Average Employee Workweek; Diffusion Index for New York (NSA)
     'AWCDISA066MSFRBNY', # Current Average Employee Workweek; Diffusion Index for New York
@@ -1359,6 +1225,7 @@ ids_M = [
     'DTCNSA156MSFRBNY', # Current Delivery Time; Percent Reporting No Change for New York
     ### Current General Business Conditions
     'GACDINA066MNFRBNY', # Current General Business Conditions; Diffusion Index for New York (NSA)
+    'GACDISA066MSFRBNY', # Current General Business Conditions; Diffusion Index for New York
     'GACDNA156MNFRBNY', # Current General Business Conditions; Percent Reporting Decreases for New York (NSA)
     'GACDSA156MSFRBNY', # Current General Business Conditions; Percent Reporting Decreases for New York
     'GACINA156MNFRBNY', # Current General Business Conditions; Percent Reporting Increases for New York (NSA)
@@ -1376,6 +1243,7 @@ ids_M = [
     'NECNSA156MSFRBNY', # Current Number of Employees; Percent Reporting No Change for New York
     ### Current Prices Paid
     'PPCDINA066MNEMFRBNY', # Current Prices Paid; Diffusion Index for New York (NSA)
+    'PPCDISA066MSFRBNY', # Current Prices Paid; Diffusion Index for New York
     'PPCDNA156MNEMFRBNY', # Current Prices Paid; Percent Reporting Decreases for New York (NSA)
     'PPCDSA156MSFRBNY', # Current Prices Paid; Percent Reporting Decreases for New York
     'PPCINA156MNEMFRBNY', # Current Prices Paid; Percent Reporting Increases for New York (NSA)
@@ -1402,6 +1270,7 @@ ids_M = [
     'AWFNSA156MSFRBNY', # Future Average Employee Workweek; Percent Expecting No Change for New York
     ### Future Capital Expenditures
     'CEFDINA066MNFRBNY', # Future Capital Expenditures; Diffusion Index for New York (NSA)
+    'CEFDISA066MSFRBNY', # Future Capital Expenditures; Diffusion Index for New York
     'CEFDNA156MNFRBNY', # Future Capital Expenditures; Percent Expecting Decreases for New York (NSA)
     'CEFDSA156MSFRBNY', # Future Capital Expenditures; Percent Expecting Decreases for New York
     'CEFINA156MNFRBNY', # Future Capital Expenditures; Percent Expecting Increases for New York (NSA)
@@ -1419,6 +1288,7 @@ ids_M = [
     'DTFNSA156MSFRBNY', # Future Delivery Time; Percent Expecting No Change for New York
     ### Future General Business Conditions
     'GAFDINA066MNFRBNY', # Future General Business Conditions; Diffusion Index for New York (NSA)
+    'GAFDISA066MSFRBNY', # Future General Business Conditions; Diffusion Index for New York
     'GAFDNA156MNFRBNY', # Future General Business Conditions; Percent Expecting Decreases for New York (NSA)
     'GAFDSA156MSFRBNY', # Future General Business Conditions; Percent Expecting Decreases for New York
     'GAFINA156MNFRBNY', # Future General Business Conditions; Percent Expecting Increases for New York (NSA)
@@ -1454,131 +1324,229 @@ ids_M = [
     'PRFNSA156MSFRBNY', # Future Prices Received; Percent Expecting No Change for New York
     ### Future Technology Spending
     'TSFDINA066MNFRBNY', # Future Technology Spending; Diffusion Index for New York (DISCONTINUED) (NSA)
+    'TSFDISA066MSFRBNY', # Future Technology Spending; Diffusion Index for New York (DISCONTINUED)
     'TSFDNA156MNFRBNY', # Future Technology Spending; Percent Expecting Decreases for New York (DISCONTINUED) (NSA)
     'TSFDSA156MSFRBNY', # Future Technology Spending; Percent Expecting Decreases for New York (DISCONTINUED)
     'TSFINA156MNFRBNY', # Future Technology Spending; Percent Expecting Increases for New York (DISCONTINUED) (NSA)
     'TSFISA156MSFRBNY', # Future Technology Spending; Percent Expecting Increases for New York (DISCONTINUED)
     'TSFNNA156MNFRBNY', # Future Technology Spending; Percent Expecting No Change for New York (DISCONTINUED) (NSA)
     'TSFNSA156MSFRBNY', # Future Technology Spending; Percent Expecting No Change for New York (DISCONTINUED)
+    ## Texas
+    ### Current Capacity Utilization
+    'CAPUSAMFRBDAL', # Current Capacity Utilization; Diffusion Index for Texas
+    'CAPUUAMFRBDAL', # Current Capacity Utilization; Diffusion Index for Texas (NSA)
+    'CAPUDSAMFRBDAL', # Current Capacity Utilization; Percentage Reporting Decreases for Texas
+    'CAPUDUAMFRBDAL', # Current Capacity Utilization; Percentage Reporting Decreases for Texas (NSA)
+    'CAPUISAMFRBDAL', # Current Capacity Utilization; Percentage Reporting Increases for Texas
+    'CAPUIUAMFRBDAL', # Current Capacity Utilization; Percentage Reporting Increases for Texas (NSA)
+    'CAPUNSAMFRBDAL', # Current Capacity Utilization; Percentage Reporting No Change for Texas
+    'CAPUNUAMFRBDAL', # Current Capacity Utilization; Percentage Reporting No Change for Texas (NSA)
+    ### Current Capital Expenditures
+    'CEXPSAMFRBDAL', # Current Capital Expenditures; Diffusion Index for Texas
+    'CEXPUAMFRBDAL', # Current Capital Expenditures; Diffusion Index for Texas (NSA)
+    'CEXPDSAMFRBDAL', # Current Capital Expenditures; Percentage Reporting Decreases for Texas
+    'CEXPDUAMFRBDAL', # Current Capital Expenditures; Percentage Reporting Decreases for Texas (NSA)
+    'CEXPISAMFRBDAL', # Current Capital Expenditures; Percentage Reporting Increases for Texas
+    'CEXPIUAMFRBDAL', # Current Capital Expenditures; Percentage Reporting Increases for Texas (NSA)
+    'CEXPNSAMFRBDAL', # Current Capital Expenditures; Percentage Reporting No Change for Texas
+    'CEXPNUAMFRBDAL', # Current Capital Expenditures; Percentage Reporting No Change for Texas (NSA)
+    ### Current Company Outlook
+    'COLKSAMFRBDAL', # Current Company Outlook; Diffusion Index for Texas
+    'COLKUAMFRBDAL', # Current Company Outlook; Diffusion Index for Texas (NSA)
+    'COLKDSAMFRBDAL', # Current Company Outlook; Percentage Reporting Decreases for Texas
+    'COLKDUAMFRBDAL', # Current Company Outlook; Percentage Reporting Decreases for Texas (NSA)
+    'COLKISAMFRBDAL', # Current Company Outlook; Percentage Reporting Increases for Texas
+    'COLKIUAMFRBDAL', # Current Company Outlook; Percentage Reporting Increases for Texas (NSA)
+    'COLKNSAMFRBDAL', # Current Company Outlook; Percentage Reporting No Change for Texas
+    'COLKNUAMFRBDAL', # Current Company Outlook; Percentage Reporting No Change for Texas (NSA)
+    ### Current Employment
+    'NEMPSAMFRBDAL', # Current Employment; Diffusion Index for Texas
+    'NEMPUAMFRBDAL', # Current Employment; Diffusion Index for Texas (NSA)
+    'NEMPDSAMFRBDAL', # Current Employment; Percentage Reporting Decreases for Texas
+    'NEMPDUAMFRBDAL', # Current Employment; Percentage Reporting Decreases for Texas (NSA)
+    'NEMPISAMFRBDAL', # Current Employment; Percentage Reporting Increases for Texas
+    'NEMPIUAMFRBDAL', # Current Employment; Percentage Reporting Increases for Texas (NSA)
+    'NEMPNSAMFRBDAL', # Current Employment; Percentage Reporting No Change for Texas
+    'NEMPNUAMFRBDAL', # Current Employment; Percentage Reporting No Change for Texas (NSA)
+    ### Current General Business Activity
+    'BACTSAMFRBDAL', # Current General Business Activity; Diffusion Index for Texas
+    'BACTUAMFRBDAL', # Current General Business Activity; Diffusion Index for Texas (NSA)
+    'BACTDSAMFRBDAL', # Current General Business Activity; Percentage Reporting Decreases for Texas
+    'BACTDUAMFRBDAL', # Current General Business Activity; Percentage Reporting Decreases for Texas (NSA)
+    'BACTISAMFRBDAL', # Current General Business Activity; Percentage Reporting Increases for Texas
+    'BACTIUAMFRBDAL', # Current General Business Activity; Percentage Reporting Increases for Texas (NSA)
+    'BACTNSAMFRBDAL', # Current General Business Activity; Percentage Reporting No Change for Texas
+    'BACTNUAMFRBDAL', # Current General Business Activity; Percentage Reporting No Change for Texas (NSA)
+    ### Current Hours Worked
+    'AVGWKSAMFRBDAL', # Current Hours Worked; Diffusion Index for Texas
+    'AVGWKUAMFRBDAL', # Current Hours Worked; Diffusion Index for Texas (NSA)
+    'AVGWKDSAMFRBDAL', # Current Hours Worked; Percentage Reporting Decreases for Texas
+    'AVGWKDUAMFRBDAL', # Current Hours Worked; Percentage Reporting Decreases for Texas (NSA)
+    'AVGWKISAMFRBDAL', # Current Hours Worked; Percentage Reporting Increases for Texas
+    'AVGWKIUAMFRBDAL', # Current Hours Worked; Percentage Reporting Increases for Texas (NSA)
+    'AVGWKNSAMFRBDAL', # Current Hours Worked; Percentage Reporting No Change for Texas
+    'AVGWKNUAMFRBDAL', # Current Hours Worked; Percentage Reporting No Change for Texas (NSA)
+    ### Current Prices Paid for Raw Materials
+    'PRMSAMFRBDAL', # Current Prices Paid for Raw Materials; Diffusion Index for Texas
+    'PRMUAMFRBDAL', # Current Prices Paid for Raw Materials; Diffusion Index for Texas (NSA)
+    'PRMDSAMFRBDAL', # Current Prices Paid for Raw Materials; Percentage Reporting Decreases for Texas
+    'PRMDUAMFRBDAL', # Current Prices Paid for Raw Materials; Percentage Reporting Decreases for Texas (NSA)
+    'PRMISAMFRBDAL', # Current Prices Paid for Raw Materials; Percentage Reporting Increases for Texas
+    'PRMIUAMFRBDAL', # Current Prices Paid for Raw Materials; Percentage Reporting Increases for Texas (NSA)
+    'PRMNSAMFRBDAL', # Current Prices Paid for Raw Materials; Percentage Reporting No Change for Texas
+    'PRMNUAMFRBDAL', # Current Prices Paid for Raw Materials; Percentage Reporting No Change for Texas (NSA)
+    ### Current Prices Received for Finished Goods
+    'PFGSAMFRBDAL', # Current Prices Received for Finished Goods; Diffusion Index for Texas
+    'PFGUAMFRBDAL', # Current Prices Received for Finished Goods; Diffusion Index for Texas (NSA)
+    'PFGDSAMFRBDAL', # Current Prices Received for Finished Goods; Percentage Reporting Decreases for Texas
+    'PFGDUAMFRBDAL', # Current Prices Received for Finished Goods; Percentage Reporting Decreases for Texas (NSA)
+    'PFGISAMFRBDAL', # Current Prices Received for Finished Goods; Percentage Reporting Increases for Texas
+    'PFGIUAMFRBDAL', # Current Prices Received for Finished Goods; Percentage Reporting Increases for Texas (NSA)
+    'PFGNSAMFRBDAL', # Current Prices Received for Finished Goods; Percentage Reporting No Change for Texas
+    'PFGNUAMFRBDAL', # Current Prices Received for Finished Goods; Percentage Reporting No Change for Texas (NSA)
+    ### Current Production
+    'PRODSAMFRBDAL', # Current Production; Diffusion Index for Texas
+    'PRODUAMFRBDAL', # Current Production; Diffusion Index for Texas (NSA)
+    'PRODDSAMFRBDAL', # Current Production; Percentage Reporting Decreases for Texas
+    'PRODDUAMFRBDAL', # Current Production; Percentage Reporting Decreases for Texas (NSA)
+    'PRODISAMFRBDAL', # Current Production; Percentage Reporting Increases for Texas
+    'PRODIUAMFRBDAL', # Current Production; Percentage Reporting Increases for Texas (NSA)
+    'PRODNSAMFRBDAL', # Current Production; Percentage Reporting No Change for Texas
+    'PRODNUAMFRBDAL', # Current Production; Percentage Reporting No Change for Texas (NSA)
+    ### Current Wages and Benefits
+    'WGSSAMFRBDAL', # Current Wages and Benefits; Diffusion Index for Texas
+    'WGSUAMFRBDAL', # Current Wages and Benefits; Diffusion Index for Texas (NSA)
+    'WGSDSAMFRBDAL', # Current Wages and Benefits; Percentage Reporting Decreases for Texas
+    'WGSDUAMFRBDAL', # Current Wages and Benefits; Percentage Reporting Decreases for Texas (NSA)
+    'WGSISAMFRBDAL', # Current Wages and Benefits; Percentage Reporting Increases for Texas
+    'WGSIUAMFRBDAL', # Current Wages and Benefits; Percentage Reporting Increases for Texas (NSA)
+    'WGSNSAMFRBDAL', # Current Wages and Benefits; Percentage Reporting No Change for Texas
+    'WGSNUAMFRBDAL', # Current Wages and Benefits; Percentage Reporting No Change for Texas (NSA)
+    ### Future Capacity Utilization
+    'FCAPUSAMFRBDAL', # Future Capacity Utilization; Diffusion Index for Texas
+    'FCAPUUAMFRBDAL', # Future Capacity Utilization; Diffusion Index for Texas (NSA)
+    'FCAPUDSAMFRBDAL', # Future Capacity Utilization; Percentage Reporting Decreases for Texas
+    'FCAPUDUAMFRBDAL', # Future Capacity Utilization; Percentage Reporting Decreases for Texas (NSA)
+    'FCAPUISAMFRBDAL', # Future Capacity Utilization; Percentage Reporting Increases for Texas
+    'FCAPUIUAMFRBDAL', # Future Capacity Utilization; Percentage Reporting Increases for Texas (NSA)
+    'FCAPUNSAMFRBDAL', # Future Capacity Utilization; Percentage Reporting No Change for Texas
+    'FCAPUNUAMFRBDAL', # Future Capacity Utilization; Percentage Reporting No Change for Texas (NSA)
+    ### Future Capital Expenditures
+    'FCEXPSAMFRBDAL', # Future Capital Expenditures; Diffusion Index for Texas
+    'FCEXPUAMFRBDAL', # Future Capital Expenditures; Diffusion Index for Texas (NSA)
+    'FCEXPDSAMFRBDAL', # Future Capital Expenditures; Percentage Reporting Decreases for Texas
+    'FCEXPDUAMFRBDAL', # Future Capital Expenditures; Percentage Reporting Decreases for Texas (NSA)
+    'FCEXPISAMFRBDAL', # Future Capital Expenditures; Percentage Reporting Increases for Texas
+    'FCEXPIUAMFRBDAL', # Future Capital Expenditures; Percentage Reporting Increases for Texas (NSA)
+    'FCEXPNSAMFRBDAL', # Future Capital Expenditures; Percentage Reporting No Change for Texas
+    'FCEXPNUAMFRBDAL', # Future Capital Expenditures; Percentage Reporting No Change for Texas (NSA)
+    ### Future Company Outlook
+    'FCOLKSAMFRBDAL', # Future Company Outlook; Diffusion Index for Texas
+    'FCOLKUAMFRBDAL', # Future Company Outlook; Diffusion Index for Texas (NSA)
+    'FCOLKDSAMFRBDAL', # Future Company Outlook; Percentage Reporting Decreases for Texas
+    'FCOLKDUAMFRBDAL', # Future Company Outlook; Percentage Reporting Decreases for Texas (NSA)
+    'FCOLKISAMFRBDAL', # Future Company Outlook; Percentage Reporting Increases for Texas
+    'FCOLKIUAMFRBDAL', # Future Company Outlook; Percentage Reporting Increases for Texas (NSA)
+    'FCOLKNSAMFRBDAL', # Future Company Outlook; Percentage Reporting No Change for Texas
+    'FCOLKNUAMFRBDAL', # Future Company Outlook; Percentage Reporting No Change for Texas (NSA)
+    ### Future Employment
+    'FNEMPSAMFRBDAL', # Future Employment; Diffusion Index for Texas
+    'FNEMPUAMFRBDAL', # Future Employment; Diffusion Index for Texas (NSA)
+    'FNEMPDSAMFRBDAL', # Future Employment; Percentage Reporting Decreases for Texas
+    'FNEMPDUAMFRBDAL', # Future Employment; Percentage Reporting Decreases for Texas (NSA)
+    'FNEMPISAMFRBDAL', # Future Employment; Percentage Reporting Increases for Texas
+    'FNEMPIUAMFRBDAL', # Future Employment; Percentage Reporting Increases for Texas (NSA)
+    'FNEMPNSAMFRBDAL', # Future Employment; Percentage Reporting No Change for Texas
+    'FNEMPNUAMFRBDAL', # Future Employment; Percentage Reporting No Change for Texas (NSA)
+    ### Future General Business Activity
+    'FBACTSAMFRBDAL', # Future General Business Activity; Diffusion Index for Texas
+    'FBACTUAMFRBDAL', # Future General Business Activity; Diffusion Index for Texas (NSA)
+    'FBACTDSAMFRBDAL', # Future General Business Activity; Percentage Reporting Decreases for Texas
+    'FBACTDUAMFRBDAL', # Future General Business Activity; Percentage Reporting Decreases for Texas (NSA)
+    'FBACTISAMFRBDAL', # Future General Business Activity; Percentage Reporting Increases for Texas
+    'FBACTIUAMFRBDAL', # Future General Business Activity; Percentage Reporting Increases for Texas (NSA)
+    'FBACTNSAMFRBDAL', # Future General Business Activity; Percentage Reporting No Change for Texas
+    'FBACTNUAMFRBDAL', # Future General Business Activity; Percentage Reporting No Change for Texas (NSA)
+    ### Future Hours Worked
+    'FAVGWKSAMFRBDAL', # Future Hours Worked; Diffusion Index for Texas
+    'FAVGWKUAMFRBDAL', # Future Hours Worked; Diffusion Index for Texas (NSA)
+    'FAVGWKDSAMFRBDAL', # Future Hours Worked; Percentage Reporting Decreases for Texas
+    'FAVGWKDUAMFRBDAL', # Future Hours Worked; Percentage Reporting Decreases for Texas (NSA)
+    'FAVGWKISAMFRBDAL', # Future Hours Worked; Percentage Reporting Increases for Texas
+    'FAVGWKIUAMFRBDAL', # Future Hours Worked; Percentage Reporting Increases for Texas (NSA)
+    'FAVGWKNSAMFRBDAL', # Future Hours Worked; Percentage Reporting No Change for Texas
+    'FAVGWKNUAMFRBDAL', # Future Hours Worked; Percentage Reporting No Change for Texas (NSA)
+    ### Future Prices Paid for Raw Materials
+    'FPRMSAMFRBDAL', # Future Prices Paid for Raw Materials; Diffusion Index for Texas
+    'FPRMUAMFRBDAL', # Future Prices Paid for Raw Materials; Diffusion Index for Texas (NSA)
+    'FPRMDSAMFRBDAL', # Future Prices Paid for Raw Materials; Percentage Reporting Decreases for Texas
+    'FPRMDUAMFRBDAL', # Future Prices Paid for Raw Materials; Percentage Reporting Decreases for Texas (NSA)
+    'FPRMISAMFRBDAL', # Future Prices Paid for Raw Materials; Percentage Reporting Increases for Texas
+    'FPRMIUAMFRBDAL', # Future Prices Paid for Raw Materials; Percentage Reporting Increases for Texas (NSA)
+    'FPRMNSAMFRBDAL', # Future Prices Paid for Raw Materials; Percentage Reporting No Change for Texas
+    'FPRMNUAMFRBDAL', # Future Prices Paid for Raw Materials; Percentage Reporting No Change for Texas (NSA)
+    ### Future Prices Received for Finished Goods
+    'FPFGSAMFRBDAL', # Future Prices Received for Finished Goods; Diffusion Index for Texas
+    'FPFGUAMFRBDAL', # Future Prices Received for Finished Goods; Diffusion Index for Texas (NSA)
+    'FPFGDSAMFRBDAL', # Future Prices Received for Finished Goods; Percentage Reporting Decreases for Texas
+    'FPFGDUAMFRBDAL', # Future Prices Received for Finished Goods; Percentage Reporting Decreases for Texas (NSA)
+    'FPFGISAMFRBDAL', # Future Prices Received for Finished Goods; Percentage Reporting Increases for Texas
+    'FPFGIUAMFRBDAL', # Future Prices Received for Finished Goods; Percentage Reporting Increases for Texas (NSA)
+    'FPFGNSAMFRBDAL', # Future Prices Received for Finished Goods; Percentage Reporting No Change for Texas
+    'FPFGNUAMFRBDAL', # Future Prices Received for Finished Goods; Percentage Reporting No Change for Texas (NSA)
+    ### Future Production
+    'FPRODSAMFRBDAL', # Future Production; Diffusion Index for Texas
+    'FPRODUAMFRBDAL', # Future Production; Diffusion Index for Texas (NSA)
+    'FPRODDSAMFRBDAL', # Future Production; Percentage Reporting Decreases for Texas
+    'FPRODDUAMFRBDAL', # Future Production; Percentage Reporting Decreases for Texas (NSA)
+    'FPRODISAMFRBDAL', # Future Production; Percentage Reporting Increases for Texas
+    'FPRODIUAMFRBDAL', # Future Production; Percentage Reporting Increases for Texas (NSA)
+    'FPRODNSAMFRBDAL', # Future Production; Percentage Reporting No Change for Texas
+    'FPRODNUAMFRBDAL', # Future Production; Percentage Reporting No Change for Texas (NSA)
+    ### Future Wages and Benefits
+    'FWGSSAMFRBDAL', # Future Wages and Benefits; Diffusion Index for Texas
+    'FWGSUAMFRBDAL', # Future Wages and Benefits; Diffusion Index for Texas (NSA)
+    'FWGSDSAMFRBDAL', # Future Wages and Benefits; Percentage Reporting Decreases for Texas
+    'FWGSDUAMFRBDAL', # Future Wages and Benefits; Percentage Reporting Decreases for Texas (NSA)
+    'FWGSISAMFRBDAL', # Future Wages and Benefits; Percentage Reporting Increases for Texas
+    'FWGSIUAMFRBDAL', # Future Wages and Benefits; Percentage Reporting Increases for Texas (NSA)
+    'FWGSNSAMFRBDAL', # Future Wages and Benefits; Percentage Reporting No Change for Texas
+    'FWGSNUAMFRBDAL', # Future Wages and Benefits; Percentage Reporting No Change for Texas (NSA)
 
-    ## Manufacturing 직속 - 기타
-    ### DISCONTINUED
+    # Manufacturing > 직속 - 기타
+    ## DISCONTINUED
     'CFMMI', # Chicago Fed Midwest Manufacturing Index (DISCONTINUED)
     'CFMMIAUTO', # Chicago Fed Midwest Manufacturing Index for the Automobile Sector Production (DISCONTINUED)
     'CFMMIMACHINERY', # Chicago Fed Midwest Manufacturing Index for the Machinery Sector Production (DISCONTINUED)
     'CFMMIRESOURCE', # Chicago Fed Midwest Manufacturing Index for the Resource Sector Output (DISCONTINUED)
     'CFMMISTEEL', # Chicago Fed Midwest Manufacturing Index for the Steel Sector Output (DISCONTINUED)
-    ### Manufacturers (Census)
+    ## Manufacturers Inventories
     'MNFCTRIMNSA', # Manufacturers Inventories (NSA)
-    'MNFCTRIRNSA', # Manufacturers: Inventories to Sales Ratio (NSA)
+    'MNFCTRIMSA', # Manufacturers Inventories
     'MNFCTRMPCIMNSA', # Manufacturers Inventories (NSA)
     'MNFCTRMPCIMSA', # Manufacturers Inventories
+    ## Manufacturers Sales
     'MNFCTRMPCSMNSA', # Manufacturers Sales (NSA)
     'MNFCTRMPCSMSA', # Manufacturers Sales
     'MNFCTRSMNSA', # Manufacturers Sales (NSA)
-
-    # Empire State Manufacturing Survey
-    'GACDISA066MSFRBNY', # Current General Business Conditions; Diffusion Index for New York
-    'CEFDISA066MSFRBNY', # Future Capital Expenditures; Diffusion Index for New York
-    'TSFDISA066MSFRBNY', # Future Technology Spending; Diffusion Index for New York
-    'NOCDISA066MSFRBNY', # Current New Orders; Diffusion Index for New York
-    'PPCDISA066MSFRBNY', # Current Prices Paid; Diffusion Index for New York
-    'GAFDISA066MSFRBNY', # Future General Business Conditions; Diffusion Index for New York
-
-    # Business Sentiment
-    'BSCICP02USM460S', # Business Tendency Surveys (Manufacturing): Confidence Indicators: Composite Indicators: National Indicator for United States
-
-
-    # Housing price
-    'CSUSHPISA', # S&P CoreLogic Case-Shiller U.S. National Home Price Index
-    'CSUSHPINSA',  # S&P CoreLogic Case-Shiller U.S. National Home Price Index
-    'SPCS10RSA', # S&P CoreLogic Case-Shiller 10-City Composite Home Price Index
-    'SPCS20RSA', # S&P CoreLogic Case-Shiller 20-City Composite Home Price Index
-    'ATXRSA', #  S&P CoreLogic Case-Shiller GA-Atlanta Home Price Index
-    'BOXRSA', # S&P CoreLogic Case-Shiller MA-Boston Home Price Index
-    'CRXRSA', # S&P CoreLogic Case-Shiller NC-Charlotte Home Price Index
-    'CHXRSA', # S&P CoreLogic Case-Shiller IL-Chicago Home Price Index
-    'CEXRSA', # S&P CoreLogic Case-Shiller OH-Cleveland Home Price Index
-    'DAXRSA', # S&P CoreLogic Case-Shiller TX-Dallas Home Price Index
-    'DNXRSA', # S&P CoreLogic Case-Shiller CO-Denver Home Price Index
-    'DEXRSA', # S&P CoreLogic Case-Shiller MI-Detroit Home Price Index
-    'LVXRSA', # S&P CoreLogic Case-Shiller NV-Las Vegas Home Price Index
-    'LXXRSA', # S&P CoreLogic Case-Shiller CA-Los Angeles Home Price Index
-    'MIXRSA', # S&P CoreLogic Case-Shiller FL-Miami Home Price Index
-    'MNXRSA', # S&P CoreLogic Case-Shiller MN-Minneapolis Home Price Index
-    'NYXRSA', # S&P CoreLogic Case-Shiller NY-New York Home Price Index
-    'PHXRSA', # S&P CoreLogic Case-Shiller AZ-Phoenix Home Price Index
-    'POXRSA', # S&P CoreLogic Case-Shiller OR-Portland Home Price Index
-    'SDXRSA', # S&P CoreLogic Case-Shiller CA-San Diego Home Price Index
-    'SFXRSA', # S&P CoreLogic Case-Shiller CA-San Francisco Home Price Index
-    'SEXRSA', # S&P CoreLogic Case-Shiller WA-Seattle Home Price Index
-    'TPXRSA', # S&P CoreLogic Case-Shiller FL-Tampa Home Price Index
-    'WDXRSA', # S&P CoreLogic Case-Shiller DC-Washington Home Price Index
-
-    'USAUCSFRCONDOSMSAMID', # Zillow Home Value Index (ZHVI) for All Homes Including Single-Family Residences, Condos, and CO-OPs in the United States of America
-
-    'MSPNHSUS', # Median Sales Price for New Houses Sold in the United States
-    'ASPNHSUS', # Average Sales Price for New Houses Sold in the United States
-
-    'USSTHPI', # All-Transactions House Price Index for the United States
-    'EXHOSLUSM495S', # Existing Home Sales
-    'EXSFHSUSM495S', # Existing Single-Family Home Sales
-    'ACTLISCOUUS', # Housing Inventory: Active Listing Count in the United States
-    'HOSINVUSM495N', # Existing Home Sales: Housing Inventory
-    'HOSSUPUSM673N', # Existing Home Sales: Months Supply
-
-    'HOUST', # New Privately-Owned Housing Units Started: Total Units
-    'HOUST1F', # New Privately-Owned Housing Units Started: Single-Family Units
-
-    'RSAHORUSQ156S', # Homeownership Rate in the United States
-
-    'MSACSR',  # Monthly Supply of New Houses in the United States
-    'HSN1F',  # New One Family Houses Sold: United States
-
-    # MONTHLY NEW RESIDENTIAL CONSTRUCTION - https://www.census.gov/construction/nrc/current/index.html
-    'PERMIT', # New Privately-Owned Housing Units Authorized in Permit-Issuing Places: Total Units
-    'HOUST',  # New Privately-Owned Housing Units Started: Total Units
-    'COMPUTSA', # New Privately-Owned Housing Units Completed: Total Units
-
-    # Banking
-    #-- large banks : https://fred.stlouisfed.org/release/tables?rid=22&eid=823378
-    'TLALCBM027SBOG', # Total Assets, Large Domestically Chartered Commercial Banks
-    'BC0LCBM027SBOG', # Bank Credit, Large Domestically Chartered Commercial Banks
-    'LLBLCBM027SBOG', # Loans and Leases in Bank Credit, Large Domestically Chartered Commercial Banks
-    'RELLCBM027SBOG', # Real Estate Loans, Large Domestically Chartered Commercial Banks
-    'RRELCBM027SBOG', # Real Estate Loans: Residential Real Estate Loans, Large Domestically Chartered Commercial Banks
-    'CRELCBM027SBOG', # Real Estate Loans: Commercial Real Estate Loans, Large Domestically Chartered Commercial Banks
-
-    #-- small banks : https://fred.stlouisfed.org/release/tables?rid=22&eid=823674
-    'TLASCBM027SBOG', # Total Assets, Small Domestically Chartered Commercial Banks
-    'BC0SCBM027SBOG', # Bank Credit, Small Domestically Chartered Commercial Banks
-    'LLBSCBM027SBOG', # Loans and Leases in Bank Credit, Small Domestically Chartered Commercial Banks
-    'RELSCBM027SBOG', # Real Estate Loans, Small Domestically Chartered Commercial Banks
-    'RRESCBM027SBOG', # Real Estate Loans: Residential Real Estate Loans, Small Domestically Chartered Commercial Banks
-    'CRESCBM027SBOG', # Real Estate Loans: Commercial Real Estate Loans, Small Domestically Chartered Commercial Banks
-
-
-    # Leading Index
-    'BSCICP03USM665S', # Composite Leading Indicators: Composite Business Confidence Amplitude Adjusted for United States
-
-    # OECD
-    'OECDLOLITOAASTSAM', # Leading Indicators OECD: Leading indicators: CLI: Amplitude adjusted for OECD - Total
-
-    # Recession
-    'USRECM', # NBER based Recession Indicators for the United States from the Peak through the Trough
-    'RECPROUSM156N', # Smoothed U.S. Recession Probabilities
-
-    # Rates & Yields
-    'FEDFUNDS', # Federal Funds Effective Rate
-    'AAA', # Moody's Seasoned Aaa Corporate Bond Yield
-    'BAA', # Moody's Seasoned Baa Corporate Bond Yield
-    'SNDR', # National Deposit Rates: Savings
+    'MNFCTRSMSA', # Manufacturers Sales
+    ## Manufacturers
+    'MNFCTRIRNSA', # Manufacturers: Inventories to Sales Ratio (NSA)
+    'MNFCTRIRSA', # Manufacturers: Inventories to Sales Ratio
 ]
 
-# Annually
-ids_A = [
-    # Manufacturing - Census Bureau (Annual Integrated Economic Survey, AIES)
+# Quarterly (3)
+ids_Q = [
+    # Manufacturing > Inventories (386)
+    ## Real Manufacturing and Trade Inventories
+    'INVCQRMT', # Real Manufacturing and Trade Inventories
+    'INVCQRMTSPL', # Real Manufacturing and Trade Inventories
+    'INVHQRMT', # Real Manufacturing and Trade Inventories
+]
 
+# Annually (4608)
+ids_Y = [
+    # Manufacturing > 직속 - Annual Integrated Economic Survey (AIES, Census Bureau)
     ## NAICS 31 Manufacturing
     ### 31 Manufacturing
     'AIES31EMPUS', # Manufacturing: Employees
@@ -1590,7 +1558,6 @@ ids_A = [
     'AIES31PWEUS', # Manufacturing: Production Workers
     'AIES31RCTUS', # Manufacturing: Shipments
     'AIES31TCMUS', # Manufacturing: Total Cost of Materials
-
     ## NAICS 311 Food Manufacturing
     ### 311 Food Manufacturing
     'AIES311EMPUS', # Food Manufacturing: Employees
@@ -2232,7 +2199,6 @@ ids_A = [
     'AIES311999PWEUS', # All Other Miscellaneous Food Manufacturing: Production Workers
     'AIES311999RCTUS', # All Other Miscellaneous Food Manufacturing: Shipments
     'AIES311999TCMUS', # All Other Miscellaneous Food Manufacturing: Total Cost of Materials
-
     ## NAICS 312 Beverage and Tobacco Product Manufacturing
     ### 312 Beverage and Tobacco Product Manufacturing
     'AIES312EMPUS', # Beverage and Tobacco Product Manufacturing: Employees
@@ -2334,7 +2300,6 @@ ids_A = [
     'AIES3122PWEUS', # Tobacco Manufacturing: Production Workers
     'AIES3122RCTUS', # Tobacco Manufacturing: Shipments
     'AIES3122TCMUS', # Tobacco Manufacturing: Total Cost of Materials
-
     ## NAICS 313 Textile Mills
     ### 313 Textile Mills
     'AIES313EMPUS', # Textile Mills: Employees
@@ -2436,7 +2401,6 @@ ids_A = [
     'AIES31332PWEUS', # Fabric Coating Mills: Production Workers
     'AIES31332RCTUS', # Fabric Coating Mills: Shipments
     'AIES31332TCMUS', # Fabric Coating Mills: Total Cost of Materials
-
     ## NAICS 314 Textile Product Mills
     ### 314 Textile Product Mills
     'AIES314EMPUS', # Textile Product Mills: Employees
@@ -2528,7 +2492,6 @@ ids_A = [
     'AIES314999PWEUS', # All Other Miscellaneous Textile Product Mills: Production Workers
     'AIES314999RCTUS', # All Other Miscellaneous Textile Product Mills: Shipments
     'AIES314999TCMUS', # All Other Miscellaneous Textile Product Mills: Total Cost of Materials
-
     ## NAICS 315 Apparel Manufacturing
     ### 315 Apparel Manufacturing
     'AIES315EMPUS', # Apparel Manufacturing: Employees
@@ -2630,7 +2593,6 @@ ids_A = [
     'AIES3159PWEUS', # Apparel Accessories and Other Apparel Manufacturing: Production Workers
     'AIES3159RCTUS', # Apparel Accessories and Other Apparel Manufacturing: Shipments
     'AIES3159TCMUS', # Apparel Accessories and Other Apparel Manufacturing: Total Cost of Materials
-
     ## NAICS 316 Leather and Allied Product Manufacturing
     ### 316 Leather and Allied Product Manufacturing
     'AIES316EMPUS', # Leather and Allied Product Manufacturing: Employees
@@ -2692,7 +2654,6 @@ ids_A = [
     'AIES316998PWEUS', # All Other Leather Good and Allied Product Manufacturing: Production Workers
     'AIES316998RCTUS', # All Other Leather Good and Allied Product Manufacturing: Shipments
     'AIES316998TCMUS', # All Other Leather Good and Allied Product Manufacturing: Total Cost of Materials
-
     ## NAICS 321 Wood Product Manufacturing
     ### 321 Wood Product Manufacturing
     'AIES321EMPUS', # Wood Product Manufacturing: Employees
@@ -2894,7 +2855,6 @@ ids_A = [
     'AIES321999PWEUS', # All Other Miscellaneous Wood Product Manufacturing: Production Workers
     'AIES321999RCTUS', # All Other Miscellaneous Wood Product Manufacturing: Shipments
     'AIES321999TCMUS', # All Other Miscellaneous Wood Product Manufacturing: Total Cost of Materials
-
     ## NAICS 322 Paper Manufacturing
     ### 322 Paper Manufacturing
     'AIES322EMPUS', # Paper Manufacturing: Employees
@@ -3066,7 +3026,6 @@ ids_A = [
     'AIES322299PWEUS', # All Other Converted Paper Product Manufacturing: Production Workers
     'AIES322299RCTUS', # All Other Converted Paper Product Manufacturing: Shipments
     'AIES322299TCMUS', # All Other Converted Paper Product Manufacturing: Total Cost of Materials
-
     ## NAICS 323 Printing and Related Support Activities
     ### 323 Printing and Related Support Activities
     'AIES323EMPUS', # Printing and Related Support Activities: Employees
@@ -3128,7 +3087,6 @@ ids_A = [
     'AIES32312PWEUS', # Support Activities For Printing: Production Workers
     'AIES32312RCTUS', # Support Activities For Printing: Shipments
     'AIES32312TCMUS', # Support Activities For Printing: Total Cost of Materials
-
     ## NAICS 324 Petroleum and Coal Products Manufacturing
     ### 324 Petroleum and Coal Products Manufacturing
     'AIES324EMPUS', # Petroleum and Coal Products Manufacturing: Employees
@@ -3210,7 +3168,6 @@ ids_A = [
     'AIES324199PWEUS', # All Other Petroleum and Coal Products Manufacturing: Production Workers
     'AIES324199RCTUS', # All Other Petroleum and Coal Products Manufacturing: Shipments
     'AIES324199TCMUS', # All Other Petroleum and Coal Products Manufacturing: Total Cost of Materials
-
     ## NAICS 325 Chemical Manufacturing
     ### 325 Chemical Manufacturing
     'AIES325EMPUS', # Chemical Manufacturing: Employees
@@ -3632,7 +3589,6 @@ ids_A = [
     'AIES325998PWEUS', # Other Miscellaneous Chemical Product Manufacturing: Production Workers
     'AIES325998RCTUS', # Other Miscellaneous Chemical Product Manufacturing: Shipments
     'AIES325998TCMUS', # Other Miscellaneous Chemical Product Manufacturing: Total Cost of Materials
-
     ## NAICS 326 Plastics and Rubber Products Manufacturing
     ### 326 Plastics and Rubber Products Manufacturing
     'AIES326EMPUS', # Plastics and Rubber Products Manufacturing: Employees
@@ -3874,7 +3830,6 @@ ids_A = [
     'AIES326299PWEUS', # All Other Rubber Product Manufacturing: Production Workers
     'AIES326299RCTUS', # All Other Rubber Product Manufacturing: Shipments
     'AIES326299TCMUS', # All Other Rubber Product Manufacturing: Total Cost of Materials
-
     ## NAICS 327 Nonmetallic Mineral Product Manufacturing
     ### 327 Nonmetallic Mineral Product Manufacturing
     'AIES327EMPUS', # Nonmetallic Mineral Product Manufacturing: Employees
@@ -4136,7 +4091,6 @@ ids_A = [
     'AIES327999PWEUS', # Miscellaneous Nonmetallic Mineral Products Manufacturing: Production Workers
     'AIES327999RCTUS', # Miscellaneous Nonmetallic Mineral Products Manufacturing: Shipments
     'AIES327999TCMUS', # Miscellaneous Nonmetallic Mineral Products Manufacturing: Total Cost of Materials
-
     ## NAICS 331 Primary Metal Manufacturing
     ### 331 Primary Metal Manufacturing
     'AIES331EMPUS', # Primary Metal Manufacturing: Employees
@@ -4398,7 +4352,6 @@ ids_A = [
     'AIES331529PWEUS', # Other Nonferrous Metal Foundries (Except Die-Casting): Production Workers
     'AIES331529RCTUS', # Other Nonferrous Metal Foundries (Except Die-Casting): Shipments
     'AIES331529TCMUS', # Other Nonferrous Metal Foundries (Except Die-Casting): Total Cost of Materials
-
     ## NAICS 332 Fabricated Metal Product Manufacturing
     ### 332 Fabricated Metal Product Manufacturing
     'AIES332EMPUS', # Fabricated Metal Product Manufacturing: Employees
@@ -4910,7 +4863,6 @@ ids_A = [
     'AIES332999PWEUS', # All Other Miscellaneous Fabricated Metal Product Manufacturing: Production Workers
     'AIES332999RCTUS', # All Other Miscellaneous Fabricated Metal Product Manufacturing: Shipments
     'AIES332999TCMUS', # All Other Miscellaneous Fabricated Metal Product Manufacturing: Total Cost of Materials
-
     ## NAICS 333 Machinery Manufacturing
     ### 333 Machinery Manufacturing
     'AIES333EMPUS', # Machinery Manufacturing: Employees
@@ -5432,7 +5384,6 @@ ids_A = [
     'AIES333999PWEUS', # All Other Miscellaneous General Purpose Machinery Manufacturing: Production Workers
     'AIES333999RCTUS', # All Other Miscellaneous General Purpose Machinery Manufacturing: Shipments
     'AIES333999TCMUS', # All Other Miscellaneous General Purpose Machinery Manufacturing: Total Cost of Materials
-
     ## NAICS 334 Computer and Electronic Product Manufacturing
     ### 334 Computer and Electronic Product Manufacturing
     'AIES334EMPUS', # Computer and Electronic Product Manufacturing: Employees
@@ -5734,7 +5685,6 @@ ids_A = [
     'AIES334614PWEUS', # Software and Prerecorded Media Reproducing: Production Workers
     'AIES334614RCTUS', # Software and Prerecorded Media Reproducing: Shipments
     'AIES334614TCMUS', # Software and Prerecorded Media Reproducing: Total Cost of Materials
-
     ## NAICS 335 Electrical Equipment, Appliance, and Component Manufacturing
     ### 335 Electrical Equipment, Appliance, and Component Manufacturing
     'AIES335EMPUS', # Electrical Equipment, Appliance, and Component Manufacturing: Employees
@@ -6026,7 +5976,6 @@ ids_A = [
     'AIES335999PWEUS', # Miscellaneous Electrical Equipment Manufacturing: Production Workers
     'AIES335999RCTUS', # Miscellaneous Electrical Equipment Manufacturing: Shipments
     'AIES335999TCMUS', # Miscellaneous Electrical Equipment Manufacturing: Total Cost of Materials
-
     ## NAICS 336 Transportation Equipment Manufacturing
     ### 336 Transportation Equipment Manufacturing
     'AIES336EMPUS', # Transportation Equipment Manufacturing: Employees
@@ -6378,7 +6327,6 @@ ids_A = [
     'AIES336999PWEUS', # All Other Transportation Equipment Manufacturing: Production Workers
     'AIES336999RCTUS', # All Other Transportation Equipment Manufacturing: Shipments
     'AIES336999TCMUS', # All Other Transportation Equipment Manufacturing: Total Cost of Materials
-
     ## NAICS 337 Furniture and Related Product Manufacturing
     ### 337 Furniture and Related Product Manufacturing
     'AIES337EMPUS', # Furniture and Related Product Manufacturing: Employees
@@ -6550,7 +6498,6 @@ ids_A = [
     'AIES33792PWEUS', # Blind and Shade Manufacturing: Production Workers
     'AIES33792RCTUS', # Blind and Shade Manufacturing: Shipments
     'AIES33792TCMUS', # Blind and Shade Manufacturing: Total Cost of Materials
-
     ## NAICS 339 Miscellaneous Manufacturing
     ### 339 Miscellaneous Manufacturing
     'AIES339EMPUS', # Miscellaneous Manufacturing: Employees
