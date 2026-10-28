@@ -2,6 +2,7 @@
 # FRED > Production & Business Activity > Manufacturing (category_id 32429)
 # 하위 카테고리 6개 + 카테고리 직속 시리즈 전체. 주기는 FRED 메타데이터 기준
 dir='us_macro_PBA_manufacturing'
+category_ids = [32429]  # build_db.py가 이 카테고리(하위 포함) 메타데이터를 일괄 조회
 
 # Monthly (1412)
 ids_M = [

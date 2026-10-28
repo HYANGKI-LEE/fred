@@ -14,6 +14,10 @@ mySeriesIds 리스트 -> SQLite DB (output/db/<dir>.db)
     - 429 / 5xx / 타임아웃은 대기 후 재시도, 잘못된 ID(400)는 기록하고 건너뜀
     - 시리즈 하나 끝날 때마다 커밋 -> 중간에 끊겨도 다시 실행하면 이어서 진행
     - 이미 받은 시리즈는 FRED last_updated가 바뀌었을 때만 관측값을 다시 받음
+
+빠른 업데이트
+    리스트 모듈에 category_ids = [32429] 처럼 적어두면 그 카테고리(하위 포함)의 메타데이터를
+    1,000개씩 한 번에 받아 바뀐 시리즈만 골라냄. 카테고리 밖 시리즈는 하나씩 조회.
 """
 import importlib
 import inspect
@@ -72,6 +76,26 @@ class Fred:
                 raise RuntimeError(f'재시도 초과 ({reason})')
             print(f'    ! {reason} -> {wait}초 후 재시도')
             time.sleep(wait)
+
+
+def bulk_meta(fred, category_ids):
+    """카테고리(하위 카테고리 포함) 시리즈 메타데이터를 한 번에 수집 -> {series_id: info}"""
+    meta, todo, done = {}, list(category_ids), set()
+    while todo:
+        cid = todo.pop()
+        if cid in done:
+            continue
+        done.add(cid)
+        todo += [c['id'] for c in fred.get('category/children', category_id=cid)['categories']]
+        offset = 0
+        while True:
+            r = fred.get('category/series', category_id=cid, limit=1000, offset=offset)
+            meta.update({s['id']: s for s in r['seriess']})
+            offset += 1000
+            if offset >= r['count']:
+                break
+    print(f'>>> 카테고리 {len(done)}개에서 메타데이터 {len(meta)}개 일괄 수집')
+    return meta
 
 
 def group_paths(module):
@@ -136,9 +160,10 @@ def main():
     stored = {r[0]: r[1:] for r in con.execute('SELECT series_id, last_updated, status, fetched_at FROM series_info')}
 
     fred = Fred()
+    started = time.time()
+    bulk = bulk_meta(fred, getattr(module, 'category_ids', []))
     today = datetime.now().strftime('%Y-%m-%d')
     stats = {'new/updated': 0, 'unchanged': 0, 'skipped(today)': 0, 'error': 0}
-    started = time.time()
     print(f'>>> {db_path} : {len(jobs)} series')
 
     for i, (sid, list_name, table) in enumerate(jobs, 1):
@@ -148,7 +173,7 @@ def main():
             continue
         now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         try:
-            info = fred.get('series', series_id=sid)['seriess'][0]
+            info = bulk.get(sid) or fred.get('series', series_id=sid)['seriess'][0]
             meta = (sid, list_name, paths.get(sid, ''), info['title'], info['frequency_short'],
                     info['units'], info['seasonal_adjustment_short'], info['observation_start'],
                     info['observation_end'], info['last_updated'])
@@ -177,7 +202,7 @@ def main():
             print(f'  {i}/{len(jobs)} ({mins:.1f}분) {stats}')
 
     con.close()
-    print(f'>>> 완료 {stats}')
+    print(f'>>> 완료 ({(time.time() - started) / 60:.1f}분) {stats}')
     if stats['error']:
         print("    에러 목록: SELECT series_id, error FROM series_info WHERE status='error'")
 
