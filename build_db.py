@@ -23,6 +23,7 @@ mySeriesIds 리스트 -> SQLite DB (output/db/<dir>.db)
 빠른 업데이트
     리스트 모듈에 category_ids = [32429] 처럼 적어두면 그 카테고리(하위 포함)의 메타데이터를
     1,000개씩 한 번에 받아 바뀐 시리즈만 골라냄. 카테고리 밖 시리즈는 하나씩 조회.
+    FRED release(예: H.8 = 22) 단위 리스트는 release_ids = [22] 로 같은 방식.
 """
 import importlib
 import inspect
@@ -83,23 +84,31 @@ class Fred:
             time.sleep(wait)
 
 
-def bulk_meta(fred, category_ids):
-    """카테고리(하위 카테고리 포함) 시리즈 메타데이터를 한 번에 수집 -> {series_id: info}"""
-    meta, todo, done = {}, list(category_ids), set()
+def paged(fred, path, **params):
+    """1,000개씩 끝까지 받은 시리즈 목록"""
+    out, offset = [], 0
+    while True:
+        r = fred.get(path, limit=1000, offset=offset, **params)
+        out += r['seriess']
+        offset += 1000
+        if offset >= r['count']:
+            return out
+
+
+def bulk_meta(fred, category_ids, release_ids=()):
+    """카테고리(하위 카테고리 포함)·release 시리즈 메타데이터를 한 번에 수집 -> {series_id: info}"""
+    meta = {}
+    for rid in release_ids:
+        meta.update({s['id']: s for s in paged(fred, 'release/series', release_id=rid)})
+    todo, done = list(category_ids), set()
     while todo:
         cid = todo.pop()
         if cid in done:
             continue
         done.add(cid)
         todo += [c['id'] for c in fred.get('category/children', category_id=cid)['categories']]
-        offset = 0
-        while True:
-            r = fred.get('category/series', category_id=cid, limit=1000, offset=offset)
-            meta.update({s['id']: s for s in r['seriess']})
-            offset += 1000
-            if offset >= r['count']:
-                break
-    print(f'>>> 카테고리 {len(done)}개에서 메타데이터 {len(meta)}개 일괄 수집')
+        meta.update({s['id']: s for s in paged(fred, 'category/series', category_id=cid)})
+    print(f'>>> 카테고리 {len(done)}개 · release {len(release_ids)}개에서 메타데이터 {len(meta)}개 일괄 수집')
     return meta
 
 
@@ -166,7 +175,7 @@ def main():
 
     fred = Fred()
     started = time.time()
-    bulk = bulk_meta(fred, getattr(module, 'category_ids', []))
+    bulk = bulk_meta(fred, getattr(module, 'category_ids', []), getattr(module, 'release_ids', []))
     today = datetime.now().strftime('%Y-%m-%d')
     stats = {'new/updated': 0, 'unchanged': 0, 'skipped(today)': 0, 'error': 0}
     print(f'>>> {db_path} : {len(jobs)} series')
