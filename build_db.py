@@ -7,13 +7,15 @@ mySeriesIds 리스트 -> SQLite DB (output/db/<dir>.db)
 
 테이블
     series_info     : 시리즈 메타데이터 + 주석 위계(group_path) + 수집 상태(status, error)
-    obs_monthly 등  : (series_id, date, value) 세로형. ids_M -> obs_monthly, ids_Q -> obs_quarterly, ids_Y -> obs_annual
+    obs_monthly 등  : (series_id, date, value) 세로형. ids_D -> obs_daily, ids_W -> obs_weekly,
+                      ids_M -> obs_monthly, ids_Q -> obs_quarterly, ids_Y -> obs_annual
 
 에러 대비
     - FRED 호출 제한(분당 120회)보다 느리게 호출
     - 429 / 5xx / 타임아웃은 대기 후 재시도, 잘못된 ID(400)는 기록하고 건너뜀
     - 시리즈 하나 끝날 때마다 커밋 -> 중간에 끊겨도 다시 실행하면 이어서 진행
     - 이미 받은 시리즈는 FRED last_updated가 바뀌었을 때만 관측값을 다시 받음
+    - 다시 받을 때 FRED 첫 날짜 이전 값은 지우지 않음 (backfill_db.py로 채운 과거값 보존)
 
 빠른 업데이트
     리스트 모듈에 category_ids = [32429] 처럼 적어두면 그 카테고리(하위 포함)의 메타데이터를
@@ -40,7 +42,7 @@ warnings.filterwarnings("ignore", category=InsecureRequestWarning)
 BASE_URL = 'https://api.stlouisfed.org/fred/'
 MIN_INTERVAL = 0.6          # 초. 분당 최대 100회
 RETRY_WAITS = [20, 40, 60, 120, 180]
-TABLES = {'M': 'obs_monthly', 'Q': 'obs_quarterly', 'Y': 'obs_annual', 'A': 'obs_annual'}
+TABLES = {'D': 'obs_daily', 'W': 'obs_weekly', 'M': 'obs_monthly', 'Q': 'obs_quarterly', 'Y': 'obs_annual', 'A': 'obs_annual'}
 
 
 class BadSeries(Exception):
@@ -184,7 +186,9 @@ def main():
                 obs = fred.get('series/observations', series_id=sid)['observations']
                 rows = [(sid, o['date'], to_float(o['value'])) for o in obs]
                 rows = [r for r in rows if r[2] is not None]
-                con.execute(f'DELETE FROM {table} WHERE series_id=?', (sid,))
+                if rows:
+                    # FRED 첫 날짜 이전 값(backfill_db.py로 다른 소스에서 채운 과거값)은 남김
+                    con.execute(f'DELETE FROM {table} WHERE series_id=? AND date>=?', (sid, rows[0][1]))
                 con.executemany(f'INSERT INTO {table} VALUES (?,?,?)', rows)
                 con.execute('INSERT OR REPLACE INTO series_info VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                             meta + (len(rows), now, 'ok', None))
