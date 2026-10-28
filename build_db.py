@@ -17,6 +17,9 @@ mySeriesIds 리스트 -> SQLite DB (output/db/<dir>.db)
     - 이미 받은 시리즈는 FRED last_updated가 바뀌었을 때만 관측값을 다시 받음
     - 다시 받을 때 FRED 첫 날짜 이전 값은 지우지 않음 (backfill_db.py로 채운 과거값 보존)
 
+압축본
+    끝날 때 output/db/<dir>.db.gz 도 만든다. 대시보드(macro-dashboard)는 이 압축본을 받아 브라우저에서 푼다.
+
 빠른 업데이트
     리스트 모듈에 category_ids = [32429] 처럼 적어두면 그 카테고리(하위 포함)의 메타데이터를
     1,000개씩 한 번에 받아 바뀐 시리즈만 골라냄. 카테고리 밖 시리즈는 하나씩 조회.
@@ -35,7 +38,7 @@ import requests
 from urllib3.exceptions import InsecureRequestWarning
 
 from config import user_agent, myAPIkey
-from util import make_dir
+from util import make_dir, write_gz
 
 warnings.filterwarnings("ignore", category=InsecureRequestWarning)
 
@@ -207,6 +210,7 @@ def main():
 
     con.close()
     print(f'>>> 완료 ({(time.time() - started) / 60:.1f}분) {stats}')
+    print(f'    압축본 {db_path}.gz ({write_gz(db_path) / 1e6:.1f}MB)')
     if stats['error']:
         print("    에러 목록: SELECT series_id, error FROM series_info WHERE status='error'")
 

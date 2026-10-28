@@ -17,6 +17,8 @@ import sqlite3
 from argparse import ArgumentParser
 from datetime import date, datetime
 
+from util import write_gz
+
 
 def main():
     parser = ArgumentParser(description='과거값 채우기')
@@ -63,8 +65,9 @@ def main():
             len(picked), datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
     con.commit()
     con.close()
+    write_gz(db_path)
     print(f'>>> {args.series} ({table}) : FRED 시작 {first} 이전 {len(picked)}행 채움'
-          + (f' ({picked[0][1]} ~ {picked[-1][1]})' if picked else ''))
+          + (f' ({picked[0][1]} ~ {picked[-1][1]})' if picked else '') + ', 압축본(.db.gz) 갱신')
 
 
 if __name__ == '__main__':
