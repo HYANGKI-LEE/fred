@@ -30,6 +30,8 @@ jobs:
         run: |
           if git fetch -q --depth 1 origin data; then
             git checkout FETCH_HEAD -- output/db
+            git reset -q
+            for f in output/db/*.db.gz; do gunzip -kf "$f"; done   # data 브랜치엔 압축본만 있어 풀어서 .db 로
           else
             echo "data 브랜치가 아직 없어요. 처음부터 만들어요."
           fi

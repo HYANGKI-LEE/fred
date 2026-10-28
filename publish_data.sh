@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# output/db/*.db, *.db.gz 를 data 브랜치에 '이력 없는 커밋 하나'로 덮어써 올린다 (force push).
+# output/db/*.db.gz 를 data 브랜치에 '이력 없는 커밋 하나'로 덮어써 올린다 (force push).
 # DB가 매일 바뀌어도 리포 용량이 쌓이지 않게 하려는 것. 코드는 main, 데이터는 data 브랜치.
+# 원본 .db 는 GitHub 파일 크기 제한(100MB, 권장 50MB) 때문에 올리지 않고 압축본만 둔다.
+# 다시 쓸 때는 압축본을 풀어 .db 로 만든다 (update-data.yml 의 Restore 단계).
 # 대시보드(macro-dashboard)는 https://raw.githubusercontent.com/HYANGKI-LEE/fred/data/output/db/<이름>.db.gz 를 읽는다.
 #
 #   bash publish_data.sh          # GitHub Actions (update-data.yml) 와 로컬 모두 사용
@@ -10,7 +12,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 shopt -s nullglob
-files=(output/db/*.db output/db/*.db.gz)
+files=(output/db/*.db.gz)
 if [ ${#files[@]} -eq 0 ]; then
   echo "output/db 에 DB 파일이 없어요" >&2
   exit 1
@@ -29,8 +31,8 @@ cp "${files[@]}" "$tmp/output/db/"
 cat > "$tmp/README.md" <<'EOF'
 # data 브랜치
 
-`output/db/` 의 SQLite DB와 압축본(.db.gz)만 두는 브랜치예요. 매번 이력 없이 덮어씁니다 (main 의 publish_data.sh).
-코드와 설명은 main 브랜치를 보세요.
+`output/db/` 의 SQLite DB 압축본(.db.gz)만 두는 브랜치예요. 매번 이력 없이 덮어씁니다 (main 의 publish_data.sh).
+풀면(gunzip) 바로 SQLite DB예요. 코드와 설명은 main 브랜치를 보세요.
 EOF
 
 git -C "$tmp" init -q
@@ -45,4 +47,4 @@ if git -C "$tmp" fetch -q "$remote" data 2>/dev/null && git -C "$tmp" diff --qui
   exit 0
 fi
 git -C "$tmp" push -q -f "$remote" HEAD:data
-echo ">>> data 브랜치에 올림: $(cd output/db && ls)"
+echo ">>> data 브랜치에 올림: ${files[*]##*/}"
