@@ -1,0 +1,70 @@
+name: Update data
+
+# 평일 아침 07:00 KST(= 전날 22:00 UTC, 일~목)에 항목별 DB를 업데이트해 data 브랜치에 덮어쓴다.
+# 코드는 main, DB는 data 브랜치 (publish_data.sh). 대시보드(macro-dashboard)는 data 브랜치의 .db.gz 를 읽는다.
+# 필요한 secret: FRED_API_KEY (리포 Settings > Secrets and variables > Actions)
+on:
+  schedule:
+    - cron: '0 22 * * 0-4'
+  workflow_dispatch:      # Actions 탭에서 수동 실행
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      PYTHONIOENCODING: utf-8
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore DBs from data branch
+        run: |
+          if git fetch -q --depth 1 origin data; then
+            git checkout FETCH_HEAD -- output/db
+          else
+            echo "data 브랜치가 아직 없어요. 처음부터 만들어요."
+          fi
+          ls -la output/db || true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install requests openpyxl
+
+      # 한 DB가 실패해도 나머지는 올리고, 마지막에 실패로 표시
+      - name: FRED - Manufacturing
+        id: mfg
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_PBA_manufacturing
+
+      - name: FRED - Financial Indicators
+        id: fin
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_MBF_financial_indicator
+
+      - name: NY Fed - Household Debt and Credit
+        id: hhdc
+        continue-on-error: true
+        run: python nyfed_hhdc.py
+
+      - name: Publish to data branch
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash publish_data.sh
+
+      - name: Fail if any update failed
+        if: steps.mfg.outcome == 'failure' || steps.fin.outcome == 'failure' || steps.hhdc.outcome == 'failure'
+        run: |
+          echo "mfg=${{ steps.mfg.outcome }} fin=${{ steps.fin.outcome }} hhdc=${{ steps.hhdc.outcome }}"
+          exit 1

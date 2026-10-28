@@ -102,9 +102,18 @@ def parse_sheet(ws, page):
 def main():
     parser = ArgumentParser(description='NY Fed 가계신용 보고서 -> sqlite')
     parser.add_argument('--quarter', help='예: 2026Q2 (기본: 최신)')
+    parser.add_argument('--force', action='store_true', help='이미 반영한 보고서여도 다시 쓰기')
     args = parser.parse_args()
 
     q, content = download(args.quarter)
+    try:  # 같은 보고서를 이미 반영했으면 DB를 건드리지 않음 (매일 돌려도 새 분기에만 바뀜)
+        with sqlite3.connect(DB_PATH) as con:
+            done = con.execute('SELECT MAX(last_updated) FROM series_info').fetchone()[0]
+    except sqlite3.Error:
+        done = None
+    if done == f'HHD_C_Report_{q}' and not args.force:
+        print(f'>>> HHD_C_Report_{q}: 이미 반영돼 있어 건너뜀')
+        return
     wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
     all_series = {}
     for page in PAGES:

@@ -7,3 +7,6 @@ __pycache__/
 
 # secrets
 .env
+
+# DB는 data 브랜치에 (publish_data.sh). main에는 코드만
+output/db/
