@@ -94,6 +94,11 @@ jobs:
         continue-on-error: true
         run: python build_db.py --ids us_macro_NIPA_Price_Indexes_Deflators
 
+      - name: FRED - NIPA GDI (Table 1.10)
+        id: gdp_gdi
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_GDI
+
       - name: NY Fed - Household Debt and Credit
         id: hhdc
         continue-on-error: true
@@ -106,7 +111,7 @@ jobs:
         run: bash publish_data.sh
 
       - name: Fail if any update failed
-        if: steps.mfg.outcome == 'failure' || steps.fin.outcome == 'failure' || steps.banks.outcome == 'failure' || steps.gdp.outcome == 'failure' || steps.gdp_pio.outcome == 'failure' || steps.gdp_dca.outcome == 'failure' || steps.gdp_exp.outcome == 'failure' || steps.gdp_imp.outcome == 'failure' || steps.gdp_gov.outcome == 'failure' || steps.gdp_price.outcome == 'failure' || steps.hhdc.outcome == 'failure'
+        if: steps.mfg.outcome == 'failure' || steps.fin.outcome == 'failure' || steps.banks.outcome == 'failure' || steps.gdp.outcome == 'failure' || steps.gdp_pio.outcome == 'failure' || steps.gdp_dca.outcome == 'failure' || steps.gdp_exp.outcome == 'failure' || steps.gdp_imp.outcome == 'failure' || steps.gdp_gov.outcome == 'failure' || steps.gdp_price.outcome == 'failure' || steps.gdp_gdi.outcome == 'failure' || steps.hhdc.outcome == 'failure'
         run: |
-          echo "mfg=${{ steps.mfg.outcome }} fin=${{ steps.fin.outcome }} banks=${{ steps.banks.outcome }} gdp=${{ steps.gdp.outcome }} gdp_pio=${{ steps.gdp_pio.outcome }} gdp_dca=${{ steps.gdp_dca.outcome }} gdp_exp=${{ steps.gdp_exp.outcome }} gdp_imp=${{ steps.gdp_imp.outcome }} gdp_gov=${{ steps.gdp_gov.outcome }} gdp_price=${{ steps.gdp_price.outcome }} hhdc=${{ steps.hhdc.outcome }}"
+          echo "mfg=${{ steps.mfg.outcome }} fin=${{ steps.fin.outcome }} banks=${{ steps.banks.outcome }} gdp=${{ steps.gdp.outcome }} gdp_pio=${{ steps.gdp_pio.outcome }} gdp_dca=${{ steps.gdp_dca.outcome }} gdp_exp=${{ steps.gdp_exp.outcome }} gdp_imp=${{ steps.gdp_imp.outcome }} gdp_gov=${{ steps.gdp_gov.outcome }} gdp_price=${{ steps.gdp_price.outcome }} gdp_gdi=${{ steps.gdp_gdi.outcome }} hhdc=${{ steps.hhdc.outcome }}"
           exit 1
