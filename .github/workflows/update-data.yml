@@ -64,6 +64,36 @@ jobs:
         continue-on-error: true
         run: python build_db.py --ids us_macro_NIPA_GDP_GNP
 
+      - name: FRED - NIPA Personal Income & Outlays
+        id: gdp_pio
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_Personal_Income_Outlays
+
+      - name: FRED - NIPA Domestic Capital Account
+        id: gdp_dca
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_Domestic_Capital_Account
+
+      - name: FRED - NIPA Exports
+        id: gdp_exp
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_Foreign_Transactions_Exports
+
+      - name: FRED - NIPA Imports
+        id: gdp_imp
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_Foreign_Transactions_Imports
+
+      - name: FRED - NIPA Gov't Receipts & Expenditures
+        id: gdp_gov
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_Govt_Receipts_Expenditures
+
+      - name: FRED - NIPA Price Indexes & Deflators
+        id: gdp_price
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_Price_Indexes_Deflators
+
       - name: NY Fed - Household Debt and Credit
         id: hhdc
         continue-on-error: true
@@ -76,7 +106,7 @@ jobs:
         run: bash publish_data.sh
 
       - name: Fail if any update failed
-        if: steps.mfg.outcome == 'failure' || steps.fin.outcome == 'failure' || steps.banks.outcome == 'failure' || steps.gdp.outcome == 'failure' || steps.hhdc.outcome == 'failure'
+        if: steps.mfg.outcome == 'failure' || steps.fin.outcome == 'failure' || steps.banks.outcome == 'failure' || steps.gdp.outcome == 'failure' || steps.gdp_pio.outcome == 'failure' || steps.gdp_dca.outcome == 'failure' || steps.gdp_exp.outcome == 'failure' || steps.gdp_imp.outcome == 'failure' || steps.gdp_gov.outcome == 'failure' || steps.gdp_price.outcome == 'failure' || steps.hhdc.outcome == 'failure'
         run: |
-          echo "mfg=${{ steps.mfg.outcome }} fin=${{ steps.fin.outcome }} banks=${{ steps.banks.outcome }} gdp=${{ steps.gdp.outcome }} hhdc=${{ steps.hhdc.outcome }}"
+          echo "mfg=${{ steps.mfg.outcome }} fin=${{ steps.fin.outcome }} banks=${{ steps.banks.outcome }} gdp=${{ steps.gdp.outcome }} gdp_pio=${{ steps.gdp_pio.outcome }} gdp_dca=${{ steps.gdp_dca.outcome }} gdp_exp=${{ steps.gdp_exp.outcome }} gdp_imp=${{ steps.gdp_imp.outcome }} gdp_gov=${{ steps.gdp_gov.outcome }} gdp_price=${{ steps.gdp_price.outcome }} hhdc=${{ steps.hhdc.outcome }}"
           exit 1
