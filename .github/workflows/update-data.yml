@@ -59,6 +59,11 @@ jobs:
         continue-on-error: true
         run: python build_db.py --ids us_macro_banks
 
+      - name: FRED - NIPA GDP/GNP
+        id: gdp
+        continue-on-error: true
+        run: python build_db.py --ids us_macro_NIPA_GDP_GNP
+
       - name: NY Fed - Household Debt and Credit
         id: hhdc
         continue-on-error: true
@@ -71,7 +76,7 @@ jobs:
         run: bash publish_data.sh
 
       - name: Fail if any update failed
-        if: steps.mfg.outcome == 'failure' || steps.fin.outcome == 'failure' || steps.banks.outcome == 'failure' || steps.hhdc.outcome == 'failure'
+        if: steps.mfg.outcome == 'failure' || steps.fin.outcome == 'failure' || steps.banks.outcome == 'failure' || steps.gdp.outcome == 'failure' || steps.hhdc.outcome == 'failure'
         run: |
-          echo "mfg=${{ steps.mfg.outcome }} fin=${{ steps.fin.outcome }} banks=${{ steps.banks.outcome }} hhdc=${{ steps.hhdc.outcome }}"
+          echo "mfg=${{ steps.mfg.outcome }} fin=${{ steps.fin.outcome }} banks=${{ steps.banks.outcome }} gdp=${{ steps.gdp.outcome }} hhdc=${{ steps.hhdc.outcome }}"
           exit 1
